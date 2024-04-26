@@ -1,0 +1,22 @@
+.panelItem {
+	cursor: pointer;
+	padding: 6px;
+	background: #2e2f380d;
+	border-radius:6px;
+	flex-basis: 45%;
+}
+.panelSpace {
+	transition: all 0.5s;
+	transform: translateX(-300px);
+	width: 300px;
+	&.visible {
+
+		transform: translateX(0);
+		border-radius: 6px;
+	}
+	:global{
+		.ant-collapse-item{
+			border: none;
+		}
+	}
+}

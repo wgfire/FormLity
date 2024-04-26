@@ -1,0 +1,48 @@
+.dragBox {
+	background: white;
+	padding: 8px;
+	// transition: all 0.3s;
+	border-radius: 8px;
+	margin-bottom: 12px;
+	padding-top: 12px;
+	position: relative;
+
+	&>.icon {
+		position: absolute;
+	}
+
+	&:hover {
+		cursor: grab;
+	}
+
+	&.hover {
+		//transform: scale(1.02);
+		border-radius: 8px;
+		box-shadow: 0 4px 6px 0 #0000001a, 0 0 1px 0 #0000004d;
+		// border: 1px solid #a5a6a8;
+	}
+
+	&.active {
+		border: 1px solid #315cec;
+		box-shadow: 0 4px 6px 0 #0000001a, 0 0 1px 0 #0000004d;
+	}
+
+	&.dragging {
+		background: linear-gradient(to right, #dbdcdd0d 30%, #f9fbfd);
+		opacity: 1;
+		border: 1px  dashed #315cec;
+		cursor: grabbing !important;
+
+	}
+
+	&.over{
+		cursor: grabbing !important;
+		transform: scale(0.99);
+		border: 1px solid rgb(61, 145, 223);
+	}
+	& .operationBox {
+		position: absolute;
+		right: 0px;
+		top: 4px;
+	}
+}

@@ -1,0 +1,21 @@
+.operationBar {
+	background: #2e2f380d;
+	border-radius: 6px;
+	padding: 4px;
+	margin-bottom: 16px;
+	& .iconBox{
+		cursor: pointer;
+		padding: 4px 6px;
+		border-radius: 3px;
+	}
+	& .iconBoxActive{
+		background-color: white;
+		color: #315cec;
+	}
+	& .disabled{
+		cursor: not-allowed;
+	    user-select: none;
+	    opacity: 0.4;
+		pointer-events: none;
+	}
+}

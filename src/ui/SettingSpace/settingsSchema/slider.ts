@@ -1,0 +1,67 @@
+export default {
+	type: "object",
+	properties: {
+		title: {
+			type: "string",
+			key: "title",
+			title: "标题",
+			"x-index": 0,
+			"x-decorator": "FormItem",
+			"x-component": "Input",
+			"x-component-props": {
+				prefix: "{{icon('UserOutlined')}}",
+				placeholder: "请输入内容"
+			}
+		},
+		placeholder: {
+			type: "string",
+			key: "placeholder",
+			title: "描述",
+			"x-index": 1,
+			"x-decorator": "FormItem",
+			"x-component": "Input",
+			"x-component-props": {
+			}
+		},
+		required: {
+			type: "boolean",
+			key: "required",
+			title: "是否必填",
+			"x-decorator": "FormItem",
+			"x-component": "Switch",
+			"x-component-props": {
+				"checked": true
+			}
+		},
+		range: {
+			type: "boolean",
+			key: "range",
+			title: "双滑块模式",
+			"x-decorator": "FormItem",
+			"x-component": "Switch",
+			"x-component-props": {
+			}
+
+		},
+		min: {
+			type: "number",
+			key: "min",
+			title: "最小值",
+			"x-decorator": "FormItem",
+			"x-component": "InputNumber",
+			"x-component-props": {
+				defaultValue: 0
+			}
+		},
+		max: {
+			type: "number",
+			key: "min",
+			title: "最大值",
+			"x-decorator": "FormItem",
+			"x-component": "InputNumber",
+			"x-component-props": {
+
+			}
+		}
+	}
+}
