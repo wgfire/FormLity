@@ -1,9 +1,11 @@
+import { ICbaseProps } from "@/global";
 import { Radio } from "@feb/kk-design";
+
 import { useForm, observer } from "@formily/react";
 
-export const RadioGroup = observer((props) => {
+export const RadioGroup: React.FC<ICbaseProps> = observer((props) => {
   const { value, onChange, options = [] } = props;
-  const form = useForm();
+  const form = useForm()
   const { designEnable } = form?.props?.data ?? {};
   console.log(form, "form");
   return (
@@ -15,11 +17,7 @@ export const RadioGroup = observer((props) => {
           </Radio>
         ))}
       </Radio.Group>
-      {!options.length && designEnable && (
-        <span style={{ textAlign: "center", color: "#757579" }}>
-          选中组件后，可添加单选数据
-        </span>
-      )}
+      {!options.length && designEnable && <span style={{ textAlign: "center", color: "#757579" }}>选中组件后，可添加单选数据</span>}
     </>
   );
 });

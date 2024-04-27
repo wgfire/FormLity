@@ -27,8 +27,5 @@ export default defineConfig({
         javascriptEnabled: true,
       },
     },
-  },
-  optimizeDeps:{
-    include:["@feb/kk-design/es"]
   }
 });

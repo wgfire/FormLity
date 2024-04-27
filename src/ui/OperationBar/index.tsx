@@ -11,7 +11,7 @@ import clsx from "clsx"
  */
 export const OperationBar = () => {
 
-	const { state, setState, emptyStatus } = useFormDesignContext()
+	const { state, setState } = useFormDesignContext()
 	const { onUndo, onRedo } = useHistorySchema()
 	const { mode, history } = state
 	const { historyStack, historyIndex } = history

@@ -8,7 +8,7 @@ import { createId } from "@/core/utils/string/createId";
 import { observer } from "@formily/react";
 
 import { DndContext } from "@dnd-kit/core";
-import _ from "lodash";
+import { cloneDeep } from "lodash-es";
 import { SortableContext } from "@dnd-kit/sortable";
 /**
  * @description 给下拉组件添加配置项
@@ -29,7 +29,7 @@ export const Options = observer((props) => {
 
   const moveCard = (dragIndex, dropIndex) => {
     /**抛出新对象用于组件更新 */
-    const newOptions = _.cloneDeep(options);
+    const newOptions = cloneDeep(options);
     const draggedCard = { ...newOptions[dragIndex] };
     newOptions.splice(dragIndex, 1);
     newOptions.splice(dropIndex, 0, draggedCard);
@@ -41,24 +41,11 @@ export const Options = observer((props) => {
 
   return (
     <DndContext>
-      <Flex
-        flexDirection="column"
-        style={{ position: "relative", minHeight: "42px" }}
-      >
+      <Flex flexDirection="column" style={{ position: "relative", minHeight: "42px" }}>
         <SortableContext items={items}>
           <Flex flexDirection="column" gap={10}>
             {options?.map((item, index) => {
-              return (
-                <OptionsItem
-                  key={item.value}
-                  cascader={cascader}
-                  onDelete={onDelete}
-                  onAddCascader={onAddCascader}
-                  onUpdate={onUpdate}
-                  item={item}
-                  index={index}
-                />
-              );
+              return <OptionsItem key={item.value} cascader={cascader} onDelete={onDelete} onAddCascader={onAddCascader} onUpdate={onUpdate} item={item} index={index} />;
             })}
           </Flex>
         </SortableContext>

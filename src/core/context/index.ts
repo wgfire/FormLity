@@ -26,9 +26,7 @@ export interface IFormDesignContextData {
   emptyStatus: boolean;
 }
 
-export const FormDesignContext = createContext<IFormDesignContextData>(
-  {} as any
-);
+export const FormDesignContext = createContext<IFormDesignContextData>({} as any);
 
 export const useFormDesignContext = () => {
   return useContext(FormDesignContext);

@@ -7,7 +7,8 @@ export const useDelete = () => {
   const { state, setState } = useFormDesignContext();
   ref.current = (schema: IFormSchema): void => {
     setState((draft) => {
-      const parent = findSchemaParentByKey(draft.formSchema, schema);
+
+      const parent = findSchemaParentByKey(draft.formSchema, schema.key);
       delete parent.properties[schema.key];
       if (state.selectFieldSchema?.key === schema.key) {
         draft.selectFieldSchema = null;

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { createSchema } from "../../core/createSchemaField";
-export function useLazySchemaField(components, mode) {
-  const [SchemaField, setSchemaField] = useState<React.ReactElement | null>(
-    null
-  );
+export function useLazySchemaField(
+  components: {
+    [key: string]: React.FunctionComponent;
+  },
+  mode: string
+) {
+  const [SchemaField, setSchemaField] = useState<React.ReactElement>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -18,5 +21,5 @@ export function useLazySchemaField(components, mode) {
     fetchSchema();
   }, [mode]);
 
-  return [SchemaField, isLoading];
+  return { SchemaField, isLoading };
 }

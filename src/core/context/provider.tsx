@@ -31,7 +31,7 @@ export const FormDesignProvider: React.FC<
 
   const [state, setState] = useImmer<FormState>(value);
   const emptyStatus = useMemo(() => {
-    return Object.keys(state.formSchema.properties!!).length === 0;
+    return Object.keys(state.formSchema.properties!).length === 0;
   }, [state.formSchema]);
   useDeepCompareEffect(() => {
     props?.onChange?.(state.formSchema);
