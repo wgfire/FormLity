@@ -49,7 +49,7 @@ export const WorkSpace = memo((props) => {
       const { active, over } = event;
       overHandel(active, over);
     },
-    { wait: 16, leading: true }
+    { wait: 160, leading: true }
   );
 
   useDndMonitor({
