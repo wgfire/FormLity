@@ -10,9 +10,7 @@ export const FormItem = observer(({ children }) => {
 
   return (
     <DragBox>
-      <HolderOutlined
-        style={{ cursor: "grab", position: "absolute", top: "15px" }}
-      />
+     {!readOnly && <HolderOutlined style={{ cursor: "grab", position: "absolute", top: "15px" }}/>}
       <Form.Item
         className={styles.selfItem}
         readOnly={readOnly}

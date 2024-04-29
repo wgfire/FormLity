@@ -2,10 +2,10 @@ import { createContext, useContext } from "react";
 import { Updater } from "use-immer";
 import { Schema } from "@formily/react";
 
-export interface IFormSchema extends Schema {
+export interface IFormSchema extends Omit<Schema, "properties"> {
   key: string;
+  properties: IFormSchema;
 }
-
 export interface FormState {
   selectFieldSchema: IFormSchema | null;
   mode: "pc" | "mobile";
@@ -13,6 +13,7 @@ export interface FormState {
   editable: boolean;
   designEnable: boolean;
   formSchema: IFormSchema;
+  previewFormSchema?: IFormSchema;
   history: {
     historyStack: IFormSchema[];
     historyIndex: number;

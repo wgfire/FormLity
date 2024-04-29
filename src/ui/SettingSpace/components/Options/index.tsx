@@ -1,4 +1,4 @@
-import { Flex } from "@feb/kk-design";
+import { Button, Flex } from "@feb/kk-design";
 
 import OptionsItem from "./components/OptionsItem";
 import styles from "./index.module.less";
@@ -72,9 +72,7 @@ export const Options = observer((props) => {
         </SortableContext>
 
         <div className={styles.addBox}>
-          <span color="#315cec" onClick={() => addOptions()}>
-            新增选项
-          </span>
+					<Button type="text" onClick={() => addOptions()}> 新增选项</Button>
         </div>
       </DndContext>
       {active !== "" && (

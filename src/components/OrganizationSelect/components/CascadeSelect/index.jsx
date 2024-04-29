@@ -109,7 +109,7 @@ export const CascadeSelect = memo((props) => {
 								onCheckedAll={onCheckedAll}
 								onLoad={async (item) => {
 									const data = await onLoad(item)
-									const newListTree = await insertDataByParentId(item.id, data)
+									const newListTree =  insertDataByParentId(item.id, data)
 									 setState((draft) => {
 										draft.currentKey = item.id
 									})

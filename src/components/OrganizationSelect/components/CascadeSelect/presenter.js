@@ -30,7 +30,7 @@ export const usePresenter = () => {
   /**
    * 获取数据 插入到对应id 的children
    */
-  const insertDataByParentId = useMemoizedFn(async (parentId, data) => {
+  const insertDataByParentId = useMemoizedFn((parentId, data) => {
     const newListTree = updateTreeItemById(
       cloneDeep(state.interiorSourceData),
       parentId,

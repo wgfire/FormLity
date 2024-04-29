@@ -49,6 +49,9 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> = observer
       setHover(isOver);
     }
   }, [isOver]);
+  useEffect(()=>{
+ console.log('设计器状态',state.designEnable)
+  },[state.designEnable])
   return state.designEnable ? (
     <>
       <div
@@ -82,7 +85,7 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> = observer
           }
         }}
       >
-        {(
+        {hover && !isOver && (
           <Flex justifyContent="flex-end" className={styles.operationBox} gap={10} alignItems="center">
             {showRequired && (
               <Switch

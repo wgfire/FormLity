@@ -1,11 +1,10 @@
 import { Empty, Flex, Form } from "@feb/kk-design";
 import { useFormDesignContext } from "../../core/context";
-import { Suspense, memo, useCallback, useEffect, useMemo } from "react";
+import { Suspense, memo, useCallback, useMemo } from "react";
 import { settingsSchema } from "./settingsSchema";
-import { FormProvider, observer, useForm } from "@formily/react";
-import { createForm, onFormInit, onFormMount, onFormValuesChange } from "@formily/core";
+import { FormProvider} from "@formily/react";
+import { createForm, onFormValuesChange } from "@formily/core";
 import { FormItem, Switch, Options, CascaderOptions } from "./components/index";
-import { createSchema } from "../../core/createSchemaField";
 import { useDebounceFn } from "ahooks";
 import { findSchemaByKey } from "../../core/utils/find";
 import { usePresenter } from "./presenter";

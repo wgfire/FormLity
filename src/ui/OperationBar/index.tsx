@@ -1,10 +1,10 @@
-import { Flex, Tooltip, message } from "@feb/kk-design"
+import { Flex, Tooltip } from "@feb/kk-design"
 import styles from "./index.module.less"
-import { LaptopOutlined, RollbackOutlined, MobileOutlined, ChromeOutlined } from "@ant-design/icons"
+import { LaptopOutlined, MobileOutlined, ChromeOutlined } from "@ant-design/icons"
 
 import { useFormDesignContext } from "../../core/context"
-import { useHistorySchema } from "../../core/hooks/useHistorySchema"
 import clsx from "clsx"
+import { useSchemaPreview } from "@/core/hooks/useSchemaPreview"
 
 /**
  * @description 操作栏
@@ -12,9 +12,9 @@ import clsx from "clsx"
 export const OperationBar = () => {
 
 	const { state, setState } = useFormDesignContext()
-	const { onUndo, onRedo } = useHistorySchema()
-	const { mode, history } = state
-	const { historyStack, historyIndex } = history
+	const {run:runPreview}=useSchemaPreview()
+	const { mode } = state
+
 
 	const onModeChange = (modeType) => {
 		setState((draft) => {
@@ -23,9 +23,6 @@ export const OperationBar = () => {
 
 	}
 
-	const currentColor = (modeType) => {
-		return mode === modeType ? "#315cec" : "black"
-	}
 	return (
 		<Flex justifyContent="end" style={{background: "#f9f9f9"}}>
 			<Flex
@@ -61,23 +58,23 @@ export const OperationBar = () => {
 						<MobileOutlined />
 					</Tooltip>
 				</div>
-				{/* <div
+				<div
 				className={clsx(styles.iconBox)}
 				onClick={() => {
-					if (!emptyStatus) {
 						setState((draft) => {
-							// draft.readOnly = !draft.readOnly
+							draft.readOnly = !draft.readOnly
 							draft.designEnable = !draft.designEnable
 						})
-					} else {
-						message.warning("请先拖入组件进入工作区预览")
-					}
+						setTimeout(()=>{
+							runPreview()
+						})
+					
 
 				}} style={{ color: !state.designEnable ? "#315cec" : "black" }}
 			><Tooltip title="预览">
 					<ChromeOutlined />
 				</Tooltip>
-			</div> */}
+			</div>
 
 			</Flex>
 		</Flex>

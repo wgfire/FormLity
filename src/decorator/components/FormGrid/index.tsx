@@ -17,7 +17,7 @@ export const FormGrid = observer((props) => {
   const ref = useRef(null);
   const [hover, setHover] = useState(false);
   const { run: deleteKey } = useDelete();
-  const { formSchema, designEnable } = state;
+  const { readOnly, designEnable } = state;
   const keys = useMemo(() => {
     return fieldSchema.properties ? Object.keys(fieldSchema.properties) : [];
   }, [fieldSchema.properties]);
@@ -82,7 +82,7 @@ export const FormGrid = observer((props) => {
         style={{ marginBottom: 10, minHeight: "32px" }}
       >
         <Flex gap={6} alignItems="center" style={{ fontWeight: "bold" }}>
-          <HolderOutlined style={{ cursor: "grab" }} />
+					{!readOnly && <HolderOutlined style={{ cursor: "grab" }} />}
           <label>{fieldSchema.title}</label>
         </Flex>
         <Flex>
