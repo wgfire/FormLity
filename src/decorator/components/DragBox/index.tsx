@@ -53,7 +53,6 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> = observer
     <>
       <div
         style={{ ...style, ...styleTransform }}
-        {...attributes}
         {...listeners}
         className={clsx(
           styles.dragBox,
@@ -83,7 +82,7 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> = observer
           }
         }}
       >
-        {hover && !isOver && (
+        {(
           <Flex justifyContent="flex-end" className={styles.operationBox} gap={10} alignItems="center">
             {showRequired && (
               <Switch
