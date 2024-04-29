@@ -23,6 +23,6 @@
       "@/*": ["./src/*"] // 将 @ 映射到 src 目录
     }
   },
-  "include": ["src", "src/global.d.ts"],
+  "include": ["src", "src/global.d.ts", "index.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -6,10 +6,7 @@ import { FormDesignProvider } from "../../core/context/provider";
 
 import { DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 
-/**
- * @param {props} props
- * @returns {React.Component}
- */
+
 export const FormDesign = (props) => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -24,7 +21,7 @@ export const FormDesign = (props) => {
       <FormDesignProvider {...props}>
         <DndContext sensors={sensors}>
           <PanelSpace />
-          <WorkSpace />
+          <WorkSpace components={props.components}/>
         </DndContext>
         <SettingSpace />
       </FormDesignProvider>

@@ -40,7 +40,7 @@ export default {
 			"x-decorator": "FormItem",
 			"x-component": "Select",
 			"x-component-props": {
-				placeholder: "请选择上传类型",
+				placeholder: "请选择展示类型",
 				options: [
 					{
 						value: "text",

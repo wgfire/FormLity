@@ -16,8 +16,16 @@ import { OperationBar } from "../OperationBar";
 import { ModeWrapper } from "./components/ModeWrapper";
 import { useLazySchemaField } from "../../core/hooks/useLazySchemaField";
 
-import { DragOverlay, UniqueIdentifier, useDndMonitor, useDroppable } from "@dnd-kit/core";
-import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import {
+  DragOverlay,
+  UniqueIdentifier,
+  useDndMonitor,
+  useDroppable,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { findAllKeys } from "../../core/utils/find";
 import { DragItem } from "../PanelSpace/DragItem";
 import { OverLayItem } from "./components/OverLayItem";
@@ -32,9 +40,14 @@ export const WorkSpace = memo((props) => {
   const empty = emptyStatus;
   const { mode, readOnly, designEnable } = state;
   const [initialValues, setInitialValues] = useState({});
-  const [activeItem, setActiveItem] = useState<IrenderType & { title: string; children: any; type: string }>({});
+  const [activeItem, setActiveItem] = useState<
+    IrenderType & { title: string; children: any; type: string }
+  >({});
 
-  const { SchemaField, isLoading } = useLazySchemaField({ FormGrid, FormItem: DragFormItem }, mode);
+  const { SchemaField, isLoading } = useLazySchemaField(
+    { FormGrid, FormItem: DragFormItem, ...props.components },
+    mode
+  );
 
   const keys = useMemo(() => {
     return Object.keys(state.formSchema.properties ?? []); //findAllKeys(state.formSchema)
@@ -101,18 +114,32 @@ export const WorkSpace = memo((props) => {
   } as IFormProps & { data: object });
 
   return (
-    <div id="workSpace" ref={setNodeRef} className={clsx(styles.workSpace, { [styles.preview]: !designEnable })}>
+    <div
+      id="workSpace"
+      ref={setNodeRef}
+      className={clsx(styles.workSpace, { [styles.preview]: !designEnable })}
+    >
       <OperationBar />
       <Suspense fallback={<div>加载中...</div>}>
         <ModeWrapper mode={state.mode} preview={!designEnable}>
-          <SortableContext items={keys} strategy={verticalListSortingStrategy} id="workSpace">
+          <SortableContext
+            items={keys}
+            strategy={verticalListSortingStrategy}
+            id="workSpace"
+          >
             {empty ? (
-              <Empty image={<DropboxOutlined style={{ fontSize: "100px" }} />} description="看我干嘛，快拖啊" style={{ marginTop: "100px", width: "100%" }} />
+              <Empty
+                image={<DropboxOutlined style={{ fontSize: "100px" }} />}
+                description="看我干嘛，快拖啊"
+                style={{ marginTop: "100px", width: "100%" }}
+              />
             ) : (
               <>
                 <FormProvider form={designForm}>
                   <Form layout="vertical" style={{ width: "100%" }}>
-                    {isLoading ? null : <SchemaField schema={state.formSchema} />}
+                    {isLoading ? null : (
+                      <SchemaField schema={state.formSchema} />
+                    )}
                   </Form>
                 </FormProvider>
               </>
@@ -124,7 +151,10 @@ export const WorkSpace = memo((props) => {
                 {activeItem.renderType ? (
                   <DragItem item={activeItem} />
                 ) : activeItem.type === "overLayItem" ? (
-                  <OverLayItem {...activeItem.children?.props} title={activeItem.title} />
+                  <OverLayItem
+                    {...activeItem.children?.props}
+                    title={activeItem.title}
+                  />
                 ) : (
                   <OverLayGrid {...activeItem.children} />
                 )}
