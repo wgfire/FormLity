@@ -1,35 +1,12 @@
 import { createContext, useContext } from "react";
-import { Updater } from "use-immer";
-import { Schema } from "@formily/react";
+import { FlitySateContextProps, FLityDesignContextProps } from "./types";
+export * from "./types";
 
-export interface IFormSchema extends Omit<Schema, "properties"> {
-  key: string;
-  properties: IFormSchema;
-}
-export interface FormState {
-  selectFieldSchema: IFormSchema | null;
-  mode: "pc" | "mobile";
-  readOnly: boolean;
-  editable: boolean;
-  designEnable: boolean;
-  formSchema: IFormSchema;
-  previewFormSchema?: IFormSchema;
-  history: {
-    historyStack: IFormSchema[];
-    historyIndex: number;
-    undoStack: IFormSchema[];
-    maxCount: number;
-  };
-}
-export interface IFormDesignContextData {
-  state: FormState;
-  setState: Updater<FormState>;
-  emptyStatus: boolean;
-}
+export const FlitySateContext = createContext<FlitySateContextProps>({});
 
-export const FormDesignContext = createContext<IFormDesignContextData>({} as any);
+export const FLityDesignContext = createContext<FLityDesignContextProps>({});
 
-export const useFormDesignContext = () => {
-  return useContext(FormDesignContext);
+export const useFlitySateContext = () => {
+  return useContext(FlitySateContext);
 };
-export default FormDesignContext;
+export default FlitySateContext;

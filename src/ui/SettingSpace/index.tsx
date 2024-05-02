@@ -1,8 +1,8 @@
 import { Empty, Flex, Form } from "@feb/kk-design";
-import { useFormDesignContext } from "../../core/context";
+import { useFlitySateContext } from "../../core/context";
 import { Suspense, memo, useCallback, useMemo } from "react";
 import { settingsSchema } from "./settingsSchema";
-import { FormProvider} from "@formily/react";
+import { FormProvider } from "@formily/react";
 import { createForm, onFormValuesChange } from "@formily/core";
 import { FormItem, Switch, Options, CascaderOptions } from "./components/index";
 import { useDebounceFn } from "ahooks";
@@ -13,7 +13,7 @@ import styles from "./index.module.less";
 import clsx from "clsx";
 export const SettingSpace = memo((props) => {
   const { style } = props;
-  const { state, setState, emptyStatus } = useFormDesignContext();
+  const { state, setState, emptyStatus } = useFlitySateContext();
   const { selectFieldSchema } = state;
   const { generateValues } = usePresenter();
   const componentType = selectFieldSchema?.["x-component"] ?? "";

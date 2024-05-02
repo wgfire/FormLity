@@ -1,7 +1,7 @@
 import { useField, useFieldSchema, observer, useForm } from "@formily/react";
 import { memo, useEffect, useRef, useState } from "react";
 import styles from "./index.module.less";
-import { IFormSchema, useFormDesignContext } from "../../../core/context";
+import { IFormSchema, useFlitySateContext } from "../../../core/context";
 import { DeleteOutlined } from "@ant-design/icons";
 import clsx from "clsx";
 import { Button, Flex, Switch } from "@feb/kk-design";
@@ -22,7 +22,7 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> = observer
   const field = useField();
   const form = useForm();
   const fieldSchema = useFieldSchema() as IFormSchema;
-  const { state, setState } = useFormDesignContext();
+  const { state, setState } = useFlitySateContext();
   const [hover, setHover] = useState(false);
 
   const { run: deleteKey } = useDelete();
@@ -49,9 +49,9 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> = observer
       setHover(isOver);
     }
   }, [isOver]);
-  useEffect(()=>{
- console.log('设计器状态',state.designEnable)
-  },[state.designEnable])
+  useEffect(() => {
+    console.log("设计器状态", state.designEnable);
+  }, [state.designEnable]);
   return state.designEnable ? (
     <>
       <div

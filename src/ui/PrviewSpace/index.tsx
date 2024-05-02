@@ -1,9 +1,7 @@
-import { useFormDesignContext } from "../../core/context"
+import { useFlitySateContext } from "../../core/context";
 
 const PreviewSpace = () => {
-	const {state}=useFormDesignContext()
-	return (
-		<div>预览空间</div>
-	)
-}
-export default PreviewSpace
+  const { state } = useFlitySateContext();
+  return <div>预览空间</div>;
+};
+export default PreviewSpace;

@@ -8,12 +8,12 @@ import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CSS } from "@dnd-kit/utilities";
 import { DeleteOutlined, HolderOutlined } from "@ant-design/icons";
-import { IFormSchema, useFormDesignContext } from "../../../core/context";
+import { IFormSchema, useFlitySateContext } from "../../../core/context";
 import clsx from "clsx";
 
 export const FormGrid = observer((props) => {
   const fieldSchema = useFieldSchema() as IFormSchema;
-  const { state, setState } = useFormDesignContext();
+  const { state, setState } = useFlitySateContext();
   const ref = useRef(null);
   const [hover, setHover] = useState(false);
   const { run: deleteKey } = useDelete();
@@ -22,15 +22,7 @@ export const FormGrid = observer((props) => {
     return fieldSchema.properties ? Object.keys(fieldSchema.properties) : [];
   }, [fieldSchema.properties]);
 
-  const {
-    isDragging,
-    isOver,
-    setNodeRef,
-    transition,
-    listeners,
-    transform,
-    attributes,
-  } = useSortable({
+  const { isDragging, isOver, setNodeRef, transition, listeners, transform, attributes } = useSortable({
     id: fieldSchema.key,
     data: {
       type: "FormGrid",
@@ -75,14 +67,9 @@ export const FormGrid = observer((props) => {
         }
       }}
     >
-      <Flex
-        alignItems="center"
-        gap={10}
-        justifyContent="space-between"
-        style={{ marginBottom: 10, minHeight: "32px" }}
-      >
+      <Flex alignItems="center" gap={10} justifyContent="space-between" style={{ marginBottom: 10, minHeight: "32px" }}>
         <Flex gap={6} alignItems="center" style={{ fontWeight: "bold" }}>
-					{!readOnly && <HolderOutlined style={{ cursor: "grab" }} />}
+          {!readOnly && <HolderOutlined style={{ cursor: "grab" }} />}
           <label>{fieldSchema.title}</label>
         </Flex>
         <Flex>
@@ -108,25 +95,15 @@ export const FormGrid = observer((props) => {
           </SortableContext>
         </div>
       ) : (
-        <Flex
-          justifyContent="center"
-          alignItems="center"
-          style={{ height: "100px" }}
-        >
+        <Flex justifyContent="center" alignItems="center" style={{ height: "100px" }}>
           请添加组件进来
         </Flex>
       )}
     </div>
   ) : (
     <Flex flexDirection="column" gap={10}>
-      <label style={{ fontWeight: "bold", fontSize: "14px" }}>
-        {fieldSchema.title}
-      </label>
-      <div
-        className={clsx(styles.formGrid, { [styles.preview]: !designEnable })}
-      >
-        {props.children}
-      </div>
+      <label style={{ fontWeight: "bold", fontSize: "14px" }}>{fieldSchema.title}</label>
+      <div className={clsx(styles.formGrid, { [styles.preview]: !designEnable })}>{props.children}</div>
     </Flex>
   );
 });

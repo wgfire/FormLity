@@ -4,6 +4,7 @@ export const mockSchema = {
 		isContainer: true,
 		isRoot: true
 	},
+	key:"root",
 	properties: {}
 }
 

@@ -1,4 +1,4 @@
-import { useFormDesignContext } from "../../core/context";
+import { useFlitySateContext } from "../../core/context";
 import { createSchemaItem } from "../../core/utils/create/createSchemaItem";
 import { sortSchema } from "../../decorator/components/DragBox/sortSchema";
 import { findSchemaByKey, findSchemaParentByKey } from "../../core/utils/find";
@@ -6,7 +6,7 @@ import { IrenderType } from "../PanelSpace/default";
 import { Active, Over, UniqueIdentifier } from "@dnd-kit/core";
 
 export const usePresenter = () => {
-  const { setState } = useFormDesignContext();
+  const { setState } = useFlitySateContext();
   const dropHandel = (activeItem: IrenderType, over: Over) => {
     const overData = over.data.current;
     const schemaItem = overData?.schema;
