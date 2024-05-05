@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-/** @ts-no-check */
+// @ts-nocheck
 import { createSchemaField } from "@formily/react";
 import React, { lazy } from "react";
 import * as ICONS from "@ant-design/icons";
@@ -16,7 +16,7 @@ import {
 import { DatePicker } from "../../../components/DatePicker";
 import { CheckBoxGroup } from "../../../components/CheckBoxGroup";
 import { RadioGroup } from "../../../components/RadioGroup";
-import { AddressPicker } from "../../../components/AddressPicker";
+import { AddressSelect } from "../../../components/AddressSelect";
 import { Upload } from "../../../components/Upload";
 import { TimePicker } from "../../../components/TimePicker";
 import { Divider } from "../../../decorator/components/Divider";
@@ -44,7 +44,7 @@ export const createSchema = (components: {
       Cascader,
       Upload,
       Slider,
-      AddressPicker,
+      AddressSelect,
       Text,
       ...components,
     },

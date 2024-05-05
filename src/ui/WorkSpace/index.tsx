@@ -30,7 +30,7 @@ export const WorkSpace = memo((props) => {
   const { state, emptyStatus } = useFlitySateContext();
   const { dropHandel, overHandel } = usePresenter();
   const empty = emptyStatus;
-  const { mode, readOnly, designEnable } = state;
+  const { mode, readOnly, editable,designEnable } = state;
   const [initialValues, setInitialValues] = useState({});
   const [activeItem, setActiveItem] = useState<IrenderType & { title: string; children: any; type: string }>({});
 
@@ -84,7 +84,7 @@ export const WorkSpace = memo((props) => {
   const designForm = createForm({
     validateFirst: false,
     readOnly: readOnly,
-    editable: designEnable && mode !== "mobile",
+    editable: editable ,
     initialValues: initialValues,
     data: {
       designEnable: state.designEnable,
@@ -105,7 +105,7 @@ export const WorkSpace = memo((props) => {
       <OperationBar />
       <Suspense fallback={<div>加载中...</div>}>
         <ModeWrapper mode={state.mode} preview={!designEnable}>
-          <SortableContext items={keys} strategy={verticalListSortingStrategy} id="workSpace">
+          <SortableContext items={keys} strategy={verticalListSortingStrategy} id="workSpace" disabled={!designEnable}>
             {empty ? (
               <Empty image={<DropboxOutlined style={{ fontSize: "100px" }} />} description="看我干嘛，快拖啊" style={{ marginTop: "100px", width: "100%" }} />
             ) : (

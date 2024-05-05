@@ -25,6 +25,9 @@ export interface FlitySateContextProps {
   emptyStatus: boolean;
 }
 
-export interface FLityDesignContextProps {
+/**
+ * @description 用于扩展设计器的上下文
+ */
+export interface FlityDesignContextProps {
   panelSpace?: any;
 }

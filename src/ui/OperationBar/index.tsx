@@ -5,6 +5,8 @@ import { LaptopOutlined, MobileOutlined, ChromeOutlined } from "@ant-design/icon
 import { useFlitySateContext } from "../../core/context";
 import clsx from "clsx";
 import { useSchemaPreview } from "@/core/hooks/useSchemaPreview";
+import { DeviceType } from "@/global";
+
 
 /**
  * @description 操作栏
@@ -14,7 +16,7 @@ export const OperationBar = () => {
   const { run: runPreview } = useSchemaPreview();
   const { mode } = state;
 
-  const onModeChange = (modeType) => {
+  const onModeChange = (modeType:DeviceType) => {
     setState((draft) => {
       draft.mode = modeType;
     });
@@ -49,7 +51,7 @@ export const OperationBar = () => {
             <MobileOutlined />
           </Tooltip>
         </div>
-        <div
+        {/* <div
           className={clsx(styles.iconBox)}
           onClick={() => {
             setState((draft) => {
@@ -65,7 +67,7 @@ export const OperationBar = () => {
           <Tooltip title="预览">
             <ChromeOutlined />
           </Tooltip>
-        </div>
+        </div> */}
       </Flex>
     </Flex>
   );

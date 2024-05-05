@@ -9,7 +9,7 @@ import { Cascader } from "@feb/kk-design";
 
 import { useState } from "react";
 
-export const AddressPicker = observer((props) => {
+export const AddressSelect = observer((props) => {
   const [dataSource, setDataSource] = useState([]);
 
   const { getAddressList } = usePresenter();
@@ -22,4 +22,4 @@ export const AddressPicker = observer((props) => {
   return <Cascader {...props} changeOnSelect />;
 });
 
-export default AddressPicker;
+export default AddressSelect;

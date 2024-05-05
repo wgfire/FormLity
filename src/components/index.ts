@@ -1,5 +1,11 @@
-export { AddressPicker } from "./AddressPicker";
-export { CheckBoxGroup } from "./CheckBoxGroup";
+/**
+ * @description 导出一些业务组件用于自定义修改
+ */
+
+export { AddressSelect } from "./AddressSelect";
 export { OrganizationSelect } from "./OrganizationSelect";
 export { Upload } from "./Upload";
 
+/**h5组件 */
+export { AddressPicker } from "./H5/AddressPicker";
+export { OrganizationPicker } from "./H5/OrganizationPicker";

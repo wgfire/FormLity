@@ -2,6 +2,7 @@
 import { FormLityContext } from "./core/components/FormLityContext";
 import { FormDesign } from "./ui/FormDesign";
 import { useFlitySate } from "./core/hooks/useFlitySate";
+import { FormLityRender } from "./core/components/FormLityRender";
 
 
 const FormDesignApp = () => {
@@ -28,7 +29,7 @@ const FormDesignApp = () => {
   });
   console.log(state);
 
-  return <FormDesign></FormDesign>;
+  return <FormLityRender></FormLityRender>;
 };
 export const App = () => {
   return (
