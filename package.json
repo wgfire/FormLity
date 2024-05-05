@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "type": "module",
   "publishConfig": {
-    "access": "public",
-    "@feb:registry": "https://git.kkgroup.cn/api/v4/projects/3202/packages/npm/"
+    "access": "public"
   },
   "files": [
-    "dist"
+    "es",
+    "lib"
   ],
   "scripts": {
     "dev": "vite",
     "build": "vite build && node copy-package.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "semantic-release": "semantic-release"
   },
   "module": "./es/index.js",
   "dependencies": {
@@ -53,6 +54,11 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.9.0",
-    "vite-plugin-imp": "^2.4.0"
+    "vite-plugin-imp": "^2.4.0",
+    "semantic-release": "19.0.3",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/gitlab": "^9.4.1",
+    "@semantic-release/npm": "^9.0.1"
   }
 }
