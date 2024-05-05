@@ -10,7 +10,7 @@ export const PanelSpace: React.FC<{
   style?: React.CSSProperties;
 }> = memo((props) => {
   const { style } = props;
-  const { state } = useFlitySateContext<IFormDesignerContext>();
+  const { state } = useFlitySateContext();
   const renderSpace = defaultPanelSpace;
   const { Panel } = Collapse;
   const activeKey = useMemo(() => {

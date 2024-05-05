@@ -3,9 +3,9 @@ import { PanelSpace } from "../PanelSpace";
 import { WorkSpace } from "../WorkSpace";
 import { SettingSpace } from "../SettingSpace";
 
-import { DndContext, PointerSensor, useDndContext, useSensor, useSensors } from "@dnd-kit/core";
+import { DndContext, PointerSensor , useSensor, useSensors } from "@dnd-kit/core";
 
-export const FormDesign = (props) => {
+export const FormDesign = () => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {

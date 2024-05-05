@@ -27,9 +27,9 @@ const FormDesignApp = () => {
       },
     },
   });
-  console.log(state);
+  console.log(state, "state");
 
-  return <FormLityRender></FormLityRender>;
+  return <FormDesign></FormDesign>;
 };
 export const App = () => {
   return (
