@@ -7,6 +7,7 @@ import { FormLityRender } from "./core/components/FormLityRender";
 
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
+    designEnable: true,
     formSchema: {
       type: "object",
       "x-data": {

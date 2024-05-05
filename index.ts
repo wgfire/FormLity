@@ -10,4 +10,10 @@ export * from "./src/components/index";
  * @description context组件
  */
 
-export {FormLityContext}  from './src/core/components/index'
+export { FormLityContext } from "./src/core/components/index";
+
+/**
+ *
+ */
+
+export { useFlitySate } from "./src/core/hooks/index";
