@@ -1,8 +1,14 @@
 {
-  "name": "formilys",
-  "private": true,
-  "version": "0.0.0",
+  "name": "form-lity",
+  "version": "1.0.0",
   "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "@feb:registry": "https://git.kkgroup.cn/api/v4/projects/3202/packages/npm/"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build && node copy-package.js",
