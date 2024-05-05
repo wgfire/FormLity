@@ -1,8 +1,17 @@
 /* eslint-disable react-refresh/only-export-components */
+/** @ts-no-check */
 import { createSchemaField } from "@formily/react";
 import React, { lazy } from "react";
 import * as ICONS from "@ant-design/icons";
-import { Input, Switch, InputNumber, Select, Rate, Cascader, Slider } from "@feb/kk-design";
+import {
+  Input,
+  Switch,
+  InputNumber,
+  Select,
+  Rate,
+  Cascader,
+  Slider,
+} from "@feb/kk-design";
 
 import { DatePicker } from "../../../components/DatePicker";
 import { CheckBoxGroup } from "../../../components/CheckBoxGroup";
@@ -15,7 +24,9 @@ import { Text } from "../../../decorator/components/Text";
 
 console.log("加载pc组件");
 
-export const createSchema = (components: { [key: string]: React.ReactElement }) => {
+export const createSchema = (components: {
+  [key: string]: React.ReactElement;
+}) => {
   const TextArea = Input.TextArea;
   const SchemaField = createSchemaField({
     components: {

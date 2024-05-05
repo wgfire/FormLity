@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+/** @ts-no-check */
 import { createSchemaField } from "@formily/react";
 import React, { lazy } from "react";
 import * as ICONS from "@ant-design/icons";

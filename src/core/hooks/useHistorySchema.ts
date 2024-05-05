@@ -3,13 +3,6 @@ import { IFormSchema, useFlitySateContext } from "../context";
 
 import { useUpdateEffect } from "ahooks";
 
-/**
- * Push a new schema into the history stack and update the historyIndex.
- * The history stack is capped at maxCount items.
- *
- * @param {import("./context").FormDesignContextData["formSchema"]} schema New schema to push into the history stack.
- * @returns {void}
- */
 
 export const useHistorySchema = () => {
   const { state, setState } = useFlitySateContext();
