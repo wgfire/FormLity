@@ -1,5 +1,5 @@
 export const createSchema = async (
-  components: { [key: string]: React.ReactElement },
+  components: { [key: string]: React.ReactNode },
   mode: string
 ) => {
   if (mode === "pc") {

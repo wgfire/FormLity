@@ -1,10 +1,10 @@
-import { IFormSchema, useFlitySateContext } from "../context";
+import { IFormSchema, useFlityStateContext } from "../context";
 import { useRef } from "react";
 import { findSchemaParentByKey } from "../utils/find";
 
 export const useDelete = () => {
   const ref = useRef<((schema: IFormSchema) => void) | null>(null);
-  const { state, setState } = useFlitySateContext();
+  const { state, setState } = useFlityStateContext();
   ref.current = (schema: IFormSchema): void => {
     setState((draft) => {
       const parent = findSchemaParentByKey(draft.formSchema, schema.key);

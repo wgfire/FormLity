@@ -1,14 +1,14 @@
 import { IFormProps, createForm, onFormValuesChange } from "@formily/core";
 import { FormProvider } from "@formily/react";
 import { Suspense, memo, useMemo, useState } from "react";
-import { Empty, Form } from "@feb/kk-design";
+import { Flex, Form, SvgIcon } from "@feb/kk-design";
 
 import styles from "./index.module.less";
 import { FormGrid } from "../../decorator/components/FormGrid";
 
 import { FormItem as DragFormItem } from "../../decorator/components/FormItem";
 
-import { useFlitySateContext } from "../../core/context";
+import { useFlityStateContext } from "../../core/context";
 import { useDebounceFn } from "ahooks";
 
 import { usePresenter } from "./presenter";
@@ -16,25 +16,38 @@ import { OperationBar } from "../OperationBar";
 import { ModeWrapper } from "./components/ModeWrapper";
 import { useLazySchemaField } from "../../core/hooks/useLazySchemaField";
 
-import { DragOverlay, UniqueIdentifier, useDndMonitor, useDroppable } from "@dnd-kit/core";
-import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import {
+  DragOverlay,
+  UniqueIdentifier,
+  useDndMonitor,
+  useDroppable,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { findAllKeys } from "../../core/utils/find";
 import { DragItem } from "../PanelSpace/DragItem";
 import { OverLayItem } from "./components/OverLayItem";
 import { OverLayGrid } from "./components/OverLayGrid";
 import clsx from "clsx";
-import { DropboxOutlined } from "@ant-design/icons";
-import { IrenderType } from "../PanelSpace/default";
+import emptyIcon from "@/assets/empty.svg";
+import { IRenderType } from "../PanelSpace/default";
 
 export const WorkSpace = memo((props) => {
-  const { state, emptyStatus } = useFlitySateContext();
+  const { state, emptyStatus } = useFlityStateContext();
   const { dropHandel, overHandel } = usePresenter();
   const empty = emptyStatus;
-  const { mode, readOnly, editable,designEnable } = state;
+  const { mode, readOnly, editable, designEnable } = state;
   const [initialValues, setInitialValues] = useState({});
-  const [activeItem, setActiveItem] = useState<IrenderType & { title: string; children: any; type: string }>({});
+  const [activeItem, setActiveItem] = useState<
+    (IRenderType & { title: string; children: any; type: string }) | null
+  >(null);
 
-  const { SchemaField, isLoading } = useLazySchemaField({ FormGrid, FormItem: DragFormItem, ...props.components }, mode);
+  const { SchemaField, isLoading } = useLazySchemaField(
+    { FormGrid, FormItem: DragFormItem, ...props.components },
+    mode
+  );
 
   const keys = useMemo(() => {
     return Object.keys(state.formSchema.properties ?? []); //findAllKeys(state.formSchema)
@@ -60,7 +73,7 @@ export const WorkSpace = memo((props) => {
 
       //1.从面板增加过来的
       if (!allKeys.includes(active.id) && over) {
-        dropHandel(activeItem, over);
+        dropHandel(activeItem!, over);
       }
     },
     onDragOver: dragHandel,
@@ -84,7 +97,7 @@ export const WorkSpace = memo((props) => {
   const designForm = createForm({
     validateFirst: false,
     readOnly: readOnly,
-    editable: editable ,
+    editable: editable,
     initialValues: initialValues,
     data: {
       designEnable: state.designEnable,
@@ -101,18 +114,42 @@ export const WorkSpace = memo((props) => {
   } as IFormProps & { data: object });
 
   return (
-    <div id="workSpace" ref={setNodeRef} className={clsx(styles.workSpace, { [styles.preview]: !designEnable })}>
+    <div
+      id="workSpace"
+      ref={setNodeRef}
+      className={clsx(styles.workSpace, { [styles.preview]: !designEnable })}
+    >
       <OperationBar />
       <Suspense fallback={<div>加载中...</div>}>
         <ModeWrapper mode={state.mode} preview={!designEnable}>
-          <SortableContext items={keys} strategy={verticalListSortingStrategy} id="workSpace" disabled={!designEnable}>
+          <SortableContext
+            items={keys}
+            strategy={verticalListSortingStrategy}
+            id="workSpace"
+            disabled={!designEnable}
+          >
             {empty ? (
-              <Empty image={<DropboxOutlined style={{ fontSize: "100px" }} />} description="看我干嘛，快拖啊" style={{ marginTop: "100px", width: "100%" }} />
+              <Flex
+                style={{ marginTop: "100px", width: "100%" }}
+                justifyContent="center"
+                flexDirection="column"
+                alignItems="center"
+              >
+                <SvgIcon
+                  src={emptyIcon}
+                  style={{ fontSize: "300px" }}
+                ></SvgIcon>
+                <span style={{ color: "#1C1F2399", fontSize: "16px" }}>
+                  从左侧面板拖拽组件进入工作区
+                </span>
+              </Flex>
             ) : (
               <>
                 <FormProvider form={designForm}>
                   <Form layout="vertical" style={{ width: "100%" }}>
-                    {isLoading ? null : <SchemaField schema={state.formSchema} />}
+                    {isLoading ? null : (
+                      <SchemaField schema={state.formSchema} />
+                    )}
                   </Form>
                 </FormProvider>
               </>
@@ -124,7 +161,10 @@ export const WorkSpace = memo((props) => {
                 {activeItem.renderType ? (
                   <DragItem item={activeItem} />
                 ) : activeItem.type === "overLayItem" ? (
-                  <OverLayItem {...activeItem.children?.props} title={activeItem.title} />
+                  <OverLayItem
+                    {...activeItem.children?.props}
+                    title={activeItem.title}
+                  />
                 ) : (
                   <OverLayGrid {...activeItem.children} />
                 )}

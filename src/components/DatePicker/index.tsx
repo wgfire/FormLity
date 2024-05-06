@@ -1,8 +1,12 @@
 import { observer } from "@formily/react";
 import { DatePicker as AntDatePicker } from "@feb/kk-design";
 import moment from "moment";
+import { ICbaseProps } from "@/global";
 
-export const DatePicker = observer((props) => {
+export interface IDatePickerProps extends ICbaseProps {
+  range?: boolean;
+}
+export const DatePicker: React.FC<IDatePickerProps> = observer((props) => {
   const { onChange, range } = props;
   const format = "YYYY-MM-DD";
   const valueChange = (newValue) => {

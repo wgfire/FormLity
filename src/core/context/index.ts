@@ -1,12 +1,17 @@
 import { createContext, useContext } from "react";
-import { FlitySateContextProps, FlityDesignContextProps } from "./types";
+import { FlityStateContextProps, FlityDesignContextProps } from "./types";
 export * from "./types";
 
-export const FlitySateContext = createContext<FlitySateContextProps >({} as unknown as FlitySateContextProps);
+export const FlityStateContext = createContext<FlityStateContextProps>(
+  {} as unknown as FlityStateContextProps
+);
 
-export const FlityDesignContext = createContext<FlityDesignContextProps>({});
+export const FlityDesignContext = createContext<FlityDesignContextProps>({} as unknown as FlityDesignContextProps);
 
-export const useFlitySateContext = () => {
-  return useContext(FlitySateContext);
+export const useFlityStateContext = () => {
+  return useContext(FlityStateContext);
 };
-export default FlitySateContext;
+export const useFlityDesignContext = () => {
+  return useContext(FlityDesignContext);
+};
+export default FlityStateContext;

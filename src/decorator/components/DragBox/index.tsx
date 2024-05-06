@@ -1,7 +1,7 @@
 import { useFieldSchema, observer } from "@formily/react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.less";
-import { IFormSchema, useFlitySateContext } from "../../../core/context";
+import { IFormSchema, useFlityStateContext } from "../../../core/context";
 import { DeleteOutlined } from "@ant-design/icons";
 import clsx from "clsx";
 import { Button, Flex, Switch } from "@feb/kk-design";
@@ -21,7 +21,7 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> =
     const { showRequired = true, style } = props;
     const ref = useRef(null);
     const fieldSchema = useFieldSchema() as unknown as IFormSchema;
-    const { state, setState } = useFlitySateContext();
+    const { state, setState } = useFlityStateContext();
     const [hover, setHover] = useState(false);
 
     const { run: deleteKey } = useDelete();

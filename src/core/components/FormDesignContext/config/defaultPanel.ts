@@ -1,8 +1,3 @@
-export interface IRenderType {
-	title: string,
-	icon: string,
-	renderType: string
-}
 export const defaultPanelSpace = [
 	{
 		title: "布局类",

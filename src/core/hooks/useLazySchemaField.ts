@@ -1,17 +1,26 @@
 import { useEffect, useState } from "react";
 import { createSchema } from "../../core/createSchemaField";
+import { useFlityDesignContext } from "../context";
 export function useLazySchemaField(
   components: {
-    [key: string]: React.FunctionComponent;
+    [key: string]: React.ReactElement;
   },
   mode: string
 ) {
   const [SchemaField, setSchemaField] = useState<React.ReactElement>();
   const [isLoading, setIsLoading] = useState(true);
-
+  const {
+    state: { components: designComponent = {} },
+  } = useFlityDesignContext();
+  const registerComponent = {
+    ...components,
+    ...designComponent,
+  };
+  console.log(designComponent, "外部注册组件");
   useEffect(() => {
     const fetchSchema = async () => {
-      const result = await createSchema(components, mode);
+      setIsLoading(true);
+      const result = await createSchema(registerComponent, mode);
       setSchemaField(() => {
         return result;
       });
@@ -19,7 +28,7 @@ export function useLazySchemaField(
     };
 
     fetchSchema();
-  }, [mode]);
+  }, [mode, designComponent]);
 
   return { SchemaField, isLoading };
 }

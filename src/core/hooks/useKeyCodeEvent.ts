@@ -4,11 +4,11 @@
 
 import { useCallback, useEffect } from "react";
 import { useDelete } from "./useDelete";
-import { useFlitySateContext } from "../context";
+import { useFlityStateContext } from "../context";
 
 export const useKeycodeEvent = () => {
   const { run: deleteKey } = useDelete();
-  const { state } = useFlitySateContext();
+  const { state } = useFlityStateContext();
 
   const onKeydown = useCallback(
     (e) => {

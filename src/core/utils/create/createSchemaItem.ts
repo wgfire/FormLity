@@ -1,8 +1,8 @@
-import { IrenderType } from "@/ui/PanelSpace/default";
+import { IRenderType } from "@/ui/PanelSpace/default";
 import { adapterSchema } from "../../../adapter/adapterCreateSchema";
 import { createId } from "../string/createId";
 
-export const createSchemaItem = (item: IrenderType, props = {}) => {
+export const createSchemaItem = (item: IRenderType, props = {}) => {
   const adapterItem = adapterSchema(item);
   const schema = {
     key: `${item.renderType.toLowerCase()}-${createId()}`,

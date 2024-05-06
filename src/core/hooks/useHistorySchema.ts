@@ -1,11 +1,10 @@
 import { useCallback, useState } from "react";
-import { IFormSchema, useFlitySateContext } from "../context";
+import { IFormSchema, useFlityStateContext } from "../context";
 
 import { useUpdateEffect } from "ahooks";
 
-
 export const useHistorySchema = () => {
-  const { state, setState } = useFlitySateContext();
+  const { state, setState } = useFlityStateContext();
   const formSchemaString = JSON.stringify(state.formSchema);
   const [isUndoRedo, setIsUndoRedo] = useState(false);
   const { maxCount, historyStack, historyIndex, undoStack } = state.history;
@@ -51,9 +50,12 @@ export const useHistorySchema = () => {
   const onRedo = useCallback(() => {
     setState((draft) => {
       const history = draft.history;
-      if (history.historyIndex < history.historyStack.length - 1 || history.undoStack.length > 0) {
+      if (
+        history.historyIndex < history.historyStack.length - 1 ||
+        history.undoStack.length > 0
+      ) {
         if (history.undoStack.length > 0) {
-          draft.formSchema = draft.history.undoStack.pop()!!;
+          draft.formSchema = draft.history.undoStack.pop()!;
         } else {
           history.historyIndex++;
           draft.formSchema = history.historyStack[history.historyIndex];

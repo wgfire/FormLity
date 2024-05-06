@@ -1,3 +1,6 @@
+import { IFormSchema } from "@/global";
+import { Schema } from "@formily/react";
+
 export const findSchemaByKey = (schema, key) => {
   if (schema.key && schema.key === key) {
     return schema;
@@ -11,7 +14,10 @@ export const findSchemaByKey = (schema, key) => {
   return null;
 };
 
-export const findSchemaParentByKey = (schema, key) => {
+export const findSchemaParentByKey = (
+  schema: IFormSchema,
+  key: string
+): IFormSchema | null => {
   if (!schema || !schema.properties) {
     return null;
   }

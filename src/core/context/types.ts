@@ -1,3 +1,4 @@
+import { PanelSpace } from "./../../ui/PanelSpace/index";
 import { Schema } from "@formily/react";
 import { Updater } from "use-immer";
 export interface IFormSchema extends Omit<Schema, "properties"> {
@@ -19,15 +20,22 @@ export interface FormState {
     maxCount: number;
   };
 }
-export interface FlitySateContextProps {
+export interface FlityStateContextProps {
   state: FormState;
   setState: Updater<FormState>;
   emptyStatus: boolean;
 }
 
+export interface FlityDesignState {
+  panelSpace: any;
+  components: {
+    [key: string]: React.ReactElement;
+  };
+}
 /**
  * @description 用于扩展设计器的上下文
  */
 export interface FlityDesignContextProps {
-  panelSpace?: any;
+  state: FlityDesignState;
+  setState: Updater<FlityDesignState>;
 }

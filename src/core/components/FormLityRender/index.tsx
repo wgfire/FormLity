@@ -1,10 +1,10 @@
 import { IFormProps, createForm, onFormValuesChange } from "@formily/core";
 import { FormProvider } from "@formily/react";
 import { Suspense, forwardRef, useImperativeHandle, useState } from "react";
-import { Empty, Form } from "@feb/kk-design";
+import { Button, Empty, Form } from "@feb/kk-design";
 
 import styles from "./index.module.less";
-import { useFlitySateContext } from "../../context";
+import { useFlityStateContext } from "../../context";
 
 import { useLazySchemaField } from "../../hooks/useLazySchemaField";
 
@@ -14,7 +14,7 @@ import { ModeWrapper } from "@/ui/WorkSpace/components/ModeWrapper";
 import { FormItem } from "@/decorator/components/FormItem";
 
 export const FormLityRender = forwardRef((props, ref) => {
-  const { state, emptyStatus } = useFlitySateContext();
+  const { state, emptyStatus } = useFlityStateContext();
 
   const empty = emptyStatus;
   const { mode, readOnly, editable, designEnable } = state;
@@ -42,13 +42,9 @@ export const FormLityRender = forwardRef((props, ref) => {
     },
   } as IFormProps & { data: object });
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      getDesignForm: () => designForm,
-    }),
-    [designForm]
-  );
+  useImperativeHandle(ref, () => ({
+    designForm: designForm,
+  }));
 
   return (
     <div id="FormLityRender" className={clsx(styles.render)}>
