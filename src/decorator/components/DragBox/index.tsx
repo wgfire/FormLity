@@ -1,7 +1,7 @@
 import { useFieldSchema, observer } from "@formily/react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.less";
-import { IFormSchema, useFlityStateContext } from "../../../core/context";
+import { useFlityStateContext } from "../../../core/context";
 import { DeleteOutlined } from "@ant-design/icons";
 import clsx from "clsx";
 import { Button, Flex, Switch } from "@feb/kk-design";
@@ -9,6 +9,7 @@ import { useDelete } from "../../../core/hooks/useDelete";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { findSchemaByKey } from "../../../core/utils/find";
+import { IFormSchema } from "@/global";
 
 const INPUT_NODE_NAME = ["INPUT", "TEXTAREA", "SELECT"];
 
@@ -98,11 +99,11 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> =
                     e.stopPropagation();
                     setState((draft) => {
                       const schema = findSchemaByKey(
-                        draft.formSchema,
+                        draft.formSchema as IFormSchema,
                         fieldSchema.key
                       );
-                      schema.required = checked;
-                      schema["x-component-props"].required = checked;
+                      schema!.required = checked;
+                      schema!["x-component-props"].required = checked;
                     });
                   }}
                   unCheckedChildren="非必填"

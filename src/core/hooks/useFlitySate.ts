@@ -1,7 +1,7 @@
 import React from "react";
-import { FormState, useFlityStateContext } from "../context";
+import {  useFlityStateContext } from "../context";
 import { useMount } from "ahooks";
-
+import { FormState } from "../context/types";
 export const useFlitySate = (update: FormState) => {
   const { state, setState } = useFlityStateContext();
 

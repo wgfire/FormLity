@@ -1,13 +1,14 @@
 import { Schema } from "@formily/react";
 
-interface IFormSchema extends Schema {
+interface  IFormSchema extends Omit<Schema, "properties"> {
   key: string;
-  parent: IFormSchema;
+  properties: IFormSchema;
+  [key: string]: unknown;
 }
 declare type DeviceType = "pc" | "mobile";
 
 declare interface ICbaseProps {
-  onChange: (value: any) => void;
-  value: string | number | any[] | object;
+  onChange: (value: unknown) => void;
+  value: string | number | unknown[] | object;
   options?: { label: string; value: string }[];
 }

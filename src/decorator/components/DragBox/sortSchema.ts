@@ -13,13 +13,13 @@ export function sortSchema(startSchema: IFormSchema, endSchema: IFormSchema) {
   //  1. startSchema和endSchema都是普通元素，并且不是容器
   if (startSchema.parent === endSchema.parent) {
     console.log("同级移动");
-    const properties = moveSchema(startSchema.parent, startSchema, endSchema);
+    const properties = moveSchema(startSchema.parent as IFormSchema, startSchema, endSchema);
     if (isRootMove) {
-      rootSchema.properties = properties;
+      rootSchema.properties = properties ;
     } else {
       // 在其他容器中移动
-      const result = findSchemaByKey(rootSchema, startSchema.parent.key);
-      result.properties = properties;
+      const result = findSchemaByKey(rootSchema as IFormSchema, startSchema.parent?.key);
+      result!.properties = properties;
     }
   } else if (startSchema.parent?.key !== endSchema.key) {
     // 1 父级里的元素插入到某个子父级 -获取这个子级的父级
@@ -30,8 +30,8 @@ export function sortSchema(startSchema: IFormSchema, endSchema: IFormSchema) {
     const parent = endIsContainer ? endSchema : endSchema.parent;
 
     //const result = findSchemaByKey(schema, endSchema.parent.key)
-    parent.addProperty(startSchema.key, startSchema);
-    console.log(Object.keys(parent.properties!), "添加后的parent");
+    parent?.addProperty(startSchema.key, startSchema);
+    console.log(Object.keys(parent!.properties!), "添加后的parent");
     const properties = moveSchema(parent, startSchema, endSchema);
     parent.properties = properties;
   }
@@ -39,7 +39,7 @@ export function sortSchema(startSchema: IFormSchema, endSchema: IFormSchema) {
   return rootSchema.toJSON();
 }
 
-const moveSchema = (parent: IFormSchema, startSchema: IFormSchema, endSchema: IFormSchema) => {
+const moveSchema = (parent: IFormSchema, startSchema: IFormSchema, endSchema: IFormSchema): IFormSchema["properties"] => {
   const newProperties = parent.properties!;
   const keys = Object.entries(newProperties);
   const keysBackup = [...keys];
@@ -49,6 +49,6 @@ const moveSchema = (parent: IFormSchema, startSchema: IFormSchema, endSchema: IF
     keys.splice(startIndex, 1);
     keys.splice(endIndex, 0, keysBackup[startIndex]);
   }
-  const properties = Object.fromEntries(keys);
+  const properties = Object.fromEntries(keys) as IFormSchema["properties"];
   return properties;
 };

@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { FlityStateContextProps, FlityDesignContextProps } from "./types";
-export * from "./types";
+
 
 export const FlityStateContext = createContext<FlityStateContextProps>(
   {} as unknown as FlityStateContextProps

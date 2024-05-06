@@ -11,9 +11,8 @@ import { useState } from "react"
 import { useForm } from "@formily/react"
 export const AddressPicker = observer((props)=>{
 	const [ dataSource, setDataSource ] = useState([])
-	const form = useForm()
-	const {designEnable, mode} = form?.props?.data ?? {}
-	const disabled = designEnable && mode === "mobile"
+	//const form = useForm()
+	// const {designEnable, mode} = form?.props?.data ?? {}
 	const {getAddressList} = usePresenter()
 
 	useMount(()=>{

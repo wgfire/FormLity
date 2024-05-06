@@ -64,7 +64,7 @@ export const Options = observer((props) => {
         <SortableContext items={items}>
           <Flex flexDirection="column" style={{ minHeight: "42px" }}>
             <Flex flexDirection="column" gap={16}>
-              {options?.map((item, index) => {
+              {options?.map((item, index:number) => {
                 return <OptionsItem key={item.value} cascader={cascader} onDelete={onDelete} onAddCascader={onAddCascader} onUpdate={onUpdate} item={item} index={index} />;
               })}
             </Flex>

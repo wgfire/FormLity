@@ -4,6 +4,7 @@ import { sortSchema } from "../../decorator/components/DragBox/sortSchema";
 import { findSchemaByKey, findSchemaParentByKey } from "../../core/utils/find";
 import { IRenderType } from "../PanelSpace/default";
 import { Active, Over, UniqueIdentifier } from "@dnd-kit/core";
+import { IFormSchema } from "@/global";
 
 export const usePresenter = () => {
   const { setState } = useFlityStateContext();
@@ -16,19 +17,19 @@ export const usePresenter = () => {
     setState((draft) => {
       if (isContainer) {
         const parent = schemaItem.key
-          ? findSchemaByKey(draft.formSchema, schemaItem.key)
+          ? findSchemaByKey(draft.formSchema as IFormSchema, schemaItem.key)
           : draft.formSchema;
-        if (!parent.properties) {
-          parent.properties = {};
+        if (!parent?.properties) {
+          parent!.properties = {} as IFormSchema["properties"];
         }
-        parent.properties[newSchema.key] = newSchema;
+        parent!.properties[newSchema.key] = newSchema;
       } else {
         //增加到目标元素的父容器中
         const parent = schemaItem.key
-          ? findSchemaParentByKey(draft.formSchema, schemaItem.key)
+          ? findSchemaParentByKey(draft.formSchema   as IFormSchema, schemaItem.key)
           : draft.formSchema;
-        parent.properties[newSchema.key] = newSchema;
-        const newProperties = parent.properties;
+        parent!.properties[newSchema.key] = newSchema;
+        const newProperties = parent!.properties;
         const proKeys = Object.entries(newProperties);
         const keysBackup = [...proKeys];
         const startIndex = proKeys.findIndex(

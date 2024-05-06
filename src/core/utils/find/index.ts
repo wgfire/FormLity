@@ -1,7 +1,7 @@
-import { IFormSchema } from "@/global";
-import { Schema } from "@formily/react";
+import { IFormSchema } from "@/core/context/types";
 
-export const findSchemaByKey = (schema, key) => {
+
+export const findSchemaByKey = (schema: IFormSchema, key: string): IFormSchema | null => {
   if (schema.key && schema.key === key) {
     return schema;
   }
@@ -14,10 +14,7 @@ export const findSchemaByKey = (schema, key) => {
   return null;
 };
 
-export const findSchemaParentByKey = (
-  schema: IFormSchema,
-  key: string
-): IFormSchema | null => {
+export const findSchemaParentByKey = (schema: IFormSchema, key: string): IFormSchema | null => {
   if (!schema || !schema.properties) {
     return null;
   }
@@ -39,13 +36,13 @@ export const findSchemaParentByKey = (
   return null;
 };
 
-export const findAllKeys = (schema) => {
+export const findAllKeys = (schema: IFormSchema) => {
   const keys: string[] = [];
   const stack = [schema];
 
   while (stack.length) {
     const currentSchema = stack.pop();
-    if (currentSchema.properties) {
+    if (currentSchema?.properties) {
       for (const propertyKey in currentSchema.properties) {
         keys.push(propertyKey);
         const property = currentSchema.properties[propertyKey];

@@ -1,6 +1,8 @@
+import { DeviceType } from "@/global";
+
 export const createSchema = async (
-  components: { [key: string]: React.ReactNode },
-  mode: string
+  components: { [key: string]: React.ReactElement },
+  mode: DeviceType
 ) => {
   if (mode === "pc") {
     const { createSchema: createSchemaPc } = await import("./pc/index");

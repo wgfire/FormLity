@@ -1,9 +1,10 @@
-import { PanelSpace } from "./../../ui/PanelSpace/index";
+
 import { Schema } from "@formily/react";
 import { Updater } from "use-immer";
 export interface IFormSchema extends Omit<Schema, "properties"> {
   key: string;
   properties: IFormSchema;
+  [key: string]: unknown;
 }
 export interface FormState {
   selectFieldSchema: IFormSchema | null;

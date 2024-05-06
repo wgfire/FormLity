@@ -14,10 +14,10 @@ export * from "./src/components/index";
  * @description context组件
  */
 
-export { FormLityContext } from "./src/core/components/index";
+export { FormLityContext,FormLityRender } from "./src/core/components/index";
 
 /**
  * @description hooks
  */
 
-export { useFlitySate } from "./src/core/hooks/index";
+export { useFlitySate,useRegister } from "./src/core/hooks/index";

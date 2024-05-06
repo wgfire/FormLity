@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { createSchema } from "../../core/createSchemaField";
 import { useFlityDesignContext } from "../context";
+import { DeviceType } from "@/global";
 export function useLazySchemaField(
   components: {
     [key: string]: React.ReactElement;
   },
-  mode: string
+  mode: DeviceType
 ) {
   const [SchemaField, setSchemaField] = useState<React.ReactElement>();
   const [isLoading, setIsLoading] = useState(true);
