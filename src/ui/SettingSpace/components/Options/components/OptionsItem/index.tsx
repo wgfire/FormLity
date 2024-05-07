@@ -31,7 +31,7 @@ export const OptionsItem = observer<OptionsItemProps>((props) => {
   };
 
   return (
-    <div {...listeners} ref={setNodeRef} style={{ marginTop: "10px", opacity: isOver ? 0.5 : 1, ...styles }}>
+    <div {...listeners} ref={setNodeRef} style={{ margin: "5px 0px", opacity: isOver ? 0.5 : 1, ...styles }}>
       <Flex gap={10} justifyContent="space-between" alignItems="center">
         <HolderOutlined style={{ cursor: "grab" }} />
         <Input

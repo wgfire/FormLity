@@ -3,9 +3,8 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import imp from "vite-plugin-imp";
 import dts from "vite-plugin-dts";
-import glob from 'fast-glob'
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-
+import glob from "fast-glob";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 export default defineConfig({
   resolve: {
@@ -43,10 +42,14 @@ export default defineConfig({
     //压缩
     minify: true,
     rollupOptions: {
-      external: ["react",'@feb/kk-design','react-dom','@ant-design/icons','ahooks'],
-      plugins: [
-        nodeResolve()
+      external: [
+        "react",
+        "@feb/kk-design",
+        "react-dom",
+        "@ant-design/icons",
+        "ahooks",
       ],
+      plugins: [nodeResolve()],
       output: [
         {
           //打包格式
@@ -71,9 +74,9 @@ export default defineConfig({
           dir: "./dist/lib",
         },
       ],
-    }, 
+    },
     lib: {
-      entry: ["./index.ts"],
+      entry: ["./src/index.ts"],
     },
   },
 });

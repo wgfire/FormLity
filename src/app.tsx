@@ -10,51 +10,88 @@ const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
     designEnable: true,
     formSchema: {
-      key: "root",
-      type: "object",
+      "key": "root",
+      "type": "object",
       "x-data": {
-        isRoot: true,
-        isContainer: true,
+        "isRoot": true,
+        "isContainer": true
       },
-      properties: {
-        "textarea-1714965606666_6668904": {
-          key: "textarea-1714965606666_6668904",
-          type: "string",
-          title: "多行输入框",
-          required: true,
+      "version": "2.0",
+      "properties": {
+        "slider-1715048596753_67052219": {
+          "key": "slider-1715048596753_67052219",
+          "name": "slider-1715048596753_67052219",
+          "type": "string",
+          "title": "滑块",
+          "version": "2.0",
+          "required": true,
+          "x-component": "Slider",
+          "x-decorator": "FormItem",
+          "x-component-props": [],
+          "_isJSONSchemaObject": true
+        },
+        "formgrid-1715048590081_25366021": {
+          "key": "formgrid-1715048590081_25366021",
+          "name": "formgrid-1715048590081_25366021",
+          "type": "void",
+          "title": "栅格",
+          "x-data": {
+            "isContainer": true
+          },
+          "version": "2.0",
+          "properties": {
+            "select-1715048631225_9377241": {
+              "key": "select-1715048631225_9377241",
+              "name": "select-1715048631225_9377241",
+              "type": "string",
+              "title": "下拉选择器",
+              "version": "2.0",
+              "required": true,
+              "x-component": "Select",
+              "x-decorator": "FormItem",
+              "x-component-props": {
+                "title": "下拉选择器",
+                "options": [
+                  {
+                    "label": "选项一",
+                    "value": "1715048635297_50265948"
+                  },
+                  {
+                    "label": "选项一",
+                    "value": "1715048635850_061526738"
+                  }
+                ],
+                "required": true
+              },
+              "_isJSONSchemaObject": true
+            }
+          },
+          "x-component": "FormGrid",
+          "_isJSONSchemaObject": true
+        },
+        "textarea-1715048588793_20139055": {
+          "key": "textarea-1715048588793_20139055",
+          "name": "textarea-1715048588793_20139055",
+          "type": "string",
+          "title": "多行输入框",
+          "version": "2.0",
+          "required": true,
           "x-component": "TextArea",
           "x-decorator": "FormItem",
           "x-component-props": [],
-        },
-        "formgrid-1714965605595_45493283": {
-          key: "formgrid-1714965605595_45493283",
-          type: "void",
-          title: "栅格",
-          "x-data": {
-            isContainer: true,
-          },
-          properties: {},
-          "x-component": "FormGrid",
-        },
-        "cascader-1714965607522_241964582": {
-          key: "cascader-1714965607522_241964582",
-          type: "string",
-          title: "级联选择器",
-          required: true,
-          "x-component": "Cascader",
-          "x-decorator": "FormItem",
-          "x-component-props": [],
-        },
+          "_isJSONSchemaObject": true
+        }
       },
+      "_isJSONSchemaObject": true
     },
   });
   console.log(state, "state");
-  useRegister([
-    {
-      name: "OrganizationSelect",
-      component: Test,
-    },
-  ]);
+  // useRegister([
+  //   {
+  //     name: "OrganizationSelect",
+  //     component: Test,
+  //   },
+  // ]);
   const ref = useRef(null);
 
   return (
@@ -71,3 +108,4 @@ export const App = () => {
     </FormLityContext>
   );
 };
+

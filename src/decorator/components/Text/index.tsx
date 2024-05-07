@@ -3,7 +3,6 @@ import { DragBox } from "../DragBox";
 import { Typography } from "@feb/kk-design";
 
 export const Text = observer((props) => {
-  console.log(props, "Text");
   const field = useFieldSchema();
   const { Title } = Typography;
   return (

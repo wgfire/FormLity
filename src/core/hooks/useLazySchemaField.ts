@@ -17,7 +17,6 @@ export function useLazySchemaField(
     ...components,
     ...designComponent,
   };
-  console.log(designComponent, "外部注册组件");
   useEffect(() => {
     const fetchSchema = async () => {
       setIsLoading(true);

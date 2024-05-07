@@ -3,7 +3,10 @@ import { defaultPanelSpace } from "./default";
 
 import { DragItem } from "./DragItem";
 import { memo, useMemo } from "react";
-import { useFlityStateContext } from "../../core/context";
+import {
+  useFlityDesignContext,
+  useFlityStateContext,
+} from "../../core/context";
 import styles from "./index.module.less";
 import clsx from "clsx";
 export const PanelSpace: React.FC<{
@@ -11,7 +14,9 @@ export const PanelSpace: React.FC<{
 }> = memo((props) => {
   const { style } = props;
   const { state } = useFlityStateContext();
-  const renderSpace = defaultPanelSpace;
+  const { state: designState } = useFlityDesignContext();
+
+  const renderSpace = designState.panelSpace || defaultPanelSpace;
   const { Panel } = Collapse;
   const activeKey = useMemo(() => {
     return renderSpace.map((el) => el.title);

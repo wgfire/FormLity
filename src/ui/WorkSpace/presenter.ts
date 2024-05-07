@@ -42,7 +42,7 @@ export const usePresenter = () => {
           proKeys.splice(endIndex, 0, keysBackup[startIndex]);
         }
         const properties = Object.fromEntries(proKeys);
-        parent.properties = properties;
+        parent!.properties = properties as IFormSchema["properties"];
       }
     });
   };
@@ -58,8 +58,7 @@ export const usePresenter = () => {
             ? activeData.schema.root
             : overData.schema;
           const newSchema = sortSchema(activeData.schema, endSchema);
-          console.log(newSchema, "newSchema");
-          draft.formSchema = newSchema;
+          draft.formSchema = newSchema as IFormSchema["properties"];
         });
       }
     }

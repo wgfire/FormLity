@@ -37,7 +37,7 @@ export default {
 		options: {
 			type: "array",
 			key: "options",
-			title: "级联选项",
+			title: "联级数据源",
 			"x-decorator": "FormItem",
 			"x-component": "CascaderOptions",
 			"x-component-props": {

@@ -44,7 +44,7 @@ export const SelectCheckBox = (props) => {
 
   return (
     <div className={styles.selectItem}>
-      <section className={styles.selectItemLeft}>
+      <section className={styles.left}>
         {checkedBox && (
           <Checkbox
             checked={checked}
@@ -70,8 +70,8 @@ export const SelectCheckBox = (props) => {
 
       <section
         className={clsx({
-          [styles.selectItemRight]: true,
-          [styles.selectItemRightHover]: suffixHover,
+          [styles.right]: true,
+          [styles.rightHover]: suffixHover,
         })}
         onClick={() => onActionClick?.(item)}
       >

@@ -1,5 +1,5 @@
 export const usePresenter = () => {
-	function generateValues (formValues, targetObject, valueIsSchema = true) {
+	function generateValues (formValues:Record<string, any>, targetObject:Record<string, any>, valueIsSchema = true) {
 		/**title和required是 fromItem的属性单独处理 */
 		targetObject.title = formValues?.title ?? ""
 		targetObject.required = formValues?.required ?? false

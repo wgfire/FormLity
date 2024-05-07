@@ -5,7 +5,10 @@ import { SettingSpace } from "../SettingSpace";
 
 import { DndContext, PointerSensor , useSensor, useSensors } from "@dnd-kit/core";
 
-export const FormDesign = () => {
+export interface FormDesignProps {
+  styles?: React.CSSProperties
+}
+export const FormDesign:React.FC<FormDesignProps> = (props) => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -15,7 +18,7 @@ export const FormDesign = () => {
   );
 
   return (
-    <Flex style={{ width: "100%", height: "100%", background: "rgb(249, 249, 249)" }}>
+    <Flex style={{width:"100%", height:"100%", ...props.styles }}>
       <DndContext sensors={sensors}>
         <PanelSpace />
         <WorkSpace />

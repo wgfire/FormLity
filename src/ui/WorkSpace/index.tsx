@@ -70,7 +70,6 @@ export const WorkSpace = memo((props) => {
       setActiveItem(null);
       if (!designEnable) return false;
       const { active, over } = event;
-
       //1.从面板增加过来的
       if (!allKeys.includes(active.id) && over) {
         dropHandel(activeItem!, over);
@@ -78,7 +77,6 @@ export const WorkSpace = memo((props) => {
     },
     onDragOver: dragHandel,
     onDragStart(event) {
-      console.log(event, "onDragStart");
       const data = event.active.data.current;
       if (data?.item) {
         setActiveItem(data.item);

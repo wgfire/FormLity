@@ -1,11 +1,12 @@
-import { FlityDesignContext, FlityDesignState } from "@/core/context";
+import { FlityDesignContext } from "@/core/context";
+import { FlityDesignState } from "@/core/context/types";
 import { useMemo } from "react";
 import { useImmer } from "use-immer";
-
+import { defaultPanelSpace } from "./config/defaultPanel";
 export const FormDesignContext: React.FC<React.PropsWithChildren> = (props) => {
   const value = useMemo<FlityDesignState>(() => {
     return {
-      panelSpace: null,
+      panelSpace: defaultPanelSpace,
       components: {},
     };
   }, []);

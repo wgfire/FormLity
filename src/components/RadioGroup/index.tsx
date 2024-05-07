@@ -7,7 +7,7 @@ export const RadioGroup: React.FC<ICbaseProps> = observer((props) => {
   const { value, onChange, options = [] } = props;
   const form = useForm()
   const { designEnable } = form?.props?.data ?? {};
-  console.log(form, "form");
+
   return (
     <>
       <Radio.Group onChange={onChange} value={value}>

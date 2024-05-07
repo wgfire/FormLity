@@ -1,10 +1,12 @@
+import { FontColorsOutlined, OrderedListOutlined, ProductOutlined } from "@ant-design/icons";
+
 export const defaultPanelSpace = [
 	{
 		title: "布局类",
 		children: [
 			{
 				title: "栅格",
-				icon: "icon-input",
+				icon: <ProductOutlined />,
 				renderType: "FormGrid" // 栅格布局通常使用Row组件
 			}
 		]
@@ -14,12 +16,12 @@ export const defaultPanelSpace = [
 		children: [
 			{
 				title: "单行输入框",
-				icon: "icon-input",
+				icon:<FontColorsOutlined/>,
 				renderType: "Input" // 单行输入框对应Input组件
 			},
 			{
 				title: "多行输入框",
-				icon: "icon-textarea",
+				icon: <OrderedListOutlined />,
 				renderType: "TextArea" // 多行输入框对应Input的TextArea属性
 			},
 			{
@@ -38,7 +40,7 @@ export const defaultPanelSpace = [
 				renderType: "Select" // 下拉选择器对应Select组件
 			},
 			{
-				title: "级联选择器",
+				title: "联级选择器",
 				icon: "icon-textarea",
 				renderType: "Cascader" // 联级选择器对应Cascader组件
 			},

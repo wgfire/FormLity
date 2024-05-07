@@ -21,7 +21,7 @@ import { Upload } from "../../../components/Upload";
 import { TimePicker } from "../../../components/TimePicker";
 import { Divider } from "../../../decorator/components/Divider";
 import { Text } from "../../../decorator/components/Text";
-
+import { OrganizationSelect } from "@/components/OrganizationSelect";
 console.log("加载pc组件");
 
 export const createSchema = (components: {
@@ -39,6 +39,7 @@ export const createSchema = (components: {
       Select,
       RadioGroup,
       CheckBoxGroup,
+      OrganizationSelect,
       Divider,
       Rate,
       Cascader,

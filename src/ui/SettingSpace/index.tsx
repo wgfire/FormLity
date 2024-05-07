@@ -11,7 +11,7 @@ import { usePresenter } from "./presenter";
 import { useLazySchemaField } from "../../core/hooks/useLazySchemaField";
 import styles from "./index.module.less";
 import clsx from "clsx";
-export const SettingSpace: React.FC<{ style: React.CSSProperties }> = memo(
+export const SettingSpace: React.FC<{ style?: React.CSSProperties }> = memo(
   (props) => {
     const { style } = props;
     const { state, setState, emptyStatus } = useFlityStateContext();
