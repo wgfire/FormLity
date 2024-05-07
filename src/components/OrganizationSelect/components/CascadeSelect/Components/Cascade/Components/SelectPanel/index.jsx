@@ -48,7 +48,7 @@ export const SelectPanel = memo((props) => {
 				<Checkbox
 					indeterminate={(checkedAllKey.length > 0 && checkedAllKey.length < panelData.length) }
 					checked={checkedKeyIsAll} defaultChecked={false} onChange={setAllChecked}
-				>{checkedKeyIsAll ? "全选" : "全不选"}
+				>{checkedKeyIsAll ? "取消全选" : "全选"}
 				</Checkbox>
 			</section>
 			<section className={styles.selectPanel}>

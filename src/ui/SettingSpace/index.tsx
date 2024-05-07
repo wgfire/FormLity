@@ -29,7 +29,6 @@ export const SettingSpace: React.FC<{ style?: React.CSSProperties }> = memo(
       "pc"
     );
 
-    console.log(initialValues, "init");
     const { run: valuesChange } = useDebounceFn(
       useCallback(
         (form) => {

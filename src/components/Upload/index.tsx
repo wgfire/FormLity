@@ -1,5 +1,5 @@
 import { UploadOutlined } from "@ant-design/icons";
-import { Upload as AntUpload, Button } from "@feb/kk-design";
+import { Upload as AntUpload, Button, message } from "@feb/kk-design";
 import { RcFile, UploadFile } from "@feb/kk-design/lib/upload";
 import { useFieldSchema } from "@formily/react";
 import { useMount } from "ahooks";
@@ -8,9 +8,13 @@ export const Upload = (props) => {
   const [fileList, setFileList] = useState<RcFile[]>([]);
   useMount(() => {
     console.log("暴露props", props);
-    props?.onMount(props);
+    props.onMount?.(props);
   });
   const beforeUpload = async (file: RcFile) => {
+    if(fileList.length===props.maxCount && props.maxCount){
+      message.warning('最多只能上传'+props.maxCount+'个文件');
+      return false
+    }
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
