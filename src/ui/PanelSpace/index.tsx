@@ -23,6 +23,7 @@ export const PanelSpace: React.FC<{
   }, [renderSpace]);
   return (
     <Flex
+     id="panelSpace"
       className={clsx(styles.panelSpace, {
         [styles.visible]: state.designEnable,
       })}

@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { createSchema } from "../../core/createSchemaField";
 import { useFlityDesignContext } from "../context";
 import { DeviceType } from "@/global";
+
+import { RegisterComponent } from "../context/types";
+
 export function useLazySchemaField(
   components: {
-    [key: string]: React.ReactElement;
+    [key: string]: RegisterComponent;
   },
   mode: DeviceType
 ) {
@@ -13,7 +16,7 @@ export function useLazySchemaField(
   const {
     state: { components: designComponent = {} },
   } = useFlityDesignContext();
-  const registerComponent = {
+  const registerComponent: { [key: string]: RegisterComponent } = {
     ...components,
     ...designComponent,
   };

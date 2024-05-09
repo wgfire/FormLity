@@ -1,5 +1,6 @@
 
-import { Schema } from "@formily/react";
+import { ReactFC, Schema } from "@formily/react";
+import { MemoExoticComponent } from "react";
 import { Updater } from "use-immer";
 export interface IFormSchema extends Omit<Schema, "properties"> {
   key: string;
@@ -27,10 +28,13 @@ export interface FlityStateContextProps {
   emptyStatus: boolean;
 }
 
+export type RegisterComponent =
+  | React.ReactElement
+  | MemoExoticComponent<ReactFC<unknown>>;
 export interface FlityDesignState {
   panelSpace: any;
   components: {
-    [key: string]: React.ReactElement;
+    [key: string]: RegisterComponent;
   };
 }
 /**

@@ -17,7 +17,7 @@ export const defaultPanelSpace = [
 			{
 				title: "单行输入框",
 				icon:<FontColorsOutlined/>,
-				renderType: "Input" // 单行输入框对应Input组件
+				renderType: "Input", // 单行输入框对应Input组件
 			},
 			{
 				title: "多行输入框",
@@ -37,7 +37,10 @@ export const defaultPanelSpace = [
 			{
 				title: "下拉选择器",
 				icon: "icon-input",
-				renderType: "Select" // 下拉选择器对应Select组件
+				renderType: "Select", // 下拉选择器对应Select组件
+				data:{
+					preview:true,
+				}
 			},
 			{
 				title: "联级选择器",

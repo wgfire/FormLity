@@ -1,7 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 // @ts-nocheck
+import { RegisterComponent } from "./../../context/types";
 import { createSchemaField } from "@formily/react";
-import React, { lazy } from "react";
+import React from "react";
 import * as ICONS from "@ant-design/icons";
 import {
   Input,
@@ -23,7 +24,7 @@ import { Text } from "../../../decorator/components/Text";
 console.log("加载pc组件");
 
 export const createSchema = (components: {
-  [key: string]: React.ReactElement;
+  [key: string]: RegisterComponent;
 }) => {
   const TextArea = Input.TextArea;
   const SchemaField = createSchemaField({
@@ -51,7 +52,6 @@ export const createSchema = (components: {
       },
     },
   });
-  console.log(SchemaField, "注册的组件");
   return SchemaField;
 };
 export default createSchema;

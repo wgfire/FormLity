@@ -1,7 +1,8 @@
 import { DeviceType } from "@/global";
+import { RegisterComponent } from "../context/types";
 
 export const createSchema = async (
-  components: { [key: string]: React.ReactElement },
+  components: { [key: string]: RegisterComponent },
   mode: DeviceType
 ) => {
   if (mode === "pc") {

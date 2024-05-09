@@ -21,9 +21,12 @@ export interface OptionsItemProps {
 export const OptionsItem = observer<OptionsItemProps>((props) => {
   const { item, index, onUpdate, onDelete, cascader, onAddCascader } = props;
   const [value, setValue] = useState(item.label);
+  const [canDrag, setCanDrag] = useState(false);
 
   const { setNodeRef, attributes, listeners, isOver, transform, transition } = useSortable({
     id: item.value,
+    disabled: !canDrag,
+  
   });
   const styles = {
     transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
@@ -33,7 +36,7 @@ export const OptionsItem = observer<OptionsItemProps>((props) => {
   return (
     <div {...listeners} ref={setNodeRef} style={{ margin: "5px 0px", opacity: isOver ? 0.5 : 1, ...styles }}>
       <Flex gap={10} justifyContent="space-between" alignItems="center">
-        <HolderOutlined style={{ cursor: "grab" }} />
+        <HolderOutlined style={{ cursor: "grab" }} onMouseOver={() => setCanDrag(true)} onMouseOut={() => setCanDrag(false)}/>
         <Input
           value={value}
           addonAfter={cascader ? <RightOutlined onClick={() => onAddCascader?.(item)} /> : null}

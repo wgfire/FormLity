@@ -7,7 +7,7 @@ import { CascadeSelect } from "../CascadeSelect";
 import { usePresenter } from "./presenter";
 import { initState } from "./model";
 import { useEffect } from "react";
-import { useDebounceFn, useUpdateEffect } from "ahooks";
+import { useDebounceFn, useUpdateEffect, useMount } from "ahooks";
 import { useMemo } from "react";
 
 export const ModalSelect = (props) => {
@@ -17,6 +17,7 @@ export const ModalSelect = (props) => {
     onCancel,
     onSubmit,
     defaultSelect = [],
+    immediately = false,
     externalLoad,
     externalSearchUser,
     organization,
@@ -34,8 +35,17 @@ export const ModalSelect = (props) => {
 
   useEffect(() => {
     open && getDepartmentTreeData();
-    !open && setState(initState);
+    !open && setState({
+        ...initState,
+        listTree,
+      });
   }, [open]);
+
+  useMount(() => {
+    if (immediately) {
+      getDepartmentTreeData();
+    }
+  });
 
   /**defaultSelect 默认为空所以用这个hooks更新 */
   useUpdateEffect(() => {

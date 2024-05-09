@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 // @ts-nocheck
 import { createSchemaField } from "@formily/react";
+import { RegisterComponent } from "./../../context/types";
 import React, { lazy } from "react";
 import * as ICONS from "@ant-design/icons";
 
@@ -22,7 +23,7 @@ const Divider = lazy(() => import("../../../decorator/components/Divider"));
 const Text = lazy(() => import("../../../decorator/components/Text"));
 console.log("加载mobile组件");
 export const createSchema = (components: {
-  [key: string]: React.ReactElement;
+  [key: string]: RegisterComponent;
 }) => {
   const TextArea = AntInput.TextArea;
   const SchemaField = createSchemaField({

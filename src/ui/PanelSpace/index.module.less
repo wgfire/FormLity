@@ -8,10 +8,12 @@
 .panelSpace {
 	transition: all 0.5s;
 	transform: translateX(-300px);
-	width: 300px;
+	width: 0px;
 	background-color: white;
-	&.visible {
+	overflow: auto;
 
+	&.visible {
+    width: 300px;
 		transform: translateX(0);
 		border-radius: 6px;
 	}

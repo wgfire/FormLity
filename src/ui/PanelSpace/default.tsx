@@ -43,7 +43,7 @@ export const defaultPanelSpace = [
 				renderType: "Select" // 下拉选择器对应Select组件
 			},
 			{
-				title: "级联选择器",
+				title: "联级选择器",
 				icon: "icon-textarea",
 				renderType: "Cascader" // 联级选择器对应Cascader组件
 			},

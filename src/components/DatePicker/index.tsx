@@ -9,7 +9,7 @@ export interface IDatePickerProps extends ICbaseProps {
 export const DatePicker: React.FC<IDatePickerProps> = observer((props) => {
   const { onChange, range } = props;
   const format = "YYYY-MM-DD";
-  const valueChange = (newValue) => {
+  const valueChange = (newValue: moment.MomentInput[] | moment.MomentInput) => {
     if (Array.isArray(newValue)) {
       onChange([
         moment(newValue[0]).format(format),
