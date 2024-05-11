@@ -7,7 +7,7 @@ export const FormItem = observer(({ children }) => {
   const field = useField();
   const form = useForm();
   const readOnly = form.readOnly;
-  const { designEnable } = form?.props?.data ?? {};
+  const { designEnable } = form.props.data ? form.props.data : {};
   return (
     <DragBox>
       {!readOnly && designEnable && (

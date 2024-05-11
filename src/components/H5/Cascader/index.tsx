@@ -1,24 +1,27 @@
 /**
  *
  */
-import { Cascader as CascaderPicker, Button } from "antd-mobile"
+import { CascaderOption, Cascader as CascaderPicker } from "antd-mobile"
 import { useState } from "react"
 import { Input } from "@feb/kk-design"
-import { useForm } from "@formily/react"
 
-export const Cascader = (props) => {
+
+export interface CascaderProps {
+  value: CascaderOption[];
+	options:CascaderOption[];
+  cascader?: boolean;
+  onChange(value: CascaderProps["value"]): void;
+}
+export const Cascader:React.FC<CascaderProps> = (props) => {
 	const { onChange, options = [], value = [] } = props
 	const [ visible, setVisible ] = useState(false)
 	const selectLabel = findLabels(options, value).join(",")
-	const form = useForm()
-	const { designEnable, mode } = form?.props?.data ?? {}
 
 	return (
 		<>
 			<Input placeholder="请点击选择数据" readOnly onClick={() => setVisible(true)} value={selectLabel} />
 			<CascaderPicker
-				mouseWheel
-				getContainer={() => document.getElementById("modeWrapper")}
+				getContainer={() => document.getElementById("modeWrapper")!}
 				options={options}
 				onSelect={(select) => {
 					onChange(select)
@@ -33,10 +36,10 @@ export const Cascader = (props) => {
 }
 export default Cascader
 
-function findLabels (treeData, valueArray) {
-	const labels = []
+function findLabels (treeData:CascaderOption[], valueArray:CascaderOption[]) {
+	const labels:CascaderOption = []
 
-	function traverse (data) {
+	function traverse (data:CascaderOption[]) {
 		for (const item of data) {
 			if (valueArray.includes(item.value)) {
 				labels.push(item.label)

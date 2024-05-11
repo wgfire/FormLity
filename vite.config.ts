@@ -4,8 +4,8 @@ import path from "path";
 import imp from "vite-plugin-imp";
 import dts from "vite-plugin-dts";
 import glob from "fast-glob";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
-
+// import { nodeResolve } from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 export default defineConfig({
   resolve: {
     alias: {
@@ -16,7 +16,7 @@ export default defineConfig({
     react(),
     dts({
       entryRoot: "./src",
-      outDir: ["./dist/es"],
+      outDir: ["./dist/es",'./dist/lib'],
       tsconfigPath: "./tsconfig.json",
     }),
 
@@ -36,12 +36,19 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    esbuildOptions: {
+      drop: ["console"],
+    },
+  },
   build: {
     //打包文件目录
     outDir: "./dist",
+    target: "es2020",
     //压缩
-    minify: true,
+    minify: "esbuild",
     rollupOptions: {
+      input: "./src/index.ts",
       external: [
         "react",
         "@feb/kk-design",
@@ -49,7 +56,7 @@ export default defineConfig({
         "@ant-design/icons",
         "ahooks",
       ],
-      plugins: [nodeResolve()],
+      plugins: [commonjs()],
       output: [
         {
           //打包格式
@@ -63,10 +70,22 @@ export default defineConfig({
           exports: "named",
           //配置打包根目录
           dir: "./dist/es",
+          manualChunks(id, { getModuleInfo, getModuleIds }) {
+            if (id.includes("components")) {
+              return "assets/components";
+            }
+            if (id.includes("src/ui")) {
+              return "assets/ui";
+            }
+            if (id.includes("node_modules")) {
+              return "assets/venders";
+            }
+          },
         },
         {
           //打包格式
           format: "cjs",
+          name: "form-lity",
           //打包后文件名
           entryFileNames: "[name].js",
           exports: "named",
@@ -76,7 +95,7 @@ export default defineConfig({
       ],
     },
     lib: {
-      entry: ["./src/index.ts"],
+      entry: ["./src/index.ts"], //此模式会将css提到一起,以及保留入口文件的导出
     },
   },
 });
