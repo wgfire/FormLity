@@ -1,7 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-// @ts-nocheck
-import { RegisterComponent } from "./../../context/types";
-import { createSchemaField } from "@formily/react";
+import { SchemaReactComponents, createSchemaField } from "@formily/react";
 import React from "react";
 import * as ICONS from "@ant-design/icons";
 import {
@@ -23,9 +21,7 @@ import { Divider } from "../../../decorator/components/Divider";
 import { Text } from "../../../decorator/components/Text";
 console.log("加载pc组件");
 
-export const createSchema = (components: {
-  [key: string]: RegisterComponent;
-}) => {
+export const createSchema = (components: SchemaReactComponents) => {
   const TextArea = Input.TextArea;
   const SchemaField = createSchemaField({
     components: {

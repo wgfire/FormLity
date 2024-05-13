@@ -17,7 +17,7 @@ export const SettingSpace: React.FC<{ style?: React.CSSProperties }> = memo(
     const { state, setState, emptyStatus } = useFlityStateContext();
     const { selectFieldSchema } = state;
     const { generateValues } = usePresenter();
-    const componentType = selectFieldSchema?.["x-component"] ?? "";
+    const componentType = selectFieldSchema?.["x-component"] ?? ("" as string);
     const settingSchema = settingsSchema[componentType] ?? "";
     const findSelectFieldSchema = selectFieldSchema
       ? findSchemaByKey(state.formSchema, selectFieldSchema.key)

@@ -3,7 +3,6 @@ import styles from "./index.module.less";
 import {
   LaptopOutlined,
   MobileOutlined,
-  ChromeOutlined,
 } from "@ant-design/icons";
 
 import { useFlityStateContext } from "../../core/context";

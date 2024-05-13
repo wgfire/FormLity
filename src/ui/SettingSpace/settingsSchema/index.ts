@@ -18,7 +18,7 @@ import Text from "./text"
 const CheckGroup = {
 	...RadioGroup
 }
-
+// type SettingsSchema =  typeof commonBase  
 export const settingsSchema = {
 	"Input": Input,
 	"TextArea": TextArea,

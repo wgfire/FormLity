@@ -1,5 +1,5 @@
 
-import { ReactFC, Schema } from "@formily/react";
+import { ReactFC, Schema, SchemaReactComponents } from "@formily/react";
 import { MemoExoticComponent } from "react";
 import { Updater } from "use-immer";
 export interface IFormSchema extends Omit<Schema, "properties"> {
@@ -33,9 +33,7 @@ export type RegisterComponent =
   | MemoExoticComponent<ReactFC<unknown>>;
 export interface FlityDesignState {
   panelSpace: any;
-  components: {
-    [key: string]: RegisterComponent;
-  };
+  components: SchemaReactComponents;
 }
 /**
  * @description 用于扩展设计器的上下文

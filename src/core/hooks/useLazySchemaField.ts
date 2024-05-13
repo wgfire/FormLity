@@ -3,20 +3,18 @@ import { createSchema } from "../../core/createSchemaField";
 import { useFlityDesignContext } from "../context";
 import { DeviceType } from "@/global";
 
-import { RegisterComponent } from "../context/types";
+import { SchemaReactComponents, createSchemaField } from "@formily/react";
 
 export function useLazySchemaField(
-  components: {
-    [key: string]: RegisterComponent;
-  },
+  components: SchemaReactComponents,
   mode: DeviceType
 ) {
-  const [SchemaField, setSchemaField] = useState<React.ReactElement>();
+  const [SchemaField, setSchemaField] = useState<ReturnType<typeof createSchemaField>>();
   const [isLoading, setIsLoading] = useState(true);
   const {
     state: { components: designComponent = {} },
   } = useFlityDesignContext();
-  const registerComponent: { [key: string]: RegisterComponent } = {
+  const registerComponent: SchemaReactComponents = {
     ...components,
     ...designComponent,
   };

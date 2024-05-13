@@ -1,5 +1,5 @@
 export interface IOverLayGridProps {
-  title: string;
+  title?: string;
 }
 export const OverLayGrid: React.FC<IOverLayGridProps> = (props) => {
   return (

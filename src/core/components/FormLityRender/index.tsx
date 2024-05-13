@@ -1,6 +1,6 @@
 import { IFormProps, createForm, onFormValuesChange } from "@formily/core";
-import { FormProvider } from "@formily/react";
-import { Suspense, forwardRef, useImperativeHandle, useState } from "react";
+import { FormProvider, createSchemaField } from "@formily/react";
+import { Suspense, forwardRef, useImperativeHandle } from "react";
 import { Empty, Form } from "@feb/kk-design";
 
 import styles from "./index.module.less";
@@ -9,7 +9,7 @@ import { useFlityStateContext } from "../../context";
 import { useLazySchemaField } from "../../hooks/useLazySchemaField";
 
 import clsx from "clsx";
-import { DropboxOutlined } from "@ant-design/icons";
+
 import { ModeWrapper } from "@/ui/WorkSpace/components/ModeWrapper";
 import { FormItem } from "@/decorator/components/FormItem";
 import { useSchemaPreview } from "@/core/hooks/useSchemaPreview";
@@ -20,6 +20,7 @@ export interface IFormLityRenderProps {
   initialValues?: object;
   readOnly?: boolean;
   editable?: boolean;
+  onValuesChange?: (values: object) => void;
 }
 export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
   (props, ref) => {
@@ -28,14 +29,14 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
     const empty = emptyStatus;
     const { mode, designEnable, readOnly, editable } = state;
     //  const { readOnly, editable } = props;
-    const [initialValues, setInitialValues] = useState(
-      props.initialValues ?? {}
-    );
+    const { onValuesChange } = props;
+    const initialValues = props.initialValues ?? {};
 
     const { SchemaField, isLoading } = useLazySchemaField(
       { FormItem, PreviewText },
       mode
     );
+
     useUpdateEffect(() => {
       if (readOnly) {
         run();
@@ -52,11 +53,10 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
       effects() {
         onFormValuesChange((form) => {
           console.log(form.values, "form.values");
-          setInitialValues(form.values);
+          onValuesChange?.(form.values);
         });
       },
     } as IFormProps & { data: object });
-    console.log(designForm, "designForm");
 
     useImperativeHandle(ref, () => ({
       designForm: designForm,

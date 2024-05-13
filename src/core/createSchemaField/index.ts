@@ -1,8 +1,9 @@
 import { DeviceType } from "@/global";
-import { RegisterComponent } from "../context/types";
+
+import { SchemaReactComponents } from "@formily/react";
 
 export const createSchema = async (
-  components: { [key: string]: RegisterComponent },
+  components: SchemaReactComponents,
   mode: DeviceType
 ) => {
   if (mode === "pc") {

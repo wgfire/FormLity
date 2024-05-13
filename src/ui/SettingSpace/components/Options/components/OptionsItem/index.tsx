@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import { observer } from "@formily/react";
 import { useSortable } from "@dnd-kit/sortable";
-import { UniqueIdentifier } from "@dnd-kit/core";
 
 export interface OptionsItemProps {
   item: {
@@ -23,7 +22,7 @@ export const OptionsItem = observer<OptionsItemProps>((props) => {
   const [value, setValue] = useState(item.label);
   const [canDrag, setCanDrag] = useState(false);
 
-  const { setNodeRef, attributes, listeners, isOver, transform, transition } = useSortable({
+  const { setNodeRef, listeners, isOver, transform, transition } = useSortable({
     id: item.value,
     disabled: !canDrag,
   
@@ -46,7 +45,7 @@ export const OptionsItem = observer<OptionsItemProps>((props) => {
           }}
         />
         <DeleteOutlined
-          onClick={(e) => {
+          onClick={() => {
             console.log("delete", index);
             onDelete?.(index!);
           }}

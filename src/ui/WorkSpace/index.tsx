@@ -34,18 +34,18 @@ import clsx from "clsx";
 import emptyIcon from "@/assets/empty.svg";
 import { IRenderType } from "../PanelSpace/default";
 
-export const WorkSpace = memo((props) => {
+export const WorkSpace = memo(() => {
   const { state, emptyStatus } = useFlityStateContext();
   const { dropHandel, overHandel } = usePresenter();
   const empty = emptyStatus;
   const { mode, readOnly, editable, designEnable } = state;
   const [initialValues, setInitialValues] = useState({});
   const [activeItem, setActiveItem] = useState<
-    (IRenderType & { title: string; children: any; type: string }) | null
+    (IRenderType & { title: string; children: React.ReactElement; type: string }) | null
   >(null);
 
   const { SchemaField, isLoading } = useLazySchemaField(
-    { FormGrid, FormItem: DragFormItem, ...props.components },
+    { FormGrid, FormItem: DragFormItem },
     mode
   );
 

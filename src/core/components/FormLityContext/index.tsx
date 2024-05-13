@@ -1,8 +1,9 @@
 import { useImmer } from "use-immer";
-import FlityStateContext, { FormState, IFormSchema } from "../../context";
+import FlityStateContext from "../../context";
 import { mockSchema } from "../../../ui/FormDesign/mockSchema";
 import { useMemo } from "react";
 import { FormDesignContext } from "../FormDesignContext";
+import type { FormState, IFormSchema } from "../../context/types";
 
 export const FormLityContext: React.FC<React.PropsWithChildren> = (props) => {
   const value = useMemo<FormState>(() => {
