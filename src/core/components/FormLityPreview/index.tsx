@@ -1,54 +1,54 @@
-import { IFormProps, createForm, onFormValuesChange } from "@formily/core";
+import { IFormProps, createForm } from "@formily/core";
 import { FormProvider } from "@formily/react";
-import { Suspense, forwardRef, useImperativeHandle, useMemo } from "react";
+import {
+  Suspense,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+} from "react";
 import { Empty, Form } from "@feb/kk-design";
 
-import styles from "./index.module.less";
 import { useFlityStateContext } from "../../context";
 
 import { useLazySchemaField } from "../../hooks/useLazySchemaField";
 
+import styles from "./index.module.less";
 import clsx from "clsx";
 
 import { ModeWrapper } from "@/ui/WorkSpace/components/ModeWrapper";
 import { FormItem } from "@/decorator/components/FormItem";
 import { useSchemaPreview } from "@/core/hooks/useSchemaPreview";
-import { useUpdateEffect } from "ahooks";
-import PreviewText from "@/components/PreviewText";
-
+import { useMount, useUpdateEffect } from "ahooks";
+import PreviewComponents from "@/components/PreviewText/index";
 export interface IFormLityRenderProps {
   initialValues?: object;
   layout?: "vertical" | "horizontal";
-  onValuesChange?: (values: object) => void;
 }
-export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
+export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
   (props, ref) => {
     const { state, emptyStatus } = useFlityStateContext();
-
+    const { run } = useSchemaPreview();
     const empty = emptyStatus;
-    const { mode, designEnable, readOnly, editable } = state;
-    const { onValuesChange, layout = "vertical" } = props;
+
+    const { layout = "vertical" } = props;
     const initialValues = props.initialValues ?? {};
 
-    const { SchemaField, isLoading } = useLazySchemaField({ FormItem }, mode);
+    const { SchemaField, isLoading } = useLazySchemaField(
+      { FormItem, ...PreviewComponents },
+      state.mode
+    );
+
+    useUpdateEffect(() => {
+      run();
+    }, [state.readOnly]);
 
     const designForm = useMemo(() => {
       return createForm({
-        pattern: readOnly ? "readPretty" : "editable",
+        pattern: "readPretty",
         initialValues: initialValues,
-        data: {
-          designEnable: designEnable,
-          mode: mode,
-        },
-        effects() {
-          onFormValuesChange((form) => {
-            console.log(form.values, "form.values");
-            onValuesChange?.(form.values);
-            // form.setValues(form.values);
-          });
-        },
       } as IFormProps & { data: object });
-    }, [readOnly, mode, designEnable]);
+    }, []);
 
     useImperativeHandle(ref, () => ({
       designForm: designForm,
@@ -57,7 +57,7 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
     return (
       <div id="FormLityRender" className={clsx(styles.render)}>
         <Suspense fallback={<div>加载中...</div>}>
-          <ModeWrapper mode={state.mode} preview={!designEnable && !readOnly}>
+          <ModeWrapper mode={state.mode} preview={true}>
             {empty ? (
               <Empty
                 description="暂无数据"

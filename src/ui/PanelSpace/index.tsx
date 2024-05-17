@@ -35,8 +35,8 @@ export const PanelSpace: React.FC<{
             return (
               <Panel header={el.title} key={el.title} showArrow={false}>
                 <Flex gap={10} flexWrap="wrap">
-                  {el.children.length > 0 &&
-                    el.children.map((item) => {
+                  {el.children?.length > 0 &&
+                    el.children!.map((item) => {
                       return <DragItem item={item} key={item.title} />;
                     })}
                 </Flex>

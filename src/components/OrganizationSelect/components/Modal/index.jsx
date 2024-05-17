@@ -34,7 +34,7 @@ export const ModalSelect = (props) => {
   } = state;
 
   useEffect(() => {
-    open && getDepartmentTreeData();
+    open && !listTree && getDepartmentTreeData();
     !open && setState({
         ...initState,
         listTree,

@@ -1,7 +1,8 @@
-
 import { ReactFC, Schema, SchemaReactComponents } from "@formily/react";
 import { MemoExoticComponent } from "react";
 import { Updater } from "use-immer";
+import { ConfigSchemaType } from "../components/FormDesignContext/config/defaultPanel";
+import { DeviceType } from "@/global";
 export interface IFormSchema extends Omit<Schema, "properties"> {
   key: string;
   properties: IFormSchema;
@@ -9,7 +10,7 @@ export interface IFormSchema extends Omit<Schema, "properties"> {
 }
 export interface FormState {
   selectFieldSchema: IFormSchema | null;
-  mode: "pc" | "mobile";
+  mode: DeviceType;
   readOnly: boolean;
   editable: boolean;
   designEnable: boolean;
@@ -32,7 +33,7 @@ export type RegisterComponent =
   | React.ReactElement
   | MemoExoticComponent<ReactFC<unknown>>;
 export interface FlityDesignState {
-  panelSpace: any;
+  panelSpace: ConfigSchemaType[];
   components: SchemaReactComponents;
 }
 /**

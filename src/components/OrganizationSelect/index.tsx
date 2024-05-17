@@ -2,8 +2,26 @@ import { Select } from "@feb/kk-design";
 import { observer } from "@formily/react";
 import { useRef, useState } from "react";
 import { ModalSelect } from "./components/Modal";
+interface OrganizationSelectProps {
+  value: string[];
+  onChange: (value: string[]) => void;
+  placeholder?: string;
+  externalLoad?:()=>void,
+  externalSearchUser?: (name: string) => void;
+  organization?: string;
+  disabled?: boolean;
+  immediately?: boolean;
+}
 
-export const OrganizationSelect = observer((props) => {
+interface OrganizationSelectOption {
+  id: string;
+  name: string;
+  type: string;
+  children?: OrganizationSelectOption[];
+}
+export const OrganizationSelect = observer<
+  OrganizationSelectProps
+>((props) => {
   const {
     value,
     onChange,
@@ -15,11 +33,11 @@ export const OrganizationSelect = observer((props) => {
     immediately = false,
   } = props;
   const [open, setOpen] = useState(false);
-  const selectData = useRef([]);
-  const [options, setOptions] = useState([]);
+  const selectData = useRef<OrganizationSelectOption[]>([]);
+  const [options, setOptions] = useState<OrganizationSelectOption[]>([]);
   return (
     <div>
-      <Select
+      <Select 
         maxTagCount={10}
         value={value}
         options={options}
@@ -38,7 +56,7 @@ export const OrganizationSelect = observer((props) => {
         onClick={() => setOpen(true)}
       />
 
-      <ModalSelect
+      <ModalSelect<OrganizationSelectOption>
         onCancel={() => setOpen(false)}
         open={open}
         immediately={immediately}
@@ -56,5 +74,7 @@ export const OrganizationSelect = observer((props) => {
     </div>
   );
 });
+
+
 
 export default OrganizationSelect;

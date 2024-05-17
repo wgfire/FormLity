@@ -3,160 +3,262 @@ import { FormDesign } from "./ui/FormDesign";
 import { useFlitySate } from "./core/hooks/useFlitySate";
 import { FormLityRender } from "./core/components/FormLityRender";
 import { useRef } from "react";
+import { FormLityPreview } from "./core/components/FormLityPreview";
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
     designEnable: false,
-    readOnly:true,
+    readOnly: true,
     formSchema: {
-      "type": "object",
+      _isJSONSchemaObject: true,
+      version: "2.0",
+      type: "object",
       "x-data": {
-          "isContainer": true,
-          "isRoot": true
+        isContainer: true,
+        isRoot: true,
       },
-      "key": "root",
-      "properties": {
-          "slider-1715225686241_51754088": {
-              "key": "slider-1715225686241_51754088",
-              "title": "滑块",
-              "type": "string",
-              "required": true,
-              "x-component": "Slider",
-              "x-decorator": "FormItem",
-              "x-component-props": {}
+      key: "root",
+      properties: {
+        "formgrid-1715668795773_17961402": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "formgrid-1715668795773_17961402",
+          title: "栅格",
+          type: "void",
+          "x-component": "FormGrid",
+          "x-data": {
+            isContainer: true,
           },
-          "divider-1715225693089_461272506": {
-              "key": "divider-1715225693089_461272506",
-              "title": "分隔符",
-              "type": "void",
-              "x-component": "Divider",
-              "x-data": {
-                  "isContainer": true
-              },
-              "properties": {}
-          },
-          "textarea-1715222668529_72354852": {
-              "key": "textarea-1715222668529_72354852",
-              "title": "多行输入框",
-              "type": "string",
-              "required": true,
+          properties: {
+            "textarea-1715668798444_87311022": {
+              _isJSONSchemaObject: true,
+              version: "2.0",
+              key: "textarea-1715668798444_87311022",
+              title: "多行输入框",
+              type: "string",
+              required: true,
               "x-component": "TextArea",
               "x-decorator": "FormItem",
-              "x-component-props": {}
-          },
-          "select-1715225544161_13868434": {
-              "key": "select-1715225544161_13868434",
-              "title": "下拉选择器",
-              "type": "string",
-              "required": true,
-              "x-component": "Select",
+              "x-component-props": {},
+              "x-data": {},
+              name: "textarea-1715668798444_87311022",
+            },
+            "input-1715668801709_174580676": {
+              _isJSONSchemaObject: true,
+              version: "2.0",
+              key: "input-1715668801709_174580676",
+              title: "单行输入框",
+              type: "string",
+              required: true,
+              "x-component": "Input",
               "x-decorator": "FormItem",
-              "x-component-props": {
-                  "title": "下拉选择器",
-                  "required": true,
-                  "options": []
-              },
-              'x-data':{
-                preview:true
-              }
-          },
-          "formgrid-1715225635384_7990624": {
-              "key": "formgrid-1715225635384_7990624",
-              "title": "栅格",
-              "type": "void",
-              "x-component": "FormGrid",
+              "x-component-props": {},
               "x-data": {
-                  "isContainer": true
+                preview: true,
+                previewType: "Text",
               },
-              "properties": {
-                  "inputnumber-1715225636896_11693369": {
-                      "key": "inputnumber-1715225636896_11693369",
-                      "title": "数字输入框",
-                      "type": "string",
-                      "required": true,
-                      "x-component": "InputNumber",
-                      "x-decorator": "FormItem",
-                      "x-component-props": {}
-                  },
-                  "cascader-1715225643385_876267098": {
-                      "key": "cascader-1715225643385_876267098",
-                      "title": "联级选择器",
-                      "type": "string",
-                      "required": true,
-                      "x-component": "Cascader",
-                      "x-decorator": "FormItem",
-                      "x-component-props": {
-                          "title": "联级选择器",
-                          "required": true,
-                          "options": [
-                              {
-                                  "label": "选项一",
-                                  "value": "1715225647057_76837032"
-                              },
-                              {
-                                  "label": "选项一",
-                                  "value": "1715225647945_335627046"
-                              },
-                              {
-                                  "label": "选项一",
-                                  "value": "1715225648489_5155553"
-                              }
-                          ]
+              name: "input-1715668801709_174580676",
+            },
+          },
+          name: "formgrid-1715668795773_17961402",
+        },
+        "inputnumber-1715668803060_66315412": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "inputnumber-1715668803060_66315412",
+          title: "数字输入框",
+          type: "string",
+          required: true,
+          "x-component": "InputNumber",
+          "x-decorator": "FormItem",
+          "x-component-props": {
+            title: "数字输入框",
+            required: true,
+            min: 2,
+          },
+          "x-data": {
+            preview: true,
+            previewType: "Text",
+          },
+          name: "inputnumber-1715668803060_66315412",
+        },
+        "select-1715668804315_71251342": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "select-1715668804315_71251342",
+          title: "下拉选择器",
+          type: "string",
+          required: true,
+          "x-component": "Select",
+          "x-decorator": "FormItem",
+          "x-component-props": {
+            title: "下拉选择器",
+            required: true,
+            options: [
+              {
+                label: "选项一",
+                value: "1715668826284_32574706",
+              },
+              {
+                label: "选项一",
+                value: "1715668827044_13862254",
+              },
+            ],
+          },
+          "x-data": {
+            preview: true,
+            previewType: "Select",
+          },
+          name: "select-1715668804315_71251342",
+        },
+        "cascader-1715668805484_900853901": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "cascader-1715668805484_900853901",
+          title: "联级选择器",
+          type: "string",
+          required: true,
+          "x-component": "Cascader",
+          "x-decorator": "FormItem",
+          "x-component-props": {
+            title: "联级选择器",
+            required: true,
+            options: [
+              {
+                  "label": "选项一",
+                  "value": "1715668828836_451024517",
+                  "children": [
+                      {
+                          "label": "选项一/2",
+                          "value": "1715913958373_774353487"
                       }
-                  }
+                  ]
+              },
+              {
+                  "label": "选项一",
+                  "value": "1715668829485_112814544"
               }
+          ],
           },
-          "datepicker-1715225661320_0044521703": {
-              "key": "datepicker-1715225661320_0044521703",
-              "title": "日期选择器",
-              "type": "string",
-              "required": true,
-              "x-component": "DatePicker",
-              "x-decorator": "FormItem",
-              "x-component-props": {}
+          "x-data": {
+            preview: true,
+            previewType: "Select",
           },
-          "timepicker-1715225663385_84700679": {
-              "key": "timepicker-1715225663385_84700679",
-              "title": "时间选择器",
-              "type": "string",
-              "required": true,
-              "x-component": "TimePicker",
-              "x-decorator": "FormItem",
-              "x-component-props": {}
+          name: "cascader-1715668805484_900853901",
+        },
+        "upload-1715668850644_81507394": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "upload-1715668850644_81507394",
+          title: "文件上传",
+          type: "string",
+          required: true,
+          "x-component": "Upload",
+          "x-decorator": "FormItem",
+          "x-component-props": {},
+          name: "upload-1715668850644_81507394",
+        },
+        "datepicker-1715668807508_12711714": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "datepicker-1715668807508_12711714",
+          title: "日期选择器",
+          type: "string",
+          required: true,
+          "x-component": "DatePicker",
+          "x-decorator": "FormItem",
+          "x-component-props": {},
+          "x-data": {
+            preview: true,
+            previewType: "Text",
           },
-          "rate-1715225671376_906521964": {
-              "key": "rate-1715225671376_906521964",
-              "title": "评分",
-              "type": "string",
-              "required": true,
-              "x-component": "Rate",
-              "x-decorator": "FormItem",
-              "x-component-props": {}
+          name: "datepicker-1715668807508_12711714",
+        },
+        "checkboxgroup-1715668810044_065643674": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "checkboxgroup-1715668810044_065643674",
+          title: "多选",
+          type: "string",
+          required: true,
+          "x-component": "CheckBoxGroup",
+          "x-decorator": "FormItem",
+          "x-component-props": {
+            title: "多选",
+            required: true,
+            options: [
+              {
+                label: "选项一",
+                value: "1715668832549_77225368",
+              },
+              {
+                label: "选项一",
+                value: "1715668833028_841213735",
+              },
+            ],
           },
-          "switch-1715225677993_29627506": {
-              "key": "switch-1715225677993_29627506",
-              "title": "开关",
-              "type": "string",
-              "required": true,
-              "x-component": "Switch",
-              "x-decorator": "FormItem",
-              "x-component-props": {}
-          }
-      }
-  },
+          "x-data": {
+            preview: true,
+            previewType: "Select",
+          },
+          name: "checkboxgroup-1715668810044_065643674",
+        },
+        "rate-1715668812500_808594475": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "rate-1715668812500_808594475",
+          title: "评分",
+          type: "string",
+          required: true,
+          "x-component": "Rate",
+          "x-decorator": "FormItem",
+          "x-component-props": {},
+          "x-data": {},
+          name: "rate-1715668812500_808594475",
+        },
+        "slider-1715668815741_62025004": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "slider-1715668815741_62025004",
+          title: "滑块",
+          type: "string",
+          required: true,
+          "x-component": "Slider",
+          "x-decorator": "FormItem",
+          "x-component-props": {},
+          "x-data": {},
+          name: "slider-1715668815741_62025004",
+        },
+      },
+    },
   });
   console.log(state, "state");
-  const initialValues ={
-    'slider-1715048596753_67052219':4,
-    'textarea-1715048588793_20139055':'xxx',
-    'select-1715048631225_9377241':'1715048635297_50265948'
-  }
+  const initialValues = {
+    "slider-1715048596753_67052219": 4,
+    "datepicker-1715668807508_12711714": "2025/5/5",
+    "select-1715668804315_71251342": ["1715668827044_13862254"],
+    "checkboxgroup-1715668810044_065643674": ["1715668832549_77225368",'1715668833028_841213735'],
+    "rate-1715668812500_808594475": 5,
+    "cascader-1715668805484_900853901": ["1715913958373_774353487"],
+    "upload-1715668850644_81507394": [
+      {
+        uid: "000/33311667307327/FosSlGa9pcsCLazS5Vqk4SFQs1mb.gif",
+        id: "rc-upload-1715855500675-3",
+        name: "dragbug.gif",
+        status: "done",
+        process: 100,
+        url: "https://ts1.cn.mm.bing.net/th/id/R-C.b8e84a0907bf9b5128dfa48be0ae48af?rik=tfH6k%2fT3hkauqw&riu=http%3a%2f%2fwww.08lr.cn%2fuploads%2fallimg%2f220330%2f1-2300141M0.jpg&ehk=dR6hTo1o7lNsHkpE62oIzMtJ%2bmxktf7%2fx6tp3Zt2uB8%3d&risl=&pid=ImgRaw&r=0",
+        key: "000/33311667307327/FosSlGa9pcsCLazS5Vqk4SFQs1mb.gif",
+      },
+    ],
+  };
 
   const ref = useRef(null);
 
   return (
     <>
       {/* <FormDesign></FormDesign> */}
-      <FormLityRender initialValues={initialValues}></FormLityRender>
+      <FormLityPreview initialValues={initialValues}></FormLityPreview>
+      {/* <FormLityRender initialValues={initialValues} onValuesChange={(e)=>console.log(e)}></FormLityRender> */}
       {/* <Button onClick={() => ref.current?.designForm?.submit()}>保存</Button> */}
     </>
   );
@@ -168,4 +270,3 @@ export const App = () => {
     </FormLityContext>
   );
 };
-

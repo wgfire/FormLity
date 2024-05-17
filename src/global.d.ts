@@ -5,7 +5,7 @@ interface  IFormSchema extends Omit<Schema, "properties"> {
   properties: IFormSchema;
   [key: string]: unknown;
 }
-declare type DeviceType = "pc" | "mobile";
+declare type DeviceType = "pc" | "mobile" ;
 
 declare interface ICbaseProps {
   onChange: (value: unknown) => void;

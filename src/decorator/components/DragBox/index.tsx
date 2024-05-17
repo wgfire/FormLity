@@ -50,9 +50,6 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> =
         setHover(isOver);
       }
     }, [isOver]);
-    useEffect(() => {
-      console.log("设计器状态", state.designEnable);
-    }, [state.designEnable]);
     return state.designEnable ? (
       <>
         <div

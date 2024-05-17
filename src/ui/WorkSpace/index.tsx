@@ -119,7 +119,7 @@ export const WorkSpace = memo(() => {
     >
       <OperationBar />
       <Suspense fallback={<div>加载中...</div>}>
-        <ModeWrapper mode={state.mode} preview={!designEnable}>
+        <ModeWrapper mode={state.mode} preview={readOnly} designEnable={designEnable}>
           <SortableContext
             items={keys}
             strategy={verticalListSortingStrategy}

@@ -6,6 +6,7 @@ import dts from "vite-plugin-dts";
 import glob from "fast-glob";
 // import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -46,7 +47,7 @@ export default defineConfig({
     outDir: "./dist",
     target: "es2020",
     //压缩
-    minify: "esbuild",
+    minify: true,
     rollupOptions: {
       input: "./src/index.ts",
       external: [

@@ -11,6 +11,10 @@ export const createSchema = async (
     return createSchemaPc(components);
   }
 
-  const { createSchema: createSchemaMobiles } = await import("./mobile/index");
-  return createSchemaMobiles(components);
+  if (mode === "mobile") {
+    const { createSchema: createSchemaMobiles } = await import(
+      "./mobile/index"
+    );
+    return createSchemaMobiles(components);
+  }
 };

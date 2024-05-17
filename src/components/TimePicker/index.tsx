@@ -1,9 +1,14 @@
-import { observer } from "@formily/react";
-import { TimePicker as AntTimePicker } from "@feb/kk-design";
-export const TimePicker = observer((props) => {
+import { TimePicker as AntTimePicker, TimePickerProps } from "@feb/kk-design";
+
+export interface ITimePickerProps extends Omit<TimePickerProps, "onChange"> {
+  range?: boolean;
+  onChange: (value: string | undefined) => void;
+}
+
+export const TimePicker: React.FC<ITimePickerProps> = (props) => {
   const { onChange, range } = props;
-  const valueChange = (value) => {
-    onChange(value.format("h:mm:ss"));
+  const valueChange = (value: moment.Moment | null) => {
+    onChange(value?.format("h:mm:ss"));
   };
 
   return !range ? (
@@ -16,5 +21,5 @@ export const TimePicker = observer((props) => {
       placeholder={["开始时间", "结束时间"]}
     />
   );
-});
+};
 export default TimePicker;

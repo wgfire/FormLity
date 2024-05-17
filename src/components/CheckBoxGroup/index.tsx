@@ -1,7 +1,9 @@
 import { Checkbox } from "@feb/kk-design";
-import { useField, observer } from "@formily/react";
+import { useField } from "@formily/react";
 
-export const CheckBoxGroup = observer((props) => {
+export interface CheckBoxGroupProps extends React.ComponentProps<typeof Checkbox.Group>{}
+
+export const CheckBoxGroup:React.FC<CheckBoxGroupProps> = (props) => {
   const field = useField();
   const { options = [] } = props;
   const { designEnable } = field?.form?.props?.data ?? {};
@@ -16,6 +18,6 @@ export const CheckBoxGroup = observer((props) => {
       )}
     </>
   );
-});
+};
 
 export default CheckBoxGroup;

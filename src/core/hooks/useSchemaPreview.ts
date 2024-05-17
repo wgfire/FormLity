@@ -5,22 +5,20 @@
  * @returns
  */
 
-
+import _ from "lodash-es";
 import { useFlityStateContext } from "../context";
 import { IFormSchema } from "@/global";
 
-const notPreview = ["FormGrid", "Slider"];
-
 export const useSchemaPreview = () => {
   const { state, setState } = useFlityStateContext();
-  const { formSchema } = state || {};
-  const Component = "PreviewText";
+  const { formSchema } = state;
+
   const run = () => {
-    console.log(state, "state");
-    if (state && formSchema) {
+    if (formSchema) {
       setState((draft) => {
-        updateSchemaComponents(draft.formSchema, Component);
-        console.log(draft.formSchema, "预览态组件数据");
+        const result = updateSchemaComponents(_.cloneDeep(state.formSchema));
+        draft.formSchema = result;
+        console.log(result, "result");
       });
     }
   };
@@ -28,17 +26,16 @@ export const useSchemaPreview = () => {
   return { run };
 };
 
-export const updateSchemaComponents = (
-  schema: IFormSchema,
-  component: string
-) => {
+export const updateSchemaComponents = (schema: IFormSchema): IFormSchema => {
   if (schema.properties) {
     for (const propertyKey in schema.properties) {
       const schemaItem = schema.properties[propertyKey] as IFormSchema;
-      if (schemaItem?.['x-data']?.preview) {
+      // 递归调用并更新 schema.properties
+      if (schemaItem?.["x-data"]?.preview) {
+        const component = schemaItem?.["x-data"]?.previewType;
         schemaItem["x-component"] = component;
       }
-      updateSchemaComponents(schemaItem, component);
+      schema.properties[propertyKey] = updateSchemaComponents(schemaItem);
     }
   }
   return schema;

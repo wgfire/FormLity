@@ -1,84 +1,88 @@
-.modeWrapper{
+.modeWrapper {
   flex: 1;
-	margin-bottom: 40px;
-	overflow: hidden;
-
+  margin-bottom: 40px;
+  overflow: hidden;
 }
-.mobileWrapper{
-	width: 400px;
-	margin: 0 auto;
-	border: 6px solid #1c1f2314;
-	box-shadow: 0 15px 20px 0 #00000014;
-	border-radius: 40px;
-	padding: 20px;
-	transition: all 0.5s;
-	margin-bottom: 40px;
-	position: relative;
-	background-color: white;
-	&.preview{
-		background-color: white;
-		position: relative;
-	}
-	:global {
-		.adm-popup {
-			position: static;
-			& .adm-mask{
-				position: absolute;
-			}
-			& .adm-popup-body{
-				position: absolute;
-			}
-		}
-	}
+
+.mobileWrapper {
+  width: 400px;
+  margin: 0 auto;
+  border: 6px solid #1c1f2314;
+  box-shadow: 0 15px 20px 0 #00000014;
+  border-radius: 40px;
+  padding: 20px;
+  transition: all 0.5s;
+  margin-bottom: 40px;
+  position: relative;
+  background-color: white;
+  &.design {
+    background-color: white;
+    position: relative;
+  }
+  :global {
+    .adm-popup {
+      position: static;
+      & .adm-mask {
+        position: absolute;
+      }
+      & .adm-popup-body {
+        position: absolute;
+      }
+    }
+  }
 }
-.pcWrapper{
-	width: 100%;
-	transition: all 0.5s;
-	margin: 0 auto;
-	margin-bottom: 40px;
-	&.preview{
-		width: 70%;
-		background-color: white;
-		padding: 10px;
-		position: relative;
-
-	}
-
+.pcWrapper {
+  width: 100%;
+  transition: all 0.5s;
+  margin: 0 auto;
+  margin-bottom: 40px;
 }
-.overlay{
-	width: 100%;
-	overflow-x: hidden !important;
-	background-color: #f9f9f9;
-	padding: 10px;
-	border-radius: 10px;
-	// 滚动条样式
-	&::-webkit-scrollbar {
-		width: 4px; // 滚动条宽度
-		background-color: white;
 
-		// 滚动条轨道
-		&-track {
-			opacity: 0;
-			background-color: white; // 使用更柔和的背景颜色
-			transition: opacity 0.3s ease-in-out; // 添加过渡效果
-			border-radius: 10px;
-		}
+.overlay {
+  width: 100%;
+  overflow-x: hidden !important;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  // 滚动条样式
+  &::-webkit-scrollbar {
+    width: 4px; // 滚动条宽度
+    background-color: white;
 
-		// 滚动条滑块
-		&-thumb {
-			background-image: linear-gradient(to bottom, rgb(241, 240, 240), #727171 100%);
-			border-radius: 10px;
-		}
-	}
+    // 滚动条轨道
+    &-track {
+      opacity: 0;
+      background-color: white; // 使用更柔和的背景颜色
+      transition: opacity 0.3s ease-in-out; // 添加过渡效果
+      border-radius: 10px;
+    }
 
-	// 滚动时显示滚动条
-	&:hover,
-	&:focus,
-	&:active {
-		overflow: auto;
+    // 滚动条滑块
+    &-thumb {
+      background-image: linear-gradient(
+        to bottom,
+        rgb(241, 240, 240),
+        #727171 100%
+      );
+      border-radius: 10px;
+    }
+  }
 
-		&::-webkit-scrollbar-track {
-			opacity: 1; // 鼠标悬停、聚焦或激活时显示滚动条轨道
-		}
-	}
+  // 滚动时显示滚动条
+  &:hover,
+  &:focus,
+  &:active {
+    overflow: auto;
+
+    &::-webkit-scrollbar-track {
+      opacity: 1; // 鼠标悬停、聚焦或激活时显示滚动条轨道
+    }
+  }
+}
+.preview {
+  width: 100%;
+  background: white;
+  & > div {
+    background-color: white;
+  }
 }

@@ -25,7 +25,9 @@ export const FormLityContext: React.FC<React.PropsWithChildren> = (props) => {
 
   const [state, setState] = useImmer<FormState>(value);
   const emptyStatus = useMemo(() => {
-    return Object.keys(state.formSchema.properties!).length === 0;
+    return state.formSchema
+      ? Object.keys(state.formSchema.properties).length === 0
+      : true;
   }, [state.formSchema]);
 
   return (
