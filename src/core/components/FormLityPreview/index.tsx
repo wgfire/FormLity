@@ -55,7 +55,7 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
     }));
 
     return (
-      <div id="FormLityRender" className={clsx(styles.render)}>
+      <div id="FormLityPreview" className={clsx(styles.render)}>
         <Suspense fallback={<div>加载中...</div>}>
           <ModeWrapper mode={state.mode} preview={true}>
             {empty ? (

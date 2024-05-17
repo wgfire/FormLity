@@ -12,9 +12,7 @@ import clsx from "clsx";
 
 import { ModeWrapper } from "@/ui/WorkSpace/components/ModeWrapper";
 import { FormItem } from "@/decorator/components/FormItem";
-import { useSchemaPreview } from "@/core/hooks/useSchemaPreview";
-import { useUpdateEffect } from "ahooks";
-import PreviewText from "@/components/PreviewText";
+
 
 export interface IFormLityRenderProps {
   initialValues?: object;

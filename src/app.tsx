@@ -7,7 +7,7 @@ import { FormLityPreview } from "./core/components/FormLityPreview";
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
     designEnable: false,
-    readOnly: true,
+    readOnly: false,
     formSchema: {
       _isJSONSchemaObject: true,
       version: "2.0",
@@ -257,8 +257,8 @@ const FormDesignApp = () => {
   return (
     <>
       {/* <FormDesign></FormDesign> */}
-      <FormLityPreview initialValues={initialValues}></FormLityPreview>
-      {/* <FormLityRender initialValues={initialValues} onValuesChange={(e)=>console.log(e)}></FormLityRender> */}
+      {/* <FormLityPreview initialValues={initialValues}></FormLityPreview> */}
+      <FormLityRender initialValues={initialValues} onValuesChange={(e)=>console.log(e)}></FormLityRender>
       {/* <Button onClick={() => ref.current?.designForm?.submit()}>保存</Button> */}
     </>
   );
