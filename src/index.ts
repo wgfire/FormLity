@@ -14,7 +14,7 @@ export * from "@/components/index";
  * @description context组件
  */
 
-export { FormLityContext,FormLityRender } from "@/core/components/index";
+export { FormLityContext,FormLityRender,FormLityPreview } from "@/core/components/index";
 
 /**
  * @description hooks
