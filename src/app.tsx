@@ -4,6 +4,7 @@ import { useFlitySate } from "./core/hooks/useFlitySate";
 import { FormLityRender } from "./core/components/FormLityRender";
 import { useRef } from "react";
 import { FormLityPreview } from "./core/components/FormLityPreview";
+
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
     designEnable: false,
@@ -124,20 +125,20 @@ const FormDesignApp = () => {
             required: true,
             options: [
               {
-                  "label": "选项一",
-                  "value": "1715668828836_451024517",
-                  "children": [
-                      {
-                          "label": "选项一/2",
-                          "value": "1715913958373_774353487"
-                      }
-                  ]
+                label: "选项一",
+                value: "1715668828836_451024517",
+                children: [
+                  {
+                    label: "选项一/2",
+                    value: "1715913958373_774353487",
+                  },
+                ],
               },
               {
-                  "label": "选项一",
-                  "value": "1715668829485_112814544"
-              }
-          ],
+                label: "选项一",
+                value: "1715668829485_112814544",
+              },
+            ],
           },
           "x-data": {
             preview: true,
@@ -236,7 +237,7 @@ const FormDesignApp = () => {
     "slider-1715048596753_67052219": 4,
     "datepicker-1715668807508_12711714": "2025/5/5",
     "select-1715668804315_71251342": ["1715668827044_13862254"],
-    "checkboxgroup-1715668810044_065643674": ["1715668832549_77225368",'1715668833028_841213735'],
+    "checkboxgroup-1715668810044_065643674": ["1715668832549_77225368", "1715668833028_841213735"],
     "rate-1715668812500_808594475": 5,
     "cascader-1715668805484_900853901": ["1715913958373_774353487"],
     "upload-1715668850644_81507394": [
@@ -258,7 +259,7 @@ const FormDesignApp = () => {
     <>
       {/* <FormDesign></FormDesign> */}
       {/* <FormLityPreview initialValues={initialValues}></FormLityPreview> */}
-      <FormLityRender initialValues={initialValues} onValuesChange={(e)=>console.log(e)}></FormLityRender>
+      <FormLityRender initialValues={initialValues} onValuesChange={(e) => console.log(e)}></FormLityRender>
       {/* <Button onClick={() => ref.current?.designForm?.submit()}>保存</Button> */}
     </>
   );

@@ -24,7 +24,7 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
     const { state, emptyStatus } = useFlityStateContext();
 
     const empty = emptyStatus;
-    const { mode, designEnable, readOnly, editable } = state;
+    const { mode, designEnable, readOnly } = state;
     const { onValuesChange, layout = "vertical" } = props;
     const initialValues = props.initialValues ?? {};
 
@@ -32,7 +32,7 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
 
     const designForm = useMemo(() => {
       return createForm({
-        pattern: readOnly ? "readPretty" : "editable",
+        pattern:"editable",
         initialValues: initialValues,
         data: {
           designEnable: designEnable,
@@ -46,7 +46,7 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
           });
         },
       } as IFormProps & { data: object });
-    }, [readOnly, mode, designEnable]);
+    }, [ mode, designEnable]);
 
     useImperativeHandle(ref, () => ({
       designForm: designForm,

@@ -7,6 +7,8 @@ import glob from "fast-glob";
 // import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 
+console.log(path.resolve(__dirname, "node_modules/@feb/kk-design"));
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -17,7 +19,7 @@ export default defineConfig({
     react(),
     dts({
       entryRoot: "./src",
-      outDir: ["./dist/es",'./dist/lib'],
+      outDir: ["./dist/es", "./dist/lib"],
       tsconfigPath: "./tsconfig.json",
     }),
 
@@ -38,6 +40,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
+    holdUntilCrawlEnd: true,
     esbuildOptions: {
       drop: ["console"],
     },
@@ -50,20 +53,14 @@ export default defineConfig({
     minify: true,
     rollupOptions: {
       input: "./src/index.ts",
-      external: [
-        "react",
-        "@feb/kk-design",
-        "react-dom",
-        "@ant-design/icons",
-        "ahooks",
-      ],
+      external: ["react", "@feb/kk-design", "react-dom", "@ant-design/icons", "ahooks"],
       plugins: [commonjs()],
       output: [
         {
           //打包格式
           format: "es",
           //打包后文件名
-          entryFileNames: "[name].js",
+          entryFileNames: "[name].mjs",
           //让打包目录和我们目录对应
           preserveModules: false, // true会产生mode_modules目录 yalcrc本地调试不会将这个目前移到项目里
           preserveModulesRoot: "src",
@@ -71,17 +68,17 @@ export default defineConfig({
           exports: "named",
           //配置打包根目录
           dir: "./dist/es",
-          manualChunks(id, { getModuleInfo, getModuleIds }) {
-            if (id.includes("components")) {
-              return "assets/components";
-            }
-            if (id.includes("src/ui")) {
-              return "assets/ui";
-            }
-            if (id.includes("node_modules")) {
-              return "assets/venders";
-            }
-          },
+          // manualChunks(id, { getModuleInfo, getModuleIds }) {
+          //   if (id.includes("components")) {
+          //     return "assets/components";
+          //   }
+          //   if (id.includes("src/ui")) {
+          //     return "assets/ui";
+          //   }
+          //   if (id.includes("node_modules")) {
+          //     return "assets/venders";
+          //   }
+          // },
         },
         {
           //打包格式

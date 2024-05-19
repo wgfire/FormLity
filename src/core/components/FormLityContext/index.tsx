@@ -4,7 +4,8 @@ import { mockSchema } from "../../../ui/FormDesign/mockSchema";
 import { useMemo } from "react";
 import { FormDesignContext } from "../FormDesignContext";
 import type { FormState, IFormSchema } from "../../context/types";
-
+import { ConfigProvider } from "@feb/kk-design";
+import zhCN from "@feb/kk-design/es/locale/zh_CN";
 export const FormLityContext: React.FC<React.PropsWithChildren> = (props) => {
   const value = useMemo<FormState>(() => {
     return {
@@ -25,22 +26,22 @@ export const FormLityContext: React.FC<React.PropsWithChildren> = (props) => {
 
   const [state, setState] = useImmer<FormState>(value);
   const emptyStatus = useMemo(() => {
-    return state.formSchema
-      ? Object.keys(state.formSchema.properties).length === 0
-      : true;
+    return state.formSchema ? Object.keys(state.formSchema.properties).length === 0 : true;
   }, [state.formSchema]);
 
   return (
-    <FormDesignContext>
-      <FlityStateContext.Provider
-        value={{
-          state,
-          setState,
-          emptyStatus,
-        }}
-      >
-        {props.children}
-      </FlityStateContext.Provider>
-    </FormDesignContext>
+    <ConfigProvider locale={zhCN}>
+      <FormDesignContext>
+        <FlityStateContext.Provider
+          value={{
+            state,
+            setState,
+            emptyStatus,
+          }}
+        >
+          {props.children}
+        </FlityStateContext.Provider>
+      </FormDesignContext>
+    </ConfigProvider>
   );
 };

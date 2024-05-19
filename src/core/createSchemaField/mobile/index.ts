@@ -1,4 +1,4 @@
-/* eslint-disable react-refresh/only-export-components */
+/* @ts-nocheck */
 import { SchemaReactComponents, createSchemaField } from "@formily/react";
 
 import React, { lazy } from "react";
@@ -17,9 +17,7 @@ const InputNumber = lazy(() => import("../../../components/H5/inputNumber"));
 const Cascader = lazy(() => import("../../../components/H5/Cascader"));
 const Select = lazy(() => import("../../../components/H5/Select"));
 const DatePicker = lazy(() => import("../../../components/H5/DatePicker"));
-const AddressPicker = lazy(
-  () => import("../../../components/H5/AddressPicker")
-);
+const AddressPicker = lazy(() => import("../../../components/H5/AddressPicker"));
 const Divider = lazy(() => import("../../../decorator/components/Divider"));
 const Text = lazy(() => import("../../../decorator/components/Text"));
 console.log("加载mobile组件");
