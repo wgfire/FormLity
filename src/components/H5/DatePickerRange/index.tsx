@@ -1,4 +1,4 @@
-import { observer, IObserverOptions } from "@formily/react";
+import { observer } from "@formily/react";
 import { DatePicker as AntDatePicker, List } from "antd-mobile";
 import { useState } from "react";
 import moment from "moment";
@@ -7,13 +7,16 @@ import { PickerDate } from "antd-mobile/es/components/date-picker/util";
 
 export const DatePickerRange = observer<ICbaseProps>((props) => {
   const { onChange, value } = props;
-  const [selectedType, setSelectedType] = useState("start"); // Track which date is being selected
+  const [selectedType, setSelectedType] = useState("start"); 
   const [visible, setVisible] = useState(false);
-  const handleDateChange: (date: PickerDate, type: string) => void = (date, type) => {
+  const handleDateChange: (date: PickerDate, type: string) => void = ( date,type) => {
     const newDate = moment(date).format("YYYY-MM-DD");
-    onChange({ ...value, [type]: newDate }); // Update the corresponding date in the value object
+    onChange({ ...value, [type]: newDate }); 
   };
-  const defaultValue = selectedType === "start" ? new Date(value?.start) : new Date(value?.end);
+  const defaultValue =
+    selectedType === "start"
+      ? new Date(value?.start ?? Date.now())
+      : new Date(value?.end ?? Date.now());
   const renderDatePicker = () => (
     <AntDatePicker
       value={defaultValue}

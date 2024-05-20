@@ -29,7 +29,7 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
     const { state, emptyStatus } = useFlityStateContext();
     const { run } = useSchemaPreview();
     const empty = emptyStatus;
-
+    const { mode, designEnable } = state;
     const { layout = "vertical" } = props;
     const initialValues = props.initialValues ?? {};
 
@@ -46,6 +46,10 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
       return createForm({
         pattern: "readPretty",
         initialValues: initialValues,
+        data: {
+          designEnable: designEnable,
+          mode: mode,
+        },
       } as IFormProps & { data: object });
     }, []);
 

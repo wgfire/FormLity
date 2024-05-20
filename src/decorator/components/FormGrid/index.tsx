@@ -82,7 +82,7 @@ export const FormGrid = observer((props) => {
         style={{ marginBottom: 10, minHeight: "32px" }}
       >
         <Flex gap={6} alignItems="center" style={{ fontWeight: "bold" }}>
-          {!readOnly && <HolderOutlined style={{ cursor: "grab" }} />}
+          {designEnable && <HolderOutlined style={{ cursor: "grab" }} />}
           <label>{fieldSchema.title}</label>
         </Flex>
         <Flex>

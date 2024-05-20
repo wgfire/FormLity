@@ -3,14 +3,14 @@ import { DragBox } from "../DragBox";
 import { Typography } from "@feb/kk-design";
 import { HolderOutlined } from "@ant-design/icons";
 
-export const Text = observer((props) => {
+export const Text = observer(() => {
   const field = useFieldSchema();
   const { Title } = Typography;
   const form = useForm();
-  const readOnly = form.readOnly;
+  const { designEnable } = form?.props?.data ?? {};
   return (
     <DragBox showRequired={false}>
-      {!readOnly && <HolderOutlined style={{ cursor: "grab" }} />}
+      {designEnable && <HolderOutlined style={{ cursor: "grab" }} />}
       <Title style={{ fontSize: "14px", paddingLeft: "20px" }}>
         {field.title}
       </Title>

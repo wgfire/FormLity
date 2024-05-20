@@ -35,7 +35,6 @@ export const usePresenter = () => {
         if (!parent?.properties) {
           parent!.properties = {} as IFormSchema["properties"];
         }
-        newSchema["x-index"] = Object.keys(parent!.properties).length;
         parent!.properties[newSchema.key] = newSchema;
       } else {
         //增加到目标元素的父容器中
@@ -45,7 +44,6 @@ export const usePresenter = () => {
               schemaItem.key
             )
           : draft.formSchema;
-        newSchema["x-index"] = Object.keys(parent!.properties).length;
         parent!.properties[newSchema.key] = newSchema;
         const newProperties = parent!.properties;
         const proKeys = Object.entries(newProperties);
@@ -62,6 +60,7 @@ export const usePresenter = () => {
         const properties = Object.fromEntries(proKeys);
         parent!.properties = properties as IFormSchema["properties"];
       }
+      addIndex(draft.formSchema as IFormSchema);
     });
   };
   const overHandel = (active: Active, over: Over) => {
