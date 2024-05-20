@@ -60,7 +60,7 @@ export default defineConfig({
           //打包格式
           format: "es",
           //打包后文件名
-          entryFileNames: "[name].mjs",
+          entryFileNames: "[name].js",
           //让打包目录和我们目录对应
           preserveModules: false, // true会产生mode_modules目录 yalcrc本地调试不会将这个目前移到项目里
           preserveModulesRoot: "src",
