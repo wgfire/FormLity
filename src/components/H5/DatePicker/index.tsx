@@ -11,7 +11,6 @@ export const DatePicker = observer((props) => {
 	const valueChange = (newValue) => {
 		onChange(moment(newValue).format("YYYY-MM-DD"))
 	}
-	console.log(props, "props")
 	return (
 		!range ? (
 			<>

@@ -15,8 +15,8 @@ export const DatePickerRange = observer<ICbaseProps>((props) => {
   };
   const defaultValue =
     selectedType === "start"
-      ? new Date(value?.start ?? Date.now())
-      : new Date(value?.end ?? Date.now());
+      ? new Date(value?.start ?? '')
+      : new Date(value?.end ?? '');
   const renderDatePicker = () => (
     <AntDatePicker
       value={defaultValue}

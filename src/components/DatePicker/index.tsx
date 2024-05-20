@@ -1,41 +1,37 @@
-
 import { DatePicker as AntDatePicker } from "@feb/kk-design";
 import moment from "moment";
 import { ICbaseProps } from "@/global";
 
 export interface IDatePickerProps extends ICbaseProps {
   range?: boolean;
+  value: moment.Moment;
 }
 export const DatePicker: React.FC<IDatePickerProps> = (props) => {
   const { onChange, range } = props;
   const format = "YYYY-MM-DD";
-  const valueChange = (newValue: moment.MomentInput[] | moment.MomentInput) => {
+  const valueChange = (newValue: moment.Moment) => {
     if (Array.isArray(newValue)) {
       onChange([
         moment(newValue[0]).format(format),
         moment(newValue[1]).format(format),
       ]);
     } else {
-      onChange(moment(newValue).format(format));
+      onChange(newValue?.format(format));
     }
   };
-  const value = Array.isArray(props.value)
-    ? [moment(props.value[0]), moment(props.value[1])]
-    : moment(props.value);
+  const value = props.value
+    ? Array.isArray(props.value)
+      ? [moment(props.value[0]), moment(props.value[1])]
+      : moment(props.value)
+    : "";
 
   return !range ? (
-    <AntDatePicker
-      format={format}
-      {...props}
-      onChange={valueChange}
-      value={value}
-    />
+    <AntDatePicker format={format} value={value} onChange={valueChange} />
   ) : (
     <AntDatePicker.RangePicker
       format={format}
-      {...props}
-      onChange={valueChange}
       value={value}
+      onChange={valueChange}
       placeholder={["开始时间", "结束时间"]}
     />
   );
