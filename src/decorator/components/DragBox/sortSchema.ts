@@ -14,7 +14,7 @@ export function sortSchema(startSchema: IFormSchema, endSchema: IFormSchema) {
   if (startSchema.parent === endSchema.parent) {
     const properties = moveSchema(startSchema.parent as IFormSchema, startSchema, endSchema);
     if (isRootMove) {
-      rootSchema.properties = properties ;
+      rootSchema.properties  = properties  ;
     } else {
       // 在其他容器中移动
       const result = findSchemaByKey(rootSchema as IFormSchema, startSchema.parent?.key);

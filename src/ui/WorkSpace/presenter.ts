@@ -8,11 +8,24 @@ import { IFormSchema } from "@/global";
 
 export const usePresenter = () => {
   const { setState } = useFlityStateContext();
+  function addIndex(schema: IFormSchema) {
+    if (!schema || typeof schema !== "object") {
+      return;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(schema, "properties")) {
+      Object.values(schema.properties).forEach((property: IFormSchema, idx) => {
+        property["x-index"] = idx;
+        addIndex(property);
+      });
+    }
+  }
+
   const dropHandel = (activeItem: IRenderType, over: Over) => {
     const overData = over.data.current;
     const schemaItem = overData?.schema;
     const isContainer = schemaItem["x-data"]?.isContainer;
-    const newSchema = createSchemaItem(activeItem);
+    const newSchema = createSchemaItem(activeItem) as unknown as IFormSchema;
 
     setState((draft) => {
       if (isContainer) {
@@ -22,12 +35,17 @@ export const usePresenter = () => {
         if (!parent?.properties) {
           parent!.properties = {} as IFormSchema["properties"];
         }
+        newSchema["x-index"] = Object.keys(parent!.properties).length;
         parent!.properties[newSchema.key] = newSchema;
       } else {
         //增加到目标元素的父容器中
         const parent = schemaItem.key
-          ? findSchemaParentByKey(draft.formSchema   as IFormSchema, schemaItem.key)
+          ? findSchemaParentByKey(
+              draft.formSchema as IFormSchema,
+              schemaItem.key
+            )
           : draft.formSchema;
+        newSchema["x-index"] = Object.keys(parent!.properties).length;
         parent!.properties[newSchema.key] = newSchema;
         const newProperties = parent!.properties;
         const proKeys = Object.entries(newProperties);
@@ -58,6 +76,7 @@ export const usePresenter = () => {
             ? activeData.schema.root
             : overData.schema;
           const newSchema = sortSchema(activeData.schema, endSchema);
+          addIndex(newSchema as IFormSchema);
           draft.formSchema = newSchema as IFormSchema["properties"];
         });
       }
