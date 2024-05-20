@@ -5,7 +5,6 @@ import { RcFile, UploadFile } from "@feb/kk-design/lib/upload";
 import { useState } from "react";
 export const Upload = (props) => {
   const [fileList, setFileList] = useState<RcFile[]>([]);
-  console.log(props, "Upload");
   const beforeUpload = async (file: RcFile) => {
     if (fileList.length === props.maxCount && props.maxCount) {
       message.warning("最多只能上传" + props.maxCount + "个文件");
