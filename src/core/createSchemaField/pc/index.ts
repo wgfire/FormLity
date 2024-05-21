@@ -2,7 +2,7 @@
 import { SchemaReactComponents, createSchemaField } from "@formily/react";
 import React, { lazy } from "react";
 import * as ICONS from "@ant-design/icons";
-import { Input, Switch, InputNumber, Select, Rate, Cascader, Slider } from "@feb/kk-design";
+import { Input, InputNumber, Select, Rate, Cascader, Slider } from "@feb/kk-design";
 
 const DatePicker = lazy(() => import("@/components/DatePicker"));
 const CheckBoxGroup = lazy(() => import("@/components/CheckBoxGroup"));
@@ -11,6 +11,7 @@ const Upload = lazy(() => import("@/components/Upload"));
 const TimePicker = lazy(() => import("@/components/TimePicker"));
 const Divider = lazy(() => import("@/decorator/components/Divider"));
 const Text = lazy(() => import("@/decorator/components/Text"));
+const Switch = lazy(() => import("@/components/Switch"));
 console.log("加载pc组件");
 
 export const createSchema = (components: SchemaReactComponents) => {

@@ -7,7 +7,7 @@ export const Images = observer((props) => {
   return (
     <Flex gap={4} flexWrap="wrap">
       {value?.map((el) => {
-        return <Image src={el.url}></Image>;
+        return <Image src={el.url} style={{ width: "100px" }}></Image>;
       })}
     </Flex>
   );

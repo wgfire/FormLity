@@ -2,15 +2,17 @@ import { Select } from "@feb/kk-design";
 import { observer } from "@formily/react";
 import { useRef, useState } from "react";
 import { ModalSelect } from "./components/Modal";
+import { useUpdateEffect } from "ahooks";
 interface OrganizationSelectProps {
   value: string[];
   onChange: (value: string[]) => void;
   placeholder?: string;
-  externalLoad?:()=>void,
+  externalLoad?: () => void;
   externalSearchUser?: (name: string) => void;
   organization?: string;
   disabled?: boolean;
   immediately?: boolean;
+  defaultSelect?: string[];
 }
 
 interface OrganizationSelectOption {
@@ -19,9 +21,7 @@ interface OrganizationSelectOption {
   type: string;
   children?: OrganizationSelectOption[];
 }
-export const OrganizationSelect = observer<
-  OrganizationSelectProps
->((props) => {
+export const OrganizationSelect = observer<OrganizationSelectProps>((props) => {
   const {
     value,
     onChange,
@@ -31,13 +31,20 @@ export const OrganizationSelect = observer<
     organization,
     disabled = false,
     immediately = false,
+    defaultSelect = [],
   } = props;
   const [open, setOpen] = useState(false);
-  const selectData = useRef<OrganizationSelectOption[]>([]);
+  const selectData = useRef<string[]>([]);
   const [options, setOptions] = useState<OrganizationSelectOption[]>([]);
+
+  useUpdateEffect(() => {
+    if (open) {
+      selectData.current = defaultSelect;
+    }
+  }, [defaultSelect]);
   return (
     <div>
-      <Select 
+      <Select
         maxTagCount={10}
         value={value}
         options={options}
@@ -74,7 +81,5 @@ export const OrganizationSelect = observer<
     </div>
   );
 });
-
-
 
 export default OrganizationSelect;

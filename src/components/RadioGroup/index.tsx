@@ -1,7 +1,7 @@
 import { ICbaseProps } from "@/global";
 import { Radio } from "@feb/kk-design";
 
-import { useForm, observer } from "@formily/react";
+import { useForm } from "@formily/react";
 
 export const RadioGroup: React.FC<ICbaseProps> = (props) => {
   const { value, onChange, options = [] } = props;
@@ -10,7 +10,7 @@ export const RadioGroup: React.FC<ICbaseProps> = (props) => {
 
   return (
     <>
-      <Radio.Group onChange={onChange} value={value}>
+      <Radio.Group  {...props} onChange={onChange} value={value}>
         {options.map((item) => (
           <Radio key={item.value} value={item.value}>
             {item.label}
