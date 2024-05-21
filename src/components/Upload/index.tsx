@@ -36,11 +36,14 @@ export const Upload = (props) => {
       onRemove={onRemove}
       {...props}
     >
-      {!props.disabled && (
-        <Button type="text" icon={<UploadOutlined />} size="small">
-          {"点击上传"}
-        </Button>
-      )}
+      {!props.disabled &&
+        (props.children ? (
+          props.children
+        ) : (
+          <Button type="text" icon={<UploadOutlined />} size="small">
+            {"点击上传"}
+          </Button>
+        ))}
     </AntUpload>
   );
 };

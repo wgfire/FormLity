@@ -4,16 +4,20 @@
 import { CascaderOption, Cascader as CascaderPicker } from "antd-mobile"
 import { useState } from "react"
 import { Input } from "@feb/kk-design"
+import { CheckListValue } from "antd-mobile/es/components/check-list";
+import { CascaderValueExtend } from "antd-mobile/es/components/cascader-view";
 
 
 export interface CascaderProps {
   value: CascaderOption[];
 	options:CascaderOption[];
   cascader?: boolean;
+	onSelect?(value: CheckListValue[], extend: CascaderValueExtend):void
+	onConfirm?(value: CheckListValue[], extend: CascaderValueExtend):void
   onChange(value: CascaderProps["value"]): void;
 }
 export const Cascader:React.FC<CascaderProps> = (props) => {
-	const { onChange, options = [], value = [] } = props
+	const { options = [], value = [] } = props
 	const [ visible, setVisible ] = useState(false)
 	const selectLabel = findLabels(options, value).join(",")
 
@@ -23,13 +27,13 @@ export const Cascader:React.FC<CascaderProps> = (props) => {
 			<CascaderPicker
 				getContainer={() => document.getElementById("modeWrapper")!}
 				options={options}
-				onSelect={(select) => {
-					onChange(select)
-				}}
+				onSelect={props.onSelect}
 				visible={visible}
 				onClose={() => {
 					setVisible(false)
 				}}
+				onConfirm={props.onConfirm}
+
 			/>
 		</>
 	)
