@@ -10,7 +10,7 @@ export interface IFormSchema extends Omit<Schema, "properties"> {
 }
 export interface FormState {
   selectFieldSchema: IFormSchema | null;
-  mode: DeviceType;
+  mode: DeviceType | null;
   readOnly: boolean;
   editable: boolean;
   designEnable: boolean;

@@ -4,7 +4,7 @@ import { SchemaReactComponents, createSchemaField } from "@formily/react";
 import React, { lazy } from "react";
 import * as ICONS from "@ant-design/icons";
 
-import { Switch, Slider } from "antd-mobile";
+import { Switch, Slider,Rate } from "antd-mobile";
 import { Input, InputNumber } from "@feb/kk-design";
 
 const CheckBoxGroup = lazy(() => import("../../../components/CheckBoxGroup"));
@@ -13,7 +13,6 @@ const RadioGroup = lazy(() => import("../../../components/RadioGroup"));
 const Upload = lazy(() => import("../../../components/Upload"));
 const TimePicker = lazy(() => import("../../../components/TimePicker"));
 
-// const InputNumber = lazy(() => import("../../../components/H5/inputNumber"));
 const Cascader = lazy(() => import("../../../components/H5/Cascader"));
 const Select = lazy(() => import("../../../components/H5/Select"));
 const DatePicker = lazy(() => import("../../../components/H5/DatePicker"));
@@ -40,6 +39,7 @@ export const createSchema = (components: SchemaReactComponents) => {
       CheckBoxGroup,
       AddressPicker,
       Upload,
+      Rate,
       ...components,
     },
     scope: {

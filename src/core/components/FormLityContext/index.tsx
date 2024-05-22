@@ -10,7 +10,7 @@ export const FormLityContext: React.FC<React.PropsWithChildren> = (props) => {
   const value = useMemo<FormState>(() => {
     return {
       selectFieldSchema: null,
-      mode: "pc", //pc mobile
+      mode: null, //pc mobile
       readOnly: false, // 是否只读
       editable: true, // 是否可编辑
       designEnable: false, // 是否启用设计器

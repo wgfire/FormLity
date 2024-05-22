@@ -1,4 +1,4 @@
-import { observer } from "@formily/react";
+import { observer, useForm } from "@formily/react";
 import { DatePicker as AntDatePicker, List } from "antd-mobile";
 import { useState } from "react";
 import moment from "moment";
@@ -9,6 +9,8 @@ export const DatePickerRange = observer<ICbaseProps>((props) => {
   const { onChange, value } = props;
   const [selectedType, setSelectedType] = useState("start"); 
   const [visible, setVisible] = useState(false);
+  const form = useForm();
+  const { designEnable } = form?.props?.data ?? {};
   const handleDateChange: (date: PickerDate, type: string) => void = ( date,type) => {
     const newDate = moment(date).format("YYYY-MM-DD");
     onChange({ ...value, [type]: newDate }); 
@@ -20,7 +22,9 @@ export const DatePickerRange = observer<ICbaseProps>((props) => {
   const renderDatePicker = () => (
     <AntDatePicker
       value={defaultValue}
-      getContainer={() => document.getElementById("modeWrapper")!}
+      getContainer={
+        designEnable ? document.getElementById("modeWrapper")! : undefined
+      }
       onConfirm={(select) => {
         handleDateChange(select, selectedType);
         setVisible(false);
