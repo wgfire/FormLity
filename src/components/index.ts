@@ -8,4 +8,4 @@ export { Upload } from "./Upload";
 
 /**h5组件 */
 export { AddressPicker } from "./H5/AddressPicker";
-export { OrganizationPicker } from "./H5/OrganizationPicker";
+export { Cascader } from "./H5/Cascader";
