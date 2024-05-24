@@ -11,4 +11,5 @@ declare interface ICbaseProps {
   onChange: (value: unknown) => void;
   value: string | number | unknown[] | object;
   options?: { label: string; value: string }[];
+  disabled?: boolean;
 }

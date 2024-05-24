@@ -5,8 +5,12 @@ import { useState } from "react"
 import moment from "moment"
 import { DatePickerRange } from "../DatePickerRange"
 import { PickerDate } from "antd-mobile/es/components/date-picker/util"
+import { ICbaseProps } from "@/global"
 
-export const DatePicker = (props) => {
+export interface ICDatePickerProps extends ICbaseProps {
+	range?: boolean
+}
+export const DatePicker:React.FC<ICDatePickerProps> = (props) => {
 	const { onChange, range, value } = props
 	const [ visible, setVisible ] = useState(false)
 	const form = useForm();
@@ -31,6 +35,7 @@ export const DatePicker = (props) => {
 					onClose={() => {
 						setVisible(false)
 					}}
+					{...props}
 				/>
 			</>
 		) : (

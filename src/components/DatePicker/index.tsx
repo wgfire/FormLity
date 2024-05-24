@@ -26,9 +26,15 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     : "";
 
   return !range ? (
-    <AntDatePicker format={format} value={value} onChange={valueChange} />
+    <AntDatePicker
+      format={format}
+      value={value}
+      onChange={valueChange}
+      disabled={props.disabled}
+    />
   ) : (
     <AntDatePicker.RangePicker
+      disabled={props.disabled}
       format={format}
       value={value}
       onChange={valueChange}

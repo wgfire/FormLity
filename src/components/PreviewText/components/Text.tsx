@@ -7,5 +7,9 @@ import { observer } from "@formily/react";
 
 export const Text = observer((props) => {
   const { value } = props;
-  return <Typography.Text strong>{value}</Typography.Text>;
+  return Array.isArray(value) ? (
+    <Typography.Text strong>{value.join("-")}</Typography.Text>
+  ) : (
+    <Typography.Text strong>{value}</Typography.Text>
+  );
 });

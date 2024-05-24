@@ -44,6 +44,7 @@
   padding: 10px;
   border-radius: 10px;
   background-color: #f9f9f9;
+  animation: sildUp 0.3s ease-in-out;
   // 滚动条样式
   &::-webkit-scrollbar {
     width: 4px; // 滚动条宽度
@@ -85,4 +86,15 @@
   & > div {
     background-color: white;
   }
+}
+@keyframes sildUp {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	
 }

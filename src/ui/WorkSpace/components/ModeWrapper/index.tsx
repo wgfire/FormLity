@@ -22,9 +22,7 @@ export const ModeWrapper: React.FC<
       })}
     >
       <div
-        className={clsx({
-          [styles.overlay]: true,
-        })}
+        className={styles.overlay}
       >
         {props.children}
       </div>

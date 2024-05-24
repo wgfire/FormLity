@@ -6,19 +6,20 @@ import { ICbaseProps } from "@/global";
 import { PickerDate } from "antd-mobile/es/components/date-picker/util";
 
 export const DatePickerRange = observer<ICbaseProps>((props) => {
-  const { onChange, value } = props;
-  const [selectedType, setSelectedType] = useState("start"); 
+  const { onChange, value, disabled } = props;
+  const [selectedType, setSelectedType] = useState("start");
   const [visible, setVisible] = useState(false);
   const form = useForm();
   const { designEnable } = form?.props?.data ?? {};
-  const handleDateChange: (date: PickerDate, type: string) => void = ( date,type) => {
+  const handleDateChange: (date: PickerDate, type: string) => void = (
+    date,
+    type
+  ) => {
     const newDate = moment(date).format("YYYY-MM-DD");
-    onChange({ ...value, [type]: newDate }); 
+    onChange({ ...value, [type]: newDate });
   };
   const defaultValue =
-    selectedType === "start"
-      ? new Date(value?.start ?? '')
-      : new Date(value?.end ?? '');
+    selectedType === "start"? new Date(value?.start ?? ""): new Date(value?.end ?? "");
   const renderDatePicker = () => (
     <AntDatePicker
       value={defaultValue}
@@ -41,7 +42,7 @@ export const DatePickerRange = observer<ICbaseProps>((props) => {
           extra={value?.start || "选择"}
           onClick={() => {
             setSelectedType("start");
-            setVisible(true);
+            !disabled && setVisible(true);
           }}
         >
           <span style={{ fontSize: "14px" }}>开始时间</span>
@@ -50,7 +51,7 @@ export const DatePickerRange = observer<ICbaseProps>((props) => {
           extra={value?.end || "选择"}
           onClick={() => {
             setSelectedType("end");
-            setVisible(true);
+            !disabled && setVisible(true);
           }}
         >
           <span style={{ fontSize: "14px" }}>结束时间</span>

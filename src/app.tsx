@@ -9,7 +9,7 @@ import { Button } from "@feb/kk-design";
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
     designEnable: false,
-    readOnly: false,
+    readOnly: true,
     mode: "pc",
     formSchema: {
       _isJSONSchemaObject: true,
@@ -169,7 +169,9 @@ const FormDesignApp = () => {
           required: true,
           "x-component": "DatePicker",
           "x-decorator": "FormItem",
-          "x-component-props": {},
+          "x-component-props": {
+            range: true,
+          },
           "x-data": {
             preview: true,
             previewType: "Text",
@@ -243,7 +245,10 @@ const FormDesignApp = () => {
       "1715668833028_841213735",
     ],
     "rate-1715668812500_808594475": 5,
-    "cascader-1715668805484_900853901": ["1715913958373_774353487"],
+    "cascader-1715668805484_900853901": [
+      "1715668828836_451024517",
+      "1715913958373_774353487",
+    ],
     "upload-1715668850644_81507394": [
       {
         uid: "000/33311667307327/FosSlGa9pcsCLazS5Vqk4SFQs1mb.gif",
@@ -262,8 +267,8 @@ const FormDesignApp = () => {
   return (
     <>
       {/* <FormDesign></FormDesign> */}
-      {/* <FormLityPreview initialValues={initialValues}></FormLityPreview> */}
-      <FormLityRender initialValues={initialValues} onValuesChange={(e) => console.log(e)} ref={ref}></FormLityRender>
+      <FormLityPreview initialValues={initialValues}></FormLityPreview>
+      {/* <FormLityRender initialValues={initialValues} onValuesChange={(e) => console.log(e)} ref={ref}></FormLityRender> */}
       <Button onClick={() => ref.current?.designForm?.submit()}>保存</Button>
     </>
   );
