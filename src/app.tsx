@@ -5,7 +5,10 @@ import { FormLityRender } from "./core/components/FormLityRender";
 import { useRef } from "react";
 import { FormLityPreview } from "./core/components/FormLityPreview";
 import { Button } from "@feb/kk-design";
-
+import { useRegister } from "./core";
+import { Select } from "./components/PreviewText/components/Select";
+import Text from "./decorator/components/Text";
+import { Upload } from "./components";
 
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
@@ -156,6 +159,10 @@ const FormDesignApp = () => {
           title: "文件上传",
           type: "string",
           required: true,
+          "x-data": {
+            preview: true,
+            previewType: "Images",
+          },
           "x-component": "Upload",
           "x-decorator": "FormItem",
           "x-component-props": {},
@@ -265,6 +272,13 @@ const FormDesignApp = () => {
 
   const ref = useRef(null);
 
+  useRegister([
+    {
+      name: "Upload",
+      component: Upload,
+      customPreview: false,
+    },
+  ]);
 
   return (
     <>

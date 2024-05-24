@@ -23,7 +23,6 @@ export function useLazySchemaField(
     registerComponent[el.name] = el.component;
   });
   useDeepCompareEffect(() => {
-
     const fetchSchema = async () => {
       setIsLoading(true);
       const result = await createSchema(registerComponent, mode!);

@@ -25,10 +25,12 @@ export const useSchemaPreview = () => {
           const component = schemaItem?.["x-data"]?.previewType;
           // 查看当前组件在自定义注册中是否存在，如果存在是否开启了自定义预览
           registerComponent.map((register) => {
-            if (register.name === component) {
+            if (register.name === schemaItem["x-component"]) {
               if (!register.customPreview) {
                 schemaItem["x-component"] = component;
               }
+            } else {
+              schemaItem["x-component"] = component;
             }
           });
         }
