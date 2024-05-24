@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createSchema } from "../../core/createSchemaField";
 import { useFlityDesignContext } from "../context";
 import { DeviceType } from "@/global";
@@ -8,29 +8,31 @@ import { useUpdateEffect } from "ahooks";
 
 export function useLazySchemaField(
   components: SchemaReactComponents,
-  mode: DeviceType
+  mode: DeviceType | null
 ) {
   const [SchemaField, setSchemaField] =
     useState<ReturnType<typeof createSchemaField>>();
   const [isLoading, setIsLoading] = useState(true);
   const {
-    state: { components: designComponent = {} },
+    state: { registerComponent: designComponent },
   } = useFlityDesignContext();
   const registerComponent: SchemaReactComponents = {
     ...components,
-    ...designComponent,
   };
+  designComponent.map((el) => {
+    registerComponent[el.name] = el.component;
+  });
   useUpdateEffect(() => {
     const fetchSchema = async () => {
       setIsLoading(true);
-      const result = await createSchema(registerComponent, mode);
+      const result = await createSchema(registerComponent, mode!);
       setSchemaField(() => {
         return result;
       });
       setIsLoading(false);
     };
 
-    fetchSchema();
+    mode && fetchSchema();
   }, [mode, designComponent]);
 
   return { SchemaField, isLoading };

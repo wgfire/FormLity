@@ -1,8 +1,9 @@
-import { ReactFC, Schema, SchemaReactComponents } from "@formily/react";
+import { ReactFC, Schema } from "@formily/react";
 import { MemoExoticComponent } from "react";
 import { Updater } from "use-immer";
 import { ConfigSchemaType } from "../components/FormDesignContext/config/defaultPanel";
 import { DeviceType } from "@/global";
+import { JSXComponent } from "@formily/core";
 export interface IFormSchema extends Omit<Schema, "properties"> {
   key: string;
   properties: IFormSchema;
@@ -31,10 +32,20 @@ export interface FlityStateContextProps {
 
 export type RegisterComponent =
   | React.ReactElement
+  | JSXComponent
   | MemoExoticComponent<ReactFC<unknown>>;
+
+export interface IRegister {
+  name: string;
+  component: RegisterComponent;
+  icon: string | React.ReactElement;
+  settingsSchema?: Schema;
+  customPreview?: boolean;
+  [key: string]: any;
+}
 export interface FlityDesignState {
   panelSpace: ConfigSchemaType[];
-  components: SchemaReactComponents;
+  registerComponent: IRegister[];
 }
 /**
  * @description 用于扩展设计器的上下文

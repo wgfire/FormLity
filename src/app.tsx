@@ -4,10 +4,11 @@ import { useFlitySate } from "./core/hooks/useFlitySate";
 import { FormLityRender } from "./core/components/FormLityRender";
 import { useRef } from "react";
 import { FormLityPreview } from "./core/components/FormLityPreview";
+import { Button } from "@feb/kk-design";
 
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
-    designEnable: true,
+    designEnable: false,
     readOnly: false,
     mode: "pc",
     formSchema: {
@@ -236,7 +237,6 @@ const FormDesignApp = () => {
   console.log(state, "state");
   const initialValues = {
     "slider-1715048596753_67052219": 4,
-    "datepicker-1715668807508_12711714": "2025/5/5",
     "select-1715668804315_71251342": ["1715668827044_13862254"],
     "checkboxgroup-1715668810044_065643674": [
       "1715668832549_77225368",
@@ -261,10 +261,10 @@ const FormDesignApp = () => {
 
   return (
     <>
-      <FormDesign></FormDesign>
+      {/* <FormDesign></FormDesign> */}
       {/* <FormLityPreview initialValues={initialValues}></FormLityPreview> */}
-      {/* <FormLityRender initialValues={initialValues} onValuesChange={(e) => console.log(e)}></FormLityRender> */}
-      {/* <Button onClick={() => ref.current?.designForm?.submit()}>保存</Button> */}
+      <FormLityRender initialValues={initialValues} onValuesChange={(e) => console.log(e)} ref={ref}></FormLityRender>
+      <Button onClick={() => ref.current?.designForm?.submit()}>保存</Button>
     </>
   );
 };

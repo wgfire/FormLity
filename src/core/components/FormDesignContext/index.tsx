@@ -7,7 +7,7 @@ export const FormDesignContext: React.FC<React.PropsWithChildren> = (props) => {
   const value = useMemo<FlityDesignState>(() => {
     return {
       panelSpace: defaultPanelSpace,
-      components: {},
+      registerComponent: [],
     };
   }, []);
 

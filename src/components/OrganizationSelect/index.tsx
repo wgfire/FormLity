@@ -75,7 +75,7 @@ export const OrganizationSelect = observer<OrganizationSelectProps>((props) => {
           setOpen(false);
           setOptions(data);
           selectData.current = data;
-          onChange(data.map((item) => item.id));
+          onChange(data);
         }}
       />
     </div>
