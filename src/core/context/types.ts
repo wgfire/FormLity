@@ -38,7 +38,7 @@ export type RegisterComponent =
 export interface IRegister {
   name: string;
   component: RegisterComponent;
-  icon: string | React.ReactElement;
+  icon?: string | React.ReactElement;
   settingsSchema?: Schema;
   customPreview?: boolean;
   [key: string]: any;

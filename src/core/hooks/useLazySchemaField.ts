@@ -4,7 +4,7 @@ import { useFlityDesignContext } from "../context";
 import { DeviceType } from "@/global";
 
 import { SchemaReactComponents, createSchemaField } from "@formily/react";
-import { useUpdateEffect } from "ahooks";
+import { useDeepCompareEffect, useUpdateEffect } from "ahooks";
 
 export function useLazySchemaField(
   components: SchemaReactComponents,
@@ -22,7 +22,8 @@ export function useLazySchemaField(
   designComponent.map((el) => {
     registerComponent[el.name] = el.component;
   });
-  useUpdateEffect(() => {
+  useDeepCompareEffect(() => {
+
     const fetchSchema = async () => {
       setIsLoading(true);
       const result = await createSchema(registerComponent, mode!);

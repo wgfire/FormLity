@@ -1,12 +1,12 @@
+import { useDeepCompareEffect } from "ahooks";
 import { useFlityDesignContext } from "../context";
 import { IRegister } from "../context/types";
 
 export const useRegister = (options: IRegister[]) => {
-  const { setState } = useFlityDesignContext();
-
-  options.forEach((item) => {
+  const { setState, state } = useFlityDesignContext();
+  useDeepCompareEffect(() => {
     setState((draft) => {
-      draft.registerComponent.push(item);
+      draft.registerComponent = [...state.registerComponent, ...options];
     });
-  });
+  },[options]);
 };
