@@ -17,6 +17,7 @@ export const useSchemaPreview = () => {
   const { formSchema } = state;
 
   const updateSchemaComponents = (schema: IFormSchema): IFormSchema => {
+    console.log(registerComponent, "registerComponent");
     if (schema.properties) {
       for (const propertyKey in schema.properties) {
         const schemaItem = schema.properties[propertyKey] as IFormSchema;

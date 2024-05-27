@@ -1,11 +1,6 @@
 import { IFormProps, createForm } from "@formily/core";
 import { FormProvider } from "@formily/react";
-import {
-  Suspense,
-  forwardRef,
-  useImperativeHandle,
-  useMemo,
-} from "react";
+import { Suspense, forwardRef, useImperativeHandle, useMemo } from "react";
 import { Empty, Form } from "@feb/kk-design";
 
 import { useFlityStateContext } from "../../context";
@@ -20,6 +15,7 @@ import { FormItem } from "@/decorator/components/FormItem";
 import { useSchemaPreview } from "@/core/hooks/useSchemaPreview";
 import { useUpdateEffect } from "ahooks";
 import PreviewComponents from "@/components/PreviewText/index";
+import { FormGrid } from "@/decorator/components/FormGrid";
 export interface IFormLityRenderProps {
   initialValues?: object;
   layout?: "vertical" | "horizontal";
@@ -34,7 +30,7 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
     const initialValues = props.initialValues ?? {};
 
     const { SchemaField, isLoading } = useLazySchemaField(
-      { FormItem, ...PreviewComponents },
+      { FormItem, FormGrid, ...PreviewComponents },
       state.mode
     );
 

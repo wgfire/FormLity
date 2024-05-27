@@ -12,7 +12,7 @@ import clsx from "clsx";
 
 import { ModeWrapper } from "@/ui/WorkSpace/components/ModeWrapper";
 import { FormItem } from "@/decorator/components/FormItem";
-
+import { FormGrid } from "@/decorator/components/FormGrid";
 
 export interface IFormLityRenderProps {
   initialValues?: object;
@@ -28,7 +28,7 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
     const { onValuesChange, layout = "vertical" } = props;
     const initialValues = props.initialValues ?? {};
 
-    const { SchemaField, isLoading } = useLazySchemaField({ FormItem }, mode);
+    const { SchemaField, isLoading } = useLazySchemaField({ FormItem,FormGrid }, mode);
 
     const designForm = useMemo(() => {
       return createForm({
