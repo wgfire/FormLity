@@ -14,7 +14,7 @@ export interface CascaderProps {
   cascader?: boolean;
   onSelect?(value: CheckListValue[], extend: CascaderValueExtend): void;
   onConfirm?(value: CheckListValue[], extend: CascaderValueExtend): void;
-  onChange(value: CascaderProps["value"]): void;
+  onChange(value: CheckListValue[]): void;
 }
 export const Cascader: React.FC<CascaderProps> = (props) => {
   const { options = [], value = [] } = props;
@@ -35,7 +35,7 @@ export const Cascader: React.FC<CascaderProps> = (props) => {
           designEnable ? document.getElementById("modeWrapper")! : undefined
         }
         options={options}
-        onSelect={props.onSelect}
+        onSelect={props.onChange}
         visible={visible}
         onClose={() => {
           setVisible(false);
