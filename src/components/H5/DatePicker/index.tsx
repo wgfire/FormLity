@@ -1,50 +1,48 @@
-import { useForm } from "@formily/react"
-import { DatePicker as AntDatePicker } from "antd-mobile"
-import { Input } from "@feb/kk-design"
-import { useState } from "react"
-import moment from "moment"
-import { DatePickerRange } from "../DatePickerRange"
-import { PickerDate } from "antd-mobile/es/components/date-picker/util"
-import { ICbaseProps } from "@/global"
+import { useForm } from "@formily/react";
+import { DatePicker as AntDatePicker } from "antd-mobile";
+import { useState } from "react";
+import moment from "moment";
+import { DatePickerRange } from "../DatePickerRange";
+import { PickerDate } from "antd-mobile/es/components/date-picker/util";
+import { ICbaseProps } from "@/global";
+import { TriggerBox } from "../TriggerBox";
 
 export interface ICDatePickerProps extends ICbaseProps {
-	range?: boolean
+  range?: boolean;
 }
-export const DatePicker:React.FC<ICDatePickerProps> = (props) => {
-	const { onChange, range, value } = props
-	const [ visible, setVisible ] = useState(false)
-	const form = useForm();
+export const DatePicker: React.FC<ICDatePickerProps> = (props) => {
+  const { onChange, range, value } = props;
+  const [visible, setVisible] = useState(false);
+  const form = useForm();
   const { designEnable } = form?.props?.data ?? {};
-	const valueChange = (newValue: PickerDate) => {
-		onChange(moment(newValue).format("YYYY-MM-DD"))
-	}
-	return (
-		!range ? (
-			<>
-				<Input placeholder="请点击选择日期" readOnly onClick={() => setVisible(true)} value={value} />
-				<AntDatePicker
-					mouseWheel
-					getContainer={
-						designEnable ? document.getElementById("modeWrapper")! : undefined
-					}
-					onConfirm={(select) => {
-						valueChange(select)
-						setVisible(false)
-					}}
-					visible={visible}
-					onClose={() => {
-						setVisible(false)
-					}}
-					{...props}
-				/>
-			</>
-		) : (
-			<>
-				<DatePickerRange onChange={onChange} value={value}/>
-			</>
-		)
-	)
+  const defaultValue = new Date(value ?? "");
+  const valueChange = (newValue: PickerDate) => {
+    onChange(moment(newValue).format("YYYY-MM-DD"));
+  };
+  return !range ? (
+    <>
+      <TriggerBox placeholder="请选择" value={value} onClick={()=>setVisible(true)}></TriggerBox>
+      <AntDatePicker
+        mouseWheel
+        getContainer={
+          designEnable ? document.getElementById("modeWrapper")! : undefined
+        }
+        onConfirm={(select) => {
+          valueChange(select);
+          setVisible(false);
+        }}
+        visible={visible}
+        onClose={() => {
+          setVisible(false);
+        }}
+        value={defaultValue}
+      />
+    </>
+  ) : (
+    <>
+      <DatePickerRange onChange={onChange} value={value} />
+    </>
+  );
+};
 
-}
-
-export default DatePicker
+export default DatePicker;

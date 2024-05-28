@@ -162,7 +162,7 @@ const FormDesignApp = () => {
           "x-component": "DatePicker",
           "x-decorator": "FormItem",
           "x-component-props": {
-            range: true,
+            range: false,
           },
           "x-data": {
             preview: true,
