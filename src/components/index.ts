@@ -9,3 +9,4 @@ export { Upload } from "./Upload";
 /**h5组件 */
 export { AddressPicker } from "./H5/AddressPicker";
 export { Cascader } from "./H5/Cascader";
+export { TriggerBox } from "./H5/TriggerBox";

@@ -9,7 +9,7 @@ export interface TriggerBoxProps {
 export const TriggerBox: React.FC<TriggerBoxProps> = (props) => {
   const { value, onClick, placeholder = "请选择" } = props;
   return (
-    <Flex alignItems="center" style={{ width: "100%" }}>
+    <Flex alignItems="center" style={{ width: "100%" }} justifyContent="flex-end">
       {value && (
         <div
           style={{

@@ -13,7 +13,7 @@ import { Upload } from "./components";
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
     designEnable: false,
-    readOnly: true,
+    readOnly: false,
     mode: "mobile",
     formSchema: {
       _isJSONSchemaObject: true,
@@ -268,16 +268,16 @@ const FormDesignApp = () => {
   return (
     <>
       {/* <FormDesign></FormDesign> */}
-      <FormLityPreview
+      {/* <FormLityPreview
         initialValues={initialValues}
         layout="horizontal"
-      ></FormLityPreview>
-      {/* <FormLityRender
+      ></FormLityPreview> */}
+      <FormLityRender
         initialValues={initialValues}
         onValuesChange={(e) => console.log(e)}
         ref={ref}
         layout="horizontal"
-      ></FormLityRender> */}
+      ></FormLityRender>
       <Button onClick={() => ref.current?.designForm?.submit()}>保存</Button>
     </>
   );
