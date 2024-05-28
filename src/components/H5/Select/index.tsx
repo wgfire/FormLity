@@ -3,12 +3,16 @@
  */
 import { Picker } from "antd-mobile";
 import React, { useState } from "react";
-import { Flex, Input } from "@feb/kk-design";
+import { Flex } from "@feb/kk-design";
 import { ICbaseProps } from "@/global";
 import { PickerColumn } from "antd-mobile/es/components/picker-view";
 import { useForm } from "@formily/react";
 
-const Select: React.FC<Omit<ICbaseProps, "options"> & { options: PickerColumn }> = (props) => {
+import { TriggerBox } from "../TriggerBox";
+
+const Select: React.FC<
+  Omit<ICbaseProps, "options"> & { options: PickerColumn }
+> = (props) => {
   const { onChange, options = [], value = "" } = props;
   const [visible, setVisible] = useState(false);
   const selectLabel = options.find((item) => item.value === value[0])?.label;
@@ -16,7 +20,11 @@ const Select: React.FC<Omit<ICbaseProps, "options"> & { options: PickerColumn }>
   const { designEnable } = form?.props?.data ?? {};
   return (
     <Flex>
-      <Input placeholder="请点击选择数据" readOnly onClick={() => setVisible(true)} value={selectLabel} />
+      <TriggerBox
+        onClick={() => setVisible(true)}
+        value={selectLabel}
+      ></TriggerBox>
+
       <Picker
         columns={[options]}
         getContainer={

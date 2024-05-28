@@ -12,8 +12,8 @@ import { Upload } from "./components";
 
 const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
-    designEnable: true,
-    readOnly: false,
+    designEnable: false,
+    readOnly: true,
     mode: "mobile",
     formSchema: {
       _isJSONSchemaObject: true,
@@ -152,22 +152,6 @@ const FormDesignApp = () => {
           },
           name: "cascader-1715668805484_900853901",
         },
-        "upload-1715668850644_81507394": {
-          _isJSONSchemaObject: true,
-          version: "2.0",
-          key: "upload-1715668850644_81507394",
-          title: "文件上传",
-          type: "string",
-          required: true,
-          "x-data": {
-            preview: true,
-            previewType: "Images",
-          },
-          "x-component": "Upload",
-          "x-decorator": "FormItem",
-          "x-component-props": {},
-          name: "upload-1715668850644_81507394",
-        },
         "datepicker-1715668807508_12711714": {
           _isJSONSchemaObject: true,
           version: "2.0",
@@ -257,6 +241,7 @@ const FormDesignApp = () => {
       "1715668828836_451024517",
       "1715913958373_774353487",
     ],
+    "datepicker-1715668807508_12711714": ["2022-5-5"],
     "upload-1715668850644_81507394": [
       {
         uid: "000/33311667307327/FosSlGa9pcsCLazS5Vqk4SFQs1mb.gif",
@@ -282,9 +267,17 @@ const FormDesignApp = () => {
 
   return (
     <>
-      <FormDesign></FormDesign>
-      {/* <FormLityPreview initialValues={initialValues}></FormLityPreview> */}
-      {/* <FormLityRender initialValues={initialValues} onValuesChange={(e) => console.log(e)} ref={ref}></FormLityRender> */}
+      {/* <FormDesign></FormDesign> */}
+      <FormLityPreview
+        initialValues={initialValues}
+        layout="horizontal"
+      ></FormLityPreview>
+      {/* <FormLityRender
+        initialValues={initialValues}
+        onValuesChange={(e) => console.log(e)}
+        ref={ref}
+        layout="horizontal"
+      ></FormLityRender> */}
       <Button onClick={() => ref.current?.designForm?.submit()}>保存</Button>
     </>
   );

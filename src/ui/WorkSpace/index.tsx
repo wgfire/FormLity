@@ -41,9 +41,14 @@ export const WorkSpace = memo(() => {
   const { mode, readOnly, editable, designEnable } = state;
   const [initialValues, setInitialValues] = useState({});
   const [activeItem, setActiveItem] = useState<
-    (IRenderType & { title: string; children: React.ReactElement; type: string }) | null
+    | (IRenderType & {
+        title: string;
+        children: React.ReactElement;
+        type: string;
+      })
+    | null
   >(null);
-
+  console.log("WorkSpace", mode);
   const { SchemaField, isLoading } = useLazySchemaField(
     { FormGrid, FormItem: DragFormItem },
     mode
@@ -119,7 +124,11 @@ export const WorkSpace = memo(() => {
     >
       <OperationBar />
       <Suspense fallback={<div>加载中...</div>}>
-        <ModeWrapper mode={state.mode} preview={readOnly} designEnable={designEnable}>
+        <ModeWrapper
+          mode={state.mode}
+          preview={readOnly}
+          designEnable={designEnable}
+        >
           <SortableContext
             items={keys}
             strategy={verticalListSortingStrategy}

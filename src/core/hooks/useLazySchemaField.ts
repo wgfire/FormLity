@@ -31,6 +31,7 @@ export function useLazySchemaField(
       });
       setIsLoading(false);
     };
+    console.log(mode, "mode");
 
     mode && fetchSchema();
   }, [mode, designComponent]);

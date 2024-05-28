@@ -39,7 +39,7 @@ export const DatePickerRange = observer<ICbaseProps>((props) => {
     <>
       <List>
         <List.Item
-          extra={value?.start || "选择"}
+          extra={value?.start || "请选择"}
           onClick={() => {
             setSelectedType("start");
             !disabled && setVisible(true);
@@ -48,7 +48,7 @@ export const DatePickerRange = observer<ICbaseProps>((props) => {
           <span style={{ fontSize: "14px" }}>开始时间</span>
         </List.Item>
         <List.Item
-          extra={value?.end || "选择"}
+          extra={value?.end || "请选择"}
           onClick={() => {
             setSelectedType("end");
             !disabled && setVisible(true);

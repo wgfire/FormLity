@@ -1,12 +1,13 @@
 import { Cascader as CascaderPicker } from "antd-mobile";
 import { useState } from "react";
-import { Input } from "@feb/kk-design";
+import { Input } from "antd-mobile";
 import { CheckListValue } from "antd-mobile/es/components/check-list";
 import {
   CascaderOption,
   CascaderValueExtend,
 } from "antd-mobile/es/components/cascader-view";
 import { useForm } from "@formily/react";
+import { TriggerBox } from "../TriggerBox";
 
 export interface CascaderProps {
   value: CascaderOption[];
@@ -24,12 +25,10 @@ export const Cascader: React.FC<CascaderProps> = (props) => {
   const { designEnable } = form?.props?.data ?? {};
   return (
     <>
-      <Input
-        placeholder="请点击选择数据"
-        readOnly
+      <TriggerBox
         onClick={() => setVisible(true)}
         value={selectLabel}
-      />
+      ></TriggerBox>
       <CascaderPicker
         getContainer={
           designEnable ? document.getElementById("modeWrapper")! : undefined
@@ -47,20 +46,20 @@ export const Cascader: React.FC<CascaderProps> = (props) => {
 };
 export default Cascader;
 
-function findLabels (treeData:CascaderOption[], valueArray:CascaderOption[]) {
-	const labels:CascaderOption = []
+function findLabels(treeData: CascaderOption[], valueArray: CascaderOption[]) {
+  const labels: CascaderOption = [];
 
-	function traverse (data:CascaderOption[]) {
-		for (const item of data) {
-			if (valueArray.includes(item.value)) {
-				labels.push(item.label)
-			}
-			if (item.children) {
-				traverse(item.children)
-			}
-		}
-	}
+  function traverse(data: CascaderOption[]) {
+    for (const item of data) {
+      if (valueArray.includes(item.value)) {
+        labels.push(item.label);
+      }
+      if (item.children) {
+        traverse(item.children);
+      }
+    }
+  }
 
-	traverse(treeData)
-	return labels
+  traverse(treeData);
+  return labels;
 }

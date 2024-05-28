@@ -2,3 +2,17 @@
   background-color: white;
   width: 100%;
 }
+.form {
+  :global {
+    .adm-list-item-content{
+      padding-right: 0px;
+    }
+    .adm-list-item-content:has( textarea, .adm-list) {
+      flex-wrap: wrap;
+    }
+    .adm-list-item-content-main:has( textarea, .adm-list) {
+      width: 100%;
+      flex-basis: 100%;
+    }
+  }
+}

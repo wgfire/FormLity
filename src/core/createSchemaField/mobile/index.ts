@@ -4,8 +4,8 @@ import { SchemaReactComponents, createSchemaField } from "@formily/react";
 import React, { lazy } from "react";
 import * as ICONS from "@ant-design/icons";
 
-import { Switch, Slider,Rate } from "antd-mobile";
-import { Input, InputNumber } from "@feb/kk-design";
+import { Switch, Slider, Rate } from "antd-mobile";
+import { InputNumber, Input } from "@feb/kk-design";
 
 const CheckBoxGroup = lazy(() => import("../../../components/CheckBoxGroup"));
 const RadioGroup = lazy(() => import("../../../components/RadioGroup"));
@@ -16,15 +16,18 @@ const TimePicker = lazy(() => import("../../../components/TimePicker"));
 const Cascader = lazy(() => import("../../../components/H5/Cascader"));
 const Select = lazy(() => import("../../../components/H5/Select"));
 const DatePicker = lazy(() => import("../../../components/H5/DatePicker"));
-const AddressPicker = lazy(() => import("../../../components/H5/AddressPicker"));
+const AddressPicker = lazy(
+  () => import("../../../components/H5/AddressPicker")
+);
 const Divider = lazy(() => import("../../../decorator/components/Divider"));
 const Text = lazy(() => import("../../../decorator/components/Text"));
+const Inputm = lazy(() => import("../../../components/H5/Input"));
 console.log("加载mobile组件");
 export const createSchema = (components: SchemaReactComponents) => {
   const TextArea = Input.TextArea;
   const SchemaField = createSchemaField({
     components: {
-      Input,
+      Input: Inputm,
       InputNumber,
       Switch,
       Slider,

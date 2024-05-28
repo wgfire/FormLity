@@ -1,8 +1,8 @@
 import { IFormProps, createForm } from "@formily/core";
 import { FormProvider } from "@formily/react";
 import { Suspense, forwardRef, useImperativeHandle, useMemo } from "react";
-import { Empty, Form } from "@feb/kk-design";
-
+import { Empty, Form as AntForm } from "@feb/kk-design";
+import { Form as AntMForm } from "antd-mobile";
 import { useFlityStateContext } from "../../context";
 
 import { useLazySchemaField } from "../../hooks/useLazySchemaField";
@@ -53,6 +53,10 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
       designForm: designForm,
     }));
 
+    const Form = useMemo(() => {
+      // kkdesign的表单移动端水平布局失效
+      return mode === "pc" ? AntForm : AntMForm;
+    }, [mode]);
     return (
       <div id="FormLityPreview" className={clsx(styles.render)}>
         <Suspense fallback={<div>加载中...</div>}>
@@ -65,7 +69,11 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
             ) : (
               <>
                 <FormProvider form={designForm}>
-                  <Form layout={layout} style={{ width: "100%" }}>
+                  <Form
+                    layout={layout}
+                    style={{ width: "100%" }}
+                    className={styles.form}
+                  >
                     {isLoading ? null : (
                       <SchemaField schema={state.formSchema} />
                     )}

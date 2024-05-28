@@ -1,8 +1,8 @@
 import { IFormProps, createForm, onFormValuesChange } from "@formily/core";
 import { FormProvider } from "@formily/react";
 import { Suspense, forwardRef, useImperativeHandle, useMemo } from "react";
-import { Empty, Form } from "@feb/kk-design";
-
+import { Empty, Form as AntForm } from "@feb/kk-design";
+import { Form as AntMForm } from "antd-mobile";
 import styles from "./index.module.less";
 import { useFlityStateContext } from "../../context";
 
@@ -28,11 +28,18 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
     const { onValuesChange, layout = "vertical" } = props;
     const initialValues = props.initialValues ?? {};
 
-    const { SchemaField, isLoading } = useLazySchemaField({ FormItem,FormGrid }, mode);
+    const Form = useMemo(() => {
+      return mode === "pc" ? AntForm : AntMForm;
+    }, [mode]);
+
+    const { SchemaField, isLoading } = useLazySchemaField(
+      { FormItem, FormGrid },
+      mode
+    );
 
     const designForm = useMemo(() => {
       return createForm({
-        pattern:"editable",
+        pattern: "editable",
         initialValues: initialValues,
         data: {
           designEnable: designEnable,
@@ -46,7 +53,7 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
           });
         },
       } as IFormProps & { data: object });
-    }, [ mode, designEnable]);
+    }, [mode, designEnable]);
 
     useImperativeHandle(ref, () => ({
       designForm: designForm,
@@ -64,7 +71,11 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
             ) : (
               <>
                 <FormProvider form={designForm}>
-                  <Form layout={layout} style={{ width: "100%" }}>
+                  <Form
+                    layout={layout}
+                    style={{ width: "100%" }}
+                    className={styles.form}
+                  >
                     {isLoading ? null : (
                       <SchemaField schema={state.formSchema} />
                     )}
