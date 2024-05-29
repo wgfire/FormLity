@@ -14,7 +14,7 @@ const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
     designEnable: false,
     readOnly: false,
-    mode: "mobile",
+    mode: "pc",
     formSchema: {
       _isJSONSchemaObject: true,
       version: "2.0",
@@ -225,6 +225,19 @@ const FormDesignApp = () => {
           "x-data": {},
           name: "slider-1715668815741_62025004",
         },
+        "timepicker-1715668815741_62025004": {
+          _isJSONSchemaObject: true,
+          version: "2.0",
+          key: "timepicker-1715668815741_62025004",
+          title: "时间选择",
+          type: "string",
+          required: true,
+          "x-component": "TimePicker",
+          "x-decorator": "FormItem",
+          "x-component-props": {},
+          "x-data": {},
+          name: "timepicker-1715668815741_62025004",
+        },
       },
     },
   });
@@ -241,7 +254,8 @@ const FormDesignApp = () => {
       "1715668828836_451024517",
       "1715913958373_774353487",
     ],
-    "datepicker-1715668807508_12711714": ["2022-5-5"],
+    "datepicker-1715668807508_12711714": "",
+    "timepicker-1715668815741_62025004":"",
     "upload-1715668850644_81507394": [
       {
         uid: "000/33311667307327/FosSlGa9pcsCLazS5Vqk4SFQs1mb.gif",

@@ -1,4 +1,4 @@
-import { useField, useForm } from "@formily/react";
+import { observer, useField, useForm } from "@formily/react";
 import { Form } from "@feb/kk-design";
 import { Form as AntMForm } from "antd-mobile";
 import { DragBox } from "../DragBox";
@@ -6,7 +6,7 @@ import styles from "./index.module.less";
 
 import clsx from "clsx";
 import { HolderOutlined } from "@ant-design/icons";
-export const FormItem = ({ children }) => {
+export const FormItem = observer(({ children }) => {
   const field = useField();
   const form = useForm();
   const readOnly = form.readOnly;
@@ -33,4 +33,4 @@ export const FormItem = ({ children }) => {
       </FormItem>
     </DragBox>
   );
-};
+});

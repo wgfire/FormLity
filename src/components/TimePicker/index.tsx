@@ -1,4 +1,5 @@
 import { TimePicker as AntTimePicker, TimePickerProps } from "@feb/kk-design";
+import moment from "moment";
 
 export interface ITimePickerProps extends Omit<TimePickerProps, "onChange"> {
   range?: boolean;
@@ -8,16 +9,15 @@ export interface ITimePickerProps extends Omit<TimePickerProps, "onChange"> {
 export const TimePicker: React.FC<ITimePickerProps> = (props) => {
   const { onChange, range } = props;
   const valueChange = (value: moment.Moment | null) => {
-    onChange(value?.format("h:mm:ss"));
+    onChange(value?.toLocaleString());
   };
-
+  const value = props.value ? moment(props.value) : "";
   return !range ? (
-    <AntTimePicker onChange={valueChange} format="hh:mm:ss" {...props} />
+    <AntTimePicker onChange={valueChange} format="hh:mm:ss" value={value} />
   ) : (
     <AntTimePicker.RangePicker
       onChange={onChange}
-      format="hh:mm:ss"
-      {...props}
+      value={value}
       placeholder={["开始时间", "结束时间"]}
     />
   );
