@@ -53,7 +53,7 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
           });
         },
       } as IFormProps & { data: object });
-    }, [mode, designEnable]);
+    }, [initialValues, designEnable, mode]);
 
     useImperativeHandle(ref, () => ({
       designForm: designForm,

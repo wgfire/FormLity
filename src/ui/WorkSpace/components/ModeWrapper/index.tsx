@@ -3,7 +3,7 @@ import styles from "./index.module.less";
 import clsx from "clsx";
 export const ModeWrapper: React.FC<
   React.PropsWithChildren<{
-    mode: string;
+    mode: string | null;
     preview?: boolean;
     designEnable?: boolean;
   }>
