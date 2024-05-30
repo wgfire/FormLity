@@ -28,7 +28,6 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
     const { mode, designEnable } = state;
     const { layout = "vertical" } = props;
     const initialValues = props.initialValues ?? {};
-
     const { SchemaField, isLoading } = useLazySchemaField(
       { FormItem, FormGrid, ...PreviewComponents },
       state.mode
@@ -47,7 +46,7 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
           mode: mode,
         },
       } as IFormProps & { data: object });
-    }, []);
+    }, [mode]);
 
     useImperativeHandle(ref, () => ({
       designForm: designForm,
