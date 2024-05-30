@@ -11,17 +11,21 @@ export interface ICDatePickerProps extends ICbaseProps {
   range?: boolean;
 }
 export const DatePicker: React.FC<ICDatePickerProps> = (props) => {
-  const { onChange, range, value } = props;
+  const { onChange, range } = props;
   const [visible, setVisible] = useState(false);
   const form = useForm();
   const { designEnable } = form?.props?.data ?? {};
-  const defaultValue = new Date(value ?? "");
+  const value = props.value ? new Date(props.value as string) : null;
   const valueChange = (newValue: PickerDate) => {
     onChange(moment(newValue).format("YYYY-MM-DD"));
   };
   return !range ? (
     <>
-      <TriggerBox placeholder="请选择" value={value} onClick={()=>setVisible(true)}></TriggerBox>
+      <TriggerBox
+        placeholder="请选择"
+        value={value}
+        onClick={() => setVisible(true)}
+      ></TriggerBox>
       <AntDatePicker
         mouseWheel
         getContainer={
@@ -35,7 +39,7 @@ export const DatePicker: React.FC<ICDatePickerProps> = (props) => {
         onClose={() => {
           setVisible(false);
         }}
-        value={defaultValue}
+        value={value}
       />
     </>
   ) : (

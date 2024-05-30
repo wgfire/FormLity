@@ -23,7 +23,7 @@ export const DatePicker: React.FC<IDatePickerProps> = (props) => {
     ? Array.isArray(props.value)
       ? [moment(props.value[0]), moment(props.value[1])]
       : moment(props.value)
-    : "";
+    : null;
 
   return !range ? (
     <AntDatePicker

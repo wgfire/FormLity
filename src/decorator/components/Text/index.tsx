@@ -1,6 +1,6 @@
 import { observer, useFieldSchema, useForm } from "@formily/react";
 import { DragBox } from "../DragBox";
-import { Typography } from "@feb/kk-design";
+import { Flex, Typography } from "@feb/kk-design";
 import { HolderOutlined } from "@ant-design/icons";
 
 export const Text = observer(() => {
@@ -10,10 +10,14 @@ export const Text = observer(() => {
   const { designEnable } = form?.props?.data ?? {};
   return (
     <DragBox showRequired={false}>
-      {designEnable && <HolderOutlined style={{ cursor: "grab" }} />}
-      <Title style={{ fontSize: "14px", paddingLeft: "20px" }}>
-        {field.title}
-      </Title>
+      <Flex>
+        {designEnable && <HolderOutlined style={{ cursor: "grab" }} />}
+        <Title
+          style={designEnable ? { fontSize: "14px", paddingLeft: "10px" } : {}}
+        >
+          {field.title}
+        </Title>
+      </Flex>
     </DragBox>
   );
 });

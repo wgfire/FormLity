@@ -11,7 +11,7 @@ export const TimePicker: React.FC<ITimePickerProps> = (props) => {
   const valueChange = (value: moment.Moment | null) => {
     onChange(value?.toLocaleString());
   };
-  const value = props.value ? moment(props.value) : "";
+  const value = props.value ? moment(props.value) : null;
   return !range ? (
     <AntTimePicker onChange={valueChange} format="hh:mm:ss" value={value} />
   ) : (
