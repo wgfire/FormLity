@@ -124,6 +124,6 @@ export const DragBox: React.FC<React.PropsWithChildren<DragBoxProps>> =
         </div>
       </>
     ) : (
-      <>{props.children}</>
+      props.children
     );
   });

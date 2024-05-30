@@ -13,6 +13,7 @@ export const FormItem = observer(({ children }) => {
   const { designEnable, mode } = form.props.data ? form.props.data : {};
   // 为了适配FormItem的属性
   const FormItem = mode === "pc" ? Form.Item : AntMForm.Item;
+
   return (
     <DragBox>
       {!readOnly && designEnable && (
@@ -23,10 +24,13 @@ export const FormItem = observer(({ children }) => {
       <FormItem
         className={clsx({ [styles.designItem]: designEnable })}
         readOnly={readOnly}
-        required={field.required}
+        rules={[{ required: true, message: "该字段为必填" }]}
+        name={field.props.name}
         label={field.title}
-        help={field.selfErrors?.length ? field.selfErrors : undefined}
         extra={field.description}
+        help={
+          field.selfErrors?.length && mode === "pc" ? field.selfErrors : null
+        }
         validateStatus={field.validateStatus}
       >
         {children}

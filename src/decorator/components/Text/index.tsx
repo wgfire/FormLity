@@ -12,9 +12,7 @@ export const Text = observer(() => {
     <DragBox showRequired={false}>
       <Flex>
         {designEnable && <HolderOutlined style={{ cursor: "grab" }} />}
-        <Title
-          style={designEnable ? { fontSize: "14px", paddingLeft: "10px" } : {}}
-        >
+        <Title level={5} style={{ paddingLeft: designEnable ? "10px" : 0 }}>
           {field.title}
         </Title>
       </Flex>

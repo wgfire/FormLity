@@ -1,6 +1,12 @@
 import { IFormProps, createForm, onFormValuesChange } from "@formily/core";
 import { FormProvider } from "@formily/react";
-import { Suspense, forwardRef, useImperativeHandle, useMemo } from "react";
+import {
+  Suspense,
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from "react";
 import { Empty, Form as AntForm } from "@feb/kk-design";
 import { Form as AntMForm } from "antd-mobile";
 import styles from "./index.module.less";
@@ -22,6 +28,7 @@ export interface IFormLityRenderProps {
 export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
   (props, ref) => {
     const { state, emptyStatus } = useFlityStateContext();
+    const formRef = useRef(null);
 
     const empty = emptyStatus;
     const { mode, designEnable, readOnly } = state;
@@ -56,8 +63,9 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
     }, [initialValues, designEnable, mode]);
 
     useImperativeHandle(ref, () => ({
-      designForm: designForm,
+      designForm: formRef.current,
     }));
+
 
     return (
       <div id="FormLityRender" className={clsx(styles.render)}>
@@ -74,6 +82,7 @@ export const FormLityRender: React.FC<IFormLityRenderProps> = forwardRef(
                   <Form
                     layout={layout}
                     style={{ width: "100%" }}
+                    ref={formRef}
                     className={styles.form}
                   >
                     {isLoading ? null : (

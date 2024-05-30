@@ -14,7 +14,7 @@ const FormDesignApp = () => {
   const { state, setState } = useFlitySate({
     designEnable: false,
     readOnly: false,
-    mode: "pc",
+    mode: "mobile",
     formSchema: {
       _isJSONSchemaObject: true,
       version: "2.0",
