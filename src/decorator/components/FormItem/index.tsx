@@ -24,7 +24,7 @@ export const FormItem = observer(({ children }) => {
       <FormItem
         className={clsx({ [styles.designItem]: designEnable })}
         readOnly={readOnly}
-        rules={[{ required: true, message: "该字段为必填" }]}
+        rules={[{ required: field.required, message: "该字段为必填" }]}
         name={field.props.name}
         label={field.title}
         extra={field.description}
