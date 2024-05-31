@@ -72,6 +72,7 @@ export const FormLityPreview: React.FC<IFormLityRenderProps> = forwardRef(
                     layout={layout}
                     style={{ width: "100%" }}
                     className={styles.form}
+                    initialValues={initialValues}
                   >
                     {isLoading ? null : (
                       <SchemaField schema={state.formSchema} />
